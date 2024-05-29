@@ -1,0 +1,18 @@
+.container {
+    box-sizing: border-box;
+
+    width: 100%;
+    height: auto;
+
+    padding: 1rem;
+    padding-left: 1rem;
+
+    white-space: nowrap;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+}

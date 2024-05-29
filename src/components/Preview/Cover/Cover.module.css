@@ -1,0 +1,25 @@
+.container {
+    box-sizing: border-box;
+
+    width: 100%;
+    height: auto;
+
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 10px;
+}
+
+.image {
+    box-sizing: border-box;
+
+    width: 100%;
+    height: auto;
+}
+
+@media only screen and (min-device-width: 960px) {
+    .container {
+        width: 20rem;
+        max-height: 20rem;
+    }
+}

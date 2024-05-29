@@ -1,0 +1,11 @@
+.container {
+    padding: 1rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 900;
+    line-height: 1.75rem;
+    letter-spacing: -1px;
+}

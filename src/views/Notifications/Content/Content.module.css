@@ -1,0 +1,33 @@
+.row,
+.col {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+}
+
+.row {
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    padding: 0.5rem;
+
+    height: auto;
+}
+
+.col {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.placeholder {
+    display: block;
+    padding: 0.5rem;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.list {
+    width: 100% !important;
+}

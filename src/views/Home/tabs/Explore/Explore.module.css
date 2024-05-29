@@ -1,0 +1,35 @@
+.container {
+    padding-bottom: 5rem;
+}
+
+.row,
+.col {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+}
+
+.row {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.col {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.content {
+    padding: 1rem;
+}
+
+.card,
+.chalk {
+    margin-bottom: 1rem;
+}
+

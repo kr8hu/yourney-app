@@ -1,0 +1,38 @@
+.wrapper {
+    box-sizing: border-box;
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0 auto;
+
+    position: absolute !important;
+
+    top: 0;
+    left: 0;
+
+    border-radius: 10px;
+    overflow: hidden;
+
+    box-shadow: 1px 1px 10px var(--color-shadow);
+}
+
+@media (prefers-color-scheme: light) {
+    .container {
+        filter: contrast(1) grayscale(0);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .container {
+        filter: contrast(0.8) grayscale(0.2);
+    }
+}

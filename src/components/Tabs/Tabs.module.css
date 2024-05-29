@@ -1,0 +1,51 @@
+.container {
+    box-sizing: border-box;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+}
+
+.content {
+    box-sizing: border-box;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    overflow-y: scroll;
+
+    border: 0px solid red;
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+.view {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+@media only screen and (min-device-width: 960px) {
+    .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content {
+        max-width: var(--web-content-width);
+        position: relative;
+        margin: 0 auto;
+    }
+}

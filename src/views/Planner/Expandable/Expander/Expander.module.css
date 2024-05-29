@@ -1,0 +1,19 @@
+.container {
+    box-sizing: border-box;
+
+    margin: 3rem auto;
+
+    width: fit-content;
+    padding: 1rem;
+
+    border: 3px dotted rgba(150, 150, 150, 0.3);
+    color: rgba(150, 150, 150, 0.3);
+    border-radius: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+}

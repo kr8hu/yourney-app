@@ -1,0 +1,19 @@
+.textContainer {
+    box-sizing: border-box;
+
+    width: 100%;
+    height: auto;
+}
+
+.text {
+    box-sizing: border-box;
+    display: block;
+    text-align: left;
+
+    width: 100%;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+
+    text-align: justify;
+}

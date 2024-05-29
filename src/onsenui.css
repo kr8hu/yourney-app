@@ -1,0 +1,104 @@
+/**
+    Page 
+*/
+.page__background {
+    background-color: var(--color-theme) !important;
+}
+
+/**
+    Progress Circular 
+*/
+.progress-circular__primary {
+    stroke: var(--color-main) !important;
+}
+
+/**
+    List 
+*/
+ons-list {
+    background: none !important;
+    overflow: unset !important;
+}
+
+ons-list-header,
+.list-header {
+    font-family: "DM Sans", sans-serif !important;
+    font-weight: bold !important;
+
+    background: var(--color-main) !important;
+    color: var(--color-white) !important;
+
+    border-radius: 7px !important;
+    box-shadow: 1px 1px 10px var(--color-shadow) !important;
+
+    margin-bottom: 7px !important;
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+    margin-top: 1rem !important;
+
+    padding: 0.5rem !important;
+}
+
+ons-list-item {
+    background-color: var(--color-theme) !important;
+}
+
+.list-item--material__left:empty {
+    padding: 0 !important;
+}
+
+.list-item__top,
+.list-item__center,
+.list-item__right,
+.list-item--expandable {
+    background: none !important;
+}
+
+/**
+    Carousel
+*/
+ons-carousel-item {
+    background-color: transparent !important;
+}
+
+/**
+    Toolbar
+*/
+ons-toolbar {
+    box-shadow: 1px 1px 10px var(--color-shadow) !important;
+    background: var(--color-theme) !important;
+}
+
+.back-button__icon {
+    fill: var(--color-main) !important;
+    color: var(--color-main) !important;
+}
+
+/**
+    Floating Action Button
+*/
+ons-fab {
+    background-color: var(--color-main) !important;
+}
+
+.fab__icon {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+}
+
+/**
+    Dialog
+*/
+.dialog {
+    border-radius: 15px !important;
+    height: 20% !important;
+    box-sizing: border-box !important;
+}
+
+.dialog-container {
+    height: 100% !important;
+}

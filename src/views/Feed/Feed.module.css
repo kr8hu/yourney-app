@@ -1,0 +1,40 @@
+.row,
+.col {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+}
+
+.row {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.col {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1rem;
+}
+
+.placeholder {
+    display: block;
+    padding: 1rem;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.card:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .card {
+        background-color: #090909;
+    }
+
+}

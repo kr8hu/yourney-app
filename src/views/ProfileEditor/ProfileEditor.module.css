@@ -1,0 +1,27 @@
+.content {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 0.5rem 1rem;
+}
+
+.text {
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.photoPicker {
+    margin-bottom: 2rem;
+}
+
+.button {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: fit-content;
+    margin: 0 auto 3rem auto;
+}
+
+.fab {
+    background-color: var(--color-main) !important;
+    color: var(--color-white) !important;
+}

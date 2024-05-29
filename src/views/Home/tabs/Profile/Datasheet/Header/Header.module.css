@@ -1,0 +1,54 @@
+.row,
+.col {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+}
+
+.row {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    
+    height: 100%;
+}
+
+.col {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    width: fit-content;
+    height: auto;
+}
+
+.picture {
+    box-sizing: border-box;
+    width: 8rem;
+    height: 8rem;
+
+    border-radius: 10px;
+
+    padding: 1rem;
+
+    background-color: var(--color-theme);
+    box-shadow: 1px 1px 10px var(--color-shadow);
+}
+
+.data {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.title,
+.text {
+    width: 100%;
+    display: block;
+}
+
+.title {
+    font-weight: bold;
+    color: var(--color-main);
+}

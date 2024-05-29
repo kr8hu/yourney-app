@@ -1,0 +1,49 @@
+.button {
+    padding: 0.75rem 3rem !important;
+    margin: 0 auto;
+
+    pointer-events: all;
+}
+
+.wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.selection {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.selection>img {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 15px;
+    height: 15px;
+    z-index: 10;
+    box-sizing: border-box;
+    display: block;
+}
+
+.select {
+    box-sizing: border-box;
+    cursor: pointer;
+
+    width: 100%;
+    border: 0;
+
+    padding: 0.85rem 0.5rem;
+    margin-bottom: 1rem;
+
+    background-color: rgba(200, 200, 200, 0.5);
+    border-radius: 5px;
+
+    text-align: left;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 0.85rem;
+
+    outline: none;
+    -webkit-appearance: none;
+}

@@ -1,0 +1,17 @@
+.container {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    opacity: 0.5;
+    margin: 0.25rem 0;
+}
+
+.container * {
+    display: inline;
+    font-size: 1rem !important;
+}
+
+.container ons-icon {
+    margin-right: 2px !important;
+    color: var(--color-main) !important;
+}

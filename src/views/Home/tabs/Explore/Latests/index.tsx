@@ -1,0 +1,150 @@
+//React
+import {
+    useContext
+} from 'react';
+
+//Context
+import { AppContext } from '../../../../../context/App';
+
+//Views
+import Plan from '../../../../Plan';
+import Feed from '../../../../Feed';
+
+//Components
+import Preview from '../../../../../components/Preview';
+import Text from '../../../../../components/Text';
+import Button from '../../../../../components/Button';
+
+//Shared
+import {
+    sortByProperty,
+    getCategoryNameByID,
+} from '../../../../../shared/utils';
+
+//Interfaces
+import Post from '../../../../../interfaces/Post';
+import Meta from '../../../../../interfaces/Meta';
+
+//Styles
+import styles from './Latests.module.css';
+
+
+/**
+ * Props
+ * 
+ */
+interface Props {
+    numberOfPosts: number;
+}
+
+
+/**
+ * Latests
+ * 
+ * Legutóbb feltöltött bejegyzéseket megjelenítő komponens
+ * 
+ * @returns 
+ */
+function Latests({ numberOfPosts }: Props) {
+    //Context
+    const { appState } = useContext(AppContext);
+
+
+    /**
+     * latestPosts
+     * 
+     * Tartalom rendezése feltöltési dátum szerint
+     */
+    const latestPosts = Array.from(appState.cache.sort(sortByProperty('createdAt', true)));
+
+
+    /**
+     * onClick
+     * 
+     */
+    const onClick = () => {
+        appState.navigator.pushPage({
+            component: Feed,
+            props: {
+                plans: latestPosts
+            }
+        })
+    }
+
+
+    /**
+     * renderLatest
+     * 
+     * @returns 
+     */
+    const renderLatests = () => {
+        //Meghatározott mennyiségű megjeleníthető tartalom
+        const slicedPosts = latestPosts.slice(0, numberOfPosts);
+
+        //Bejegyzések renderelése
+        return slicedPosts.map((post: Post, idx: number) => {
+            //Kategória
+            const category = getCategoryNameByID(post.category);
+
+            //Likeok száma
+            const likes = post.likes.length.toString();
+
+            //Meta adatok
+            const meta: Meta = {
+                author: post.author,
+                category,
+                likes
+            }
+
+            return (
+                <div className={styles.col}>
+                    <Preview
+                        key={idx}
+                        className={styles.card}
+                        title={post.name}
+                        text={post.description}
+                        image={post.photos[0]}
+                        meta={meta}
+                        onClick={() => appState.navigator.pushPage({ component: Plan, props: { post } })} />
+                </div>
+            )
+        })
+    }
+
+
+    /**
+     * renderPlaceholder
+     * 
+     * @returns 
+     */
+    const renderPlaceholder = () => {
+        return (
+            <div className={styles.col}>
+                <Text node="no_content" />
+            </div>
+        )
+    }
+
+
+    return (
+        <div className={styles.container}>
+            <div className={styles.row}>
+                {/* Tartalom */}
+                {latestPosts.length === 0 ? renderPlaceholder() : renderLatests()}
+
+                {/* További tartalamat megjelenítő gomb */}
+                <div className={styles.col}>
+                    {latestPosts.length !== 0 && (
+                        <Button
+                            className={styles.button}
+                            onClick={onClick}>
+                            <Text node="explore_more" />
+                        </Button>
+                    )}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Latests;

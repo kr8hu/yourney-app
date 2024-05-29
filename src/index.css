@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  --web-content-width: 960px;
+  --sab: env(safe-area-inset-bottom);
+}
+
+*::selection {
+  background-color: var(--color-main);
+  color: var(--color-white);
+}
+
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+
+iframe {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--color-main);
+}
+
+html, body {
+  overflow: hidden;
+  position: fixed;
+}
+
+body {
+  margin: 0;
+  min-height: -webkit-fill-available;
+  
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', "Roboto", 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

@@ -1,0 +1,6 @@
+.button {
+    padding: 0.75rem 3rem !important;
+    margin: 0 auto;
+
+    pointer-events: all;
+}

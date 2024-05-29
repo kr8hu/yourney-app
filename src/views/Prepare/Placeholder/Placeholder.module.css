@@ -1,0 +1,31 @@
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 2rem;
+}
+
+.icon {
+    font-size: 4rem !important;
+    color: var(--color-main) !important;
+    margin-bottom: 1rem !important;
+}
+
+.text {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.button {
+    margin-bottom: 2rem;
+    width: 60%;
+}

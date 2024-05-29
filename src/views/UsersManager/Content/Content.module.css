@@ -1,0 +1,26 @@
+.row,
+.col {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+}
+
+.row {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    height: auto;
+}
+
+.col {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding: 0 0.5rem;
+}
+
+.list {
+    width: 100% !important;
+}

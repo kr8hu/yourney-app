@@ -1,0 +1,18 @@
+.button {
+    padding: 0.75rem !important;
+    margin: 0;
+    display: inline-flex;
+
+    pointer-events: all;
+
+    width: 100%;
+}
+
+.wrapper {
+    width: 100%;
+    text-align: center;
+    
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}

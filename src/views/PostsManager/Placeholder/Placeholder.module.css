@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    font-size: 4rem !important;
+    color: var(--color-main) !important;
+    margin-bottom: 1rem !important;
+}
+
+.text {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.button {
+    margin-bottom: 2rem;
+    width: 60%;
+}

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="appname">Yourney</string>
+    <string name="initialize">Betöltés</string>
+    <string name="click_here">kattints ide.</string>
+    <string name="shuffle_suggestions">Javaslatok keverése</string>
+    <string name="upload">Feltöltés</string>
+    <string name="location">Helyszín</string>
+    <string name="no_content">Nincs megjeleníthető tartalom.</string>
+    <string name="not_available_short">N/A</string>
+    <string name="image_not_available">A kép nem elérhető</string>
+    <string name="map_not_available">A térkép nem elérhető.</string>
+    <string name="select_photo">Fotók kiválasztása</string>
+    <string name="credits_text">Az alkalmazásban felhasználásra került könyvtárak,
+        keretrendszerek, képek,
+        grafikai és egyéb
+        tartalmak:</string>
+    <string name="contact_text">Elküldheted észrevételeid, javaslataid az alábbi űrlap kitöltésével.</string>
+    <string name="search_text">Írj be egy tetszőleges kifejezést, amit keresel.</string>
+    <string name="explore_more">Továbbiak megtekintése</string>
+    <string name="prepare_choose_type">Válaszd ki, milyen kategóriába sorolható a programterved.</string>
+
+
+    <string name="planner_title_name">Programterv megnevezése</string>
+    <string name="planner_text_name">Adj egy címet a programtervednek.</string>
+    <string name="planner_title_description">Programterv leírása</string>
+    <string name="planner_text_description">Írj egy rövid összegző leírást a programokról.</string>
+    <string name="planner_title_photo">Fotógaléria</string>
+    <string name="planner_text_photo">Programterv helyszínein készült fotók.</string>
+    <string name="planner_title_details">Helyszínek</string>
+    <string name="planner_text_details">Megadhatod a programterv helyszíneit. A kezdéshez kattints a
+        + gombra.</string>
+    <string name="planner_location_name">Helyszín neve</string>
+    <string name="planner_location_description">Helyszín leírása</string>
+    <string name="planner_location_type">Helyszín típusa (opcionális)</string>
+    <string name="planner_location_date">Látogatás ideje (opcionális)</string>
+    <string name="planner_location_time">Látogatás időpontja (opcionális)</string>
+    <string name="planner_location_photo">Fotó a helyszínről (opcionális)</string>
+    <string name="planner_location_coords">Helyszín koordinátái</string>
+    <string name="profile_username">Felhasználónév</string>
+    <string name="profile_email">E-mail cím</string>
+    <string name="profile_regdate">Regisztráció időpontja</string>
+    <string name="profile_number_of_posts">Közzétett bejegyzések
+    </string>
+    <string name="profile_total_likes">Bejegyzésekre érkezett kedvelések</string>
+    <string name="profile_editor_name_title">Teljes név</string>
+    <string name="profile_editor_name_text">Ha megadod a teljes neved, akkor a felhasználóneved
+        helyett ez kerül megjelenítésre a bejegyzéseidnél.</string>
+    <string name="profile_editor_photo_title">Profilkép</string>
+    <string name="profile_editor_photo_text">A profilodban és a bejegyzéseidnél
+        látható.</string>
+    <string name="settings_app_theme">Sötét mód használata</string>
+    <string name="settings_app_version">Verziószám</string>
+    <string name="settings_app_contact">Kapcsolat</string>
+    <string name="settings_app_about">Névjegy</string>
+    <string name="settings_profile_edit">Adataim módosítása</string>
+    <string name="settings_profile_password">Jelszó módosítása</string>
+    <string name="settings_profile_upload_photo">Profilkép módosítása</string>
+    <string name="settings_profile_delete">Felhasználói fiók törlése</string>
+    <string name="settings_profile_posts">Bejegyzések kezelése</string>
+    <string name="settings_admin_users_manage">Felhasználók kezelése</string>
+    <string name="privacy_title">Tájékoztató</string>
+    <string name="privacy_text_data">
+        Üdvözlünk a Yourney alkalmazás adatvédelmi tájékoztatójában. Ez a dokumentum részletezi az
+        alkalmazás által gyűjtött és használt adatokat, valamint azokat a gyakorlatokat, amelyeket
+        az adatok védelme érdekében alkalmazunk.
+
+        Az alkalmazásunk különböző típusú adatokat gyűjthet, beleértve pl. a helyinformációkat.
+        Ezeket az adatokat az alkalmazás szolgáltatásainak biztosításához, személyre szabott élmény
+        nyújtásához használjuk.
+
+        Az alkalmazás adatokat oszthat meg harmadik felekkel (pl.: Bing Maps). Ezeknek a
+        partnereknek az adatokhoz való hozzáférése kizárólag az alkalmazás szolgáltatásainak
+        biztosítása és a felhasználói élmény javítása céljából történik.
+
+        Felhasználóink jogosultak hozzáférni az általuk megadott adatokhoz, valamint módosíthatják
+        vagy törölhetik azokat az alkalmazáson belül.
+
+        Az alkalmazásunk cookie-kat használhat bizonyos funkciók támogatásához és a felhasználói
+        élmény javításához.
+
+        Az alkalmazásunk minden tőle telhető intézkedést megtett az adatok védelme érdekében.
+
+        Ha bármilyen kérdése vagy észrevétele van az adatvédelemmel kapcsolatban, kérjük látogasson
+        el és töltse ki a [beállítások > kapcsolat] menüpont alatt található kapcsolatfelvételi
+        űrlapot vagy vegye fel velünk a kapcsolatot az alábbi címen: app.yourney@gmail.com</string>
+    <string name="privacy_text_delete">Amennyiben úgy gondolod, hogy nem szeretnéd a
+        továbbiakban profiloddal használni az alkalmazást, lehetőséged van törölni az összes adattal
+        együtt az alábbi gomb megnyomásával.</string>
+    <string name="privacy_button_delete">Fiók törlése a rendszerből</string>
+    <string name="settings_logout">Kijelentkezés</string>
+    <string name="landing_title">Yourney</string>
+    <string name="landing_text">Közösségi túrakalauz és szabadidő-programtervező.</string>
+    <string name="landing_button">Belépés</string>
+    <string name="button_signin">Bejelentkezés</string>
+    <string name="button_signup">Regisztráció</string>
+    <string name="button_search">Keresés</string>
+    <string name="modal_signin_title">Bejelentkezés</string>
+    <string name="modal_signin_text">Ha még nem rendelkezel fiókkal, a regisztrációhoz </string>
+    <string name="modal_signup_title">Regisztráció</string>
+    <string name="modal_signup_text">Ha már rendelkezel meglévő fiókkal, a bejelentkezéshez </string>
+    <string name="location_title_description">Leírás</string>
+    <string name="location_title_address">Helyinformációk</string>
+    <string name="location_title_map">Térkép</string>
+    <string name="plan_title_description">Leírás</string>
+    <string name="plan_title_meta">Adatok</string>
+    <string name="plan_title_locations">Helyszínek</string>
+    <string name="plan_title_map">Térkép</string>
+    <string name="plan_locations_empty">Nincs helyszín hozzáadva.</string>
+    <string name="plan_meta_author">Feltöltő</string>
+    <string name="plan_meta_category">Kategória</string>
+    <string name="plan_meta_time">Időtartam</string>
+    <string name="plan_meta_distance">Táv</string>
+    <string name="plan_meta_no_time">Nincs időpont megadva</string>
+    <string name="pullhook_initial">A frissítéshez húzd le</string>
+    <string name="pullhook_preaction">Engedd el a frissítéshez</string>
+    <string name="pullhook_load">Betöltés</string>
+    <string name="placeholder_favourites">Nincs megjeleníthető tartalom.</string>
+    <string name="placeholder_login">Ez az oldal csak bejelentkezett felhasználók számára érhető el.</string>
+    <string name="placeholder_map_permission">Kattints ide a helyadatok lekérésének
+        engedélyezéséhez.</string>
+    <string name="placeholder_map_position">Helyadatok lekérése...</string>
+    <string name="placeholder_notifications">Nincs megjeleníthető értesítés.</string>
+    <string name="placeholder_profile">Még nincs társítva név a profilodhoz.</string>
+    <string name="placeholder_postsmanager">Nincs megjeleníthető bejegyzés.</string>
+    <string name="placeholder_function_disabled">Eza funkció csak a Play Store és App Store
+        áruházakból
+        letöltött alkalmazásokból elérhető.</string>
+    <string name="postsmanager_visit">Megtekintés</string>
+    <string name="postsmanager_approve">Jóváhagyás</string>
+    <string name="postsmanager_edit">Szerkesztés</string>
+    <string name="postsmanager_delete">Törlés</string>
+    <string name="usersmanager_delete">Fiók törlése</string>
+    <string name="CAT_TOUR">Túra</string>
+    <string name="CAT_TRIP">Kirándulás</string>
+    <string name="CAT_VACATION">Nyaralás</string>
+    <string name="CAT_SIGHTSEEING">Városnézés</string>
+
+    <string name="title_page_about">Névjegy</string>
+    <string name="title_page_contact">Kapcsolat</string>
+    <string name="title_page_editor">Szerkesztő</string>
+    <string name="title_page_feed">Bejegyzések</string>
+    <string name="title_page_home_explore">Felfedezés</string>
+    <string name="title_page_home_search">Keresés</string>
+    <string name="title_page_home_favourites">Kedvencek</string>
+    <string name="title_page_home_profile">Profil</string>
+    <string name="title_page_location">Helyszín</string>
+    <string name="title_page_notifications">Értesítések</string>
+    <string name="title_page_password">Jelszó módosítás</string>
+    <string name="title_page_plan">Programterv</string>
+    <string name="title_page_planner">Programtervező</string>
+    <string name="title_page_postsmanager">Tartalomkezelő</string>
+    <string name="title_page_prepare">Programtervező</string>
+    <string name="title_page_privacy">Információk</string>
+    <string name="title_page_profile_editor">Profilszerkesztő</string>
+    <string name="title_page_settings">Beállítások</string>
+    <string name="title_page_usersmanager">Felhasználókezelő</string>
+</resources>

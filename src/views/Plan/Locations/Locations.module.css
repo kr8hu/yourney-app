@@ -1,0 +1,15 @@
+.container {
+    box-sizing: border-box;
+}
+
+.content {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    text-align: justify;
+}
+
+.location {
+    margin-bottom: 1rem;
+}

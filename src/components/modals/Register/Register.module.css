@@ -1,0 +1,69 @@
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.row,
+.col {
+    box-sizing: border-box;
+    display: flex;
+
+    width: 100%;
+}
+
+.row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.col {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.col:first-child {
+    height: 30%;
+    transition: ease-in-out .5s all;
+}
+
+.col:last-child {
+    height: 70%;
+    padding: 0 1rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+}
+
+.text {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+}
+
+.link {
+    color: var(--color-main);
+    cursor: pointer;
+}
+
+.textGroup {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* iPhone 5/SE Portrait */
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+    .col:first-child {
+        height: 25%;
+    }
+
+    .col:last-child {
+        height: 75%;
+    }
+}

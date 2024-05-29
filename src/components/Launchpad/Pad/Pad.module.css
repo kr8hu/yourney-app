@@ -1,0 +1,28 @@
+.container {
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 15px;
+
+    padding: 1rem;
+
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--color-pad);
+}
+
+.emoji {
+    font-size: 4rem;
+}
+
+.text {
+    margin: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+}

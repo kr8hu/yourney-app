@@ -1,0 +1,50 @@
+.background,
+.layer {
+    box-sizing: border-box;
+
+    position: absolute;
+    left: 0;
+
+    width: 100%;
+}
+
+.background {
+    top: 3rem;
+    height: auto;
+    z-index: -2;
+    opacity: 0.5;
+}
+
+.layer {
+    top: 0;
+    height: 100%;
+    z-index: -1;
+}
+
+
+@media (prefers-color-scheme: light) {
+    .layer {
+        background: linear-gradient(to bottom,
+                rgba(255, 255, 255, 0.25) 0%,
+                rgba(255, 255, 255, 1) 30%);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .layer {
+        background: linear-gradient(to bottom,
+                rgba(30, 30, 30, 0.25) 0%,
+                rgba(30, 30, 30, 1) 35%);
+    }
+}
+
+@media only screen and (min-device-width: 960px) {
+    .background,
+    .layer {
+        position: fixed;
+    }
+
+    .background {
+        top: 0;
+    }
+}

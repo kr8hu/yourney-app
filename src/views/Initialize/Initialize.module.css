@@ -1,0 +1,28 @@
+.container {
+    height: 100% !important;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title,
+.text {
+    color: var(--color-white);
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+    margin-bottom: 2rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: -0.5px;
+}
+
+.text {
+    margin-bottom: 2rem;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+}

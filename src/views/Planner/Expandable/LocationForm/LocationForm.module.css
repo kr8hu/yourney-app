@@ -1,0 +1,51 @@
+.container {
+    padding: 1rem 0.5rem;
+    position: relative;
+
+}
+
+.title {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.text {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.deleteButton {
+    box-sizing: border-box;
+    width: 2rem;
+    height: 2rem;
+    background-color: crimson;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50px;
+
+    box-shadow: 1px 1px 10px var(--color-shadow);
+
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+
+.photoPicker {
+    margin-bottom: 1rem;
+}
+
+.coordpicker {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 15rem;
+}

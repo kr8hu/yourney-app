@@ -1,0 +1,51 @@
+.container {
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 5;
+
+    bottom: 0.75rem;
+    left: 0;
+
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0.75;
+}
+
+.pagination {
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: row;
+
+    border-radius: 100px;
+    padding: 0.25rem;
+    background-color: rgb(255, 255, 255, 0.5);
+
+    width: fit-content;
+
+    filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 1));
+}
+
+.bullet {
+    box-sizing: border-box;
+
+    width: 0.5rem;
+    height: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgba(255, 255, 255, 1);
+    margin: 0 0.2rem;
+
+    border-radius: 100px;
+}
+
+.bullet[data-active="true"] {
+    background-color: var(--color-main);
+}

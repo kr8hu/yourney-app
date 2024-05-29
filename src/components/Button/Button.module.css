@@ -1,0 +1,23 @@
+.container {
+    box-sizing: border-box;
+
+    border: 0;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1rem 2rem;
+
+    background-color: var(--color-main);
+    box-shadow: 1px 1px 10px var(--color-shadow);
+
+    cursor: pointer;
+}
+
+.container * {
+    color: var(--color-white) !important;
+    font-weight: bold;
+}

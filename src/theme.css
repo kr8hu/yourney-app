@@ -1,0 +1,48 @@
+:root {
+    --color-main: #89995b;
+    --color-modal-button: #4e651a;
+    --color-white: rgb(255, 255, 255);
+    --color-black: rgb(20, 20, 20);
+
+    --color-default: rgb(245, 245, 245);
+    --color-warning: rgb(215, 165, 55);
+    --color-error: rgb(215, 65, 55);
+    --color-success: rgb(115, 200, 60);
+    --color-destructive: rgb(160, 35, 25);
+
+    --box-shadow: rgba(255, 255, 255, 0.5);
+
+    --main-toolbar-height: 4rem;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --color-theme: var(--color-white);
+        --color-text: var(--color-black);
+        --color-icon: rgb(204, 204, 204);
+        --color-input: rgb(252, 252, 252);
+        --color-list-header: rgb(238, 238, 238);
+        --color-layer: rgba(255, 255, 255, 0.85);
+        --color-shadow: rgba(0, 0, 0, 0.15);
+        --color-modal: var(--color-white);
+        --color-toolbar: rgb(252, 252, 252);
+        --color-tabbar: rgba(252, 252, 252, 0.85);
+        --color-pad: rgb(245, 245, 245);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-theme: var(--color-black);
+        --color-text: var(--color-white);
+        --color-icon: rgb(238, 238, 238);
+        --color-input: rgb(40, 40, 40);
+        --color-list-header: rgb(25, 25, 25);
+        --color-layer: rgba(0, 0, 0, 0.85);
+        --color-shadow: rgba(50, 50, 50, 0.15);
+        --color-modal: rgb(30, 30, 30);
+        --color-toolbar: rgba(5, 5, 5, 1);
+        --color-tabbar: rgba(5, 5, 5, 0.85);
+        --color-pad: rgb(30, 30, 30);
+    }
+}
