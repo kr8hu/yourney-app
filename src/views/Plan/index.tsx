@@ -5,9 +5,6 @@ import {
     useContext
 } from 'react';
 
-//Capacitor 
-import { HttpResponse } from '@capacitor/core';
-
 //Context
 import { AppContext } from '../../context/App';
 import { UserContext } from '../../context/User';
@@ -49,6 +46,7 @@ import PlanService from '../../services/PlanService';
 import NotificationService from '../../services/NotificationService';
 
 //Interfaces
+import User from '../../interfaces/User';
 import Post from '../../interfaces/Post';
 import ToolbarButton from '../../interfaces/ToolbarButton';
 import DialogState from '../../interfaces/DialogState';
@@ -56,9 +54,11 @@ import DialogState from '../../interfaces/DialogState';
 //Assets
 import pattern from '../../assets/images/patterns/pattern1.png';
 
+//Services
+import UserService from '../../services/UserService';
+
 //Styles
 import styles from './Plan.module.css';
-import UserService from '../../services/UserService';
 
 
 /**
@@ -86,36 +86,19 @@ function Plan({ navigator, post }: Props) {
     //States
     const [distance, setDistance] = useState<number>(0);
     const [content, setContent] = useState<Post | undefined>(undefined);
-    const [profilePicture, setProfilePicture] = useState<string>("");
+    const [author, setAuthor] = useState<User | undefined>(undefined);
 
 
     //Effects
     useEffect(() => {
-        setAppState(actionTypes.app.SET_BUSY, true);
-
-        if (post._id === undefined) {
-            setContent(undefined);
-            return;
-        }
-
-        PlanService.findById(post._id)
-            .then((res: HttpResponse) => {
-                setContent(res.data);
-                setAppState(actionTypes.app.SET_BUSY, false);
-            })
-            .catch((error: any) => {
-                setContent(undefined);
-                setAppState(actionTypes.app.SET_BUSY, false);
-            });
+        getPlan();
         //eslint-disable-next-line
     }, [post._id]);
 
 
     useEffect(() => {
-        UserService.findByUsername(post.author)
-            .then((res: HttpResponse) => {
-                setProfilePicture(res.data[0].picture);
-            })
+        getAuthor();
+        //eslint-disable-next-line
     }, [post.author]);
 
 
@@ -152,7 +135,7 @@ function Plan({ navigator, post }: Props) {
      */
     const meta = [
         {
-            icon: profilePicture,
+            icon: author ? author.picture : "",
             title: "plan_meta_author",
             text: post.author
         },
@@ -170,52 +153,102 @@ function Plan({ navigator, post }: Props) {
 
 
     /**
+     * getAuthor
+     * 
+     * A programtervet készítő felhasználó adatainak lekérdezése és tárolás a stateben
+     */
+    const getAuthor = async () => {
+        //Query
+        const query = { username: post.author };
+
+        //HTTP lekérdezés
+        const response = await UserService.findByQuery(query);
+
+        if (response.payload) {
+            setAuthor(response.payload);
+        }
+    }
+
+
+    /**
+     * getPlan
+     * 
+     * Programterv adatainak lekérdezése és tárolás a stateben.
+     * @returns 
+     */
+    const getPlan = async () => {
+        if (post._id === undefined) {
+            setContent(undefined);
+            return;
+        }
+
+        //Betöltési állapot módosítása
+        setAppState(actionTypes.app.SET_BUSY, true);
+
+        //HTTP lekérdezés
+        const response = await PlanService.findById(post._id);
+
+        if (response) {
+            setAppState(actionTypes.app.SET_BUSY, false);
+            setContent(response.payload);
+        }
+    }
+
+
+    /**
      * handleLikePost
      * 
      */
     const handleLikePost = async () => {
-        setAppState(actionTypes.app.SET_BUSY, true);
+        //DialogState
+        let dialogState: DialogState = {
+            type: dialogTypes.ALERT,
+            closeable: true,
+            onClose: () => null
+        }
 
+        //Payload
         const payload = {
             action: isFavorited ? "dislike" : "like",
             userId: userState.userdata._id,
         };
 
-        PlanService.like(post._id, payload)
-            .then(onLikeResponse)
-            .catch(onLikeResponse);
+        //HTTP lekérdezés
+        const response = await PlanService.like(post._id, payload);
+        dialogState.text = response.message;
+
+        //Hibakezelés
+        if (!response.payload) {
+            setDialogState(dialogState);
+            return;
+        }
+
+        //A bejegyzés adatainak frissítése 
+        setContent(response.payload);
+
+        //Ha még a korábbiakban nem likeolta a bejegyzést, értesítés küldése
+        if (!isFavorited) {
+            sendNotification();
+        }
+
+        updateCache();
     }
 
 
     /**
-     * onLikeResponse
+     * updateMediaCache
      * 
      */
-    const onLikeResponse = (response?: HttpResponse) => {
-        const dialogState: DialogState = {
-            type: dialogTypes.ALERT,
-            text: response?.data.message || "Hiba történt.",
-            closeable: true,
-            onClose: () => null
+    const updateCache = async () => {
+        //Query
+        const query = { approved: true };
+
+        //HTTP lekérdezés
+        const response = await PlanService.findByQuery(query);
+
+        if (response.payload) {
+            setAppState(actionTypes.app.SET_CACHE, response.payload)
         }
-
-        if (response?.status === 200) {
-            //A bejegyzés adatainak frissítése 
-            setContent(response.data.post);
-
-            //Ha még a korábbiakban nem likeolta a bejegyzést, értesítés küldése
-            if (!isFavorited) {
-                sendNotification();
-            }
-
-            //Jóváhagyott bejegyzések lekérése és betöltés a cache-be
-            PlanService.findApproved()
-                .then((response: HttpResponse) =>
-                    setAppState(actionTypes.app.SET_CACHE, response.data));
-        }
-
-        setDialogState(dialogState);
-        setAppState(actionTypes.app.SET_BUSY, false);
     }
 
 

@@ -68,7 +68,7 @@ function Contact({ navigator }: Props) {
      * @param {String} err 
      * @returns 
      */
-    const onFailure = (err: any) => {
+    const onFormFailure = (err: any) => {
         const dialogState: DialogState = {
             type: dialogTypes.ALERT,
             text: err,
@@ -88,7 +88,7 @@ function Contact({ navigator }: Props) {
      * @param {string} message 
      * @returns 
      */
-    const onSuccess = async (message: string) => {
+    const onFormSuccess = async (message: string) => {
         let dialogState: DialogState = {
             type: dialogTypes.ALERT,
             text: "",
@@ -101,13 +101,8 @@ function Contact({ navigator }: Props) {
             message,
         };
 
-        try {
-            const response = await MailService.contact(payload);
-            dialogState.text = response.data.message;
-        }
-        catch (error) {
-            dialogState.text = "Hiba történt az üzenet küldése közben."
-        }
+        const response = await MailService.contact(payload);
+        dialogState.text = response.message;
 
         setDialogState(dialogState);
     }
@@ -129,8 +124,8 @@ function Contact({ navigator }: Props) {
                             className={styles.text}
                             node="contact_text" />
                         <ContactForm
-                            onReject={onFailure}
-                            onResolve={onSuccess} />
+                            onReject={onFormFailure}
+                            onResolve={onFormSuccess} />
                     </div>
                 </div>
             </Container>

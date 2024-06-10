@@ -2,11 +2,18 @@
 import {
     CapacitorHttp,
     HttpHeaders,
-    HttpOptions
+    HttpOptions,
+    HttpResponse
 } from "@capacitor/core";
 
 //Shared
-import { url } from "./shared/const";
+import {
+    requestMethods,
+    url
+} from "./shared/const";
+
+//Interfaces
+import CustomResponse from "./interfaces/CustomResponse";
 
 
 /**
@@ -17,85 +24,36 @@ const headers: HttpHeaders = {
     "Content-Type": "application/json"
 };
 
-
 /**
- * Http
+ * HttpRequest
  * 
+ * @param method 
+ * @param path 
+ * @param data 
+ * @returns 
  */
-class Http {
-    /**
-     * get
-     * 
-     * @param path 
-     * @param params 
-     */
-    async get(path: string, params: any) {
-        const options: HttpOptions = {
-            headers,
-            params,
-            url: url + path,
-        };
+async function HttpRequest(method: string, path: string, data: any) {
+    const params = method !== requestMethods.GET ? "" : data;
 
-        const response = await CapacitorHttp.post(options);
-        return response;
+    const options: HttpOptions = {
+        headers,
+        method,
+        data,
+        params,
+        url: url + path
+    };
+
+    try {
+        let httpResponse: HttpResponse = await CapacitorHttp.request(options);
+        return httpResponse.data as CustomResponse;
     }
-
-
-    /**
-     * post
-     * 
-     * @param path 
-     * @param params 
-     */
-    async post(path: string, data?: any) {
-        const options: HttpOptions = {
-            headers,
-            data,
-            url: url + path,
-        };
-
-        const response = await CapacitorHttp.post(options);
-        return response;
-    }
-
-
-    /**
-     * put
-     * 
-     * @param path 
-     * @param data 
-     * @returns 
-     */
-    async put(path: string, data: any) {
-        const options: HttpOptions = {
-            headers,
-            data,
-            url: url + path,
-        };
-
-        const response = await CapacitorHttp.put(options);
-        return response;
-    }
-    
-
-    /**
-     * delete
-     * 
-     * @param path 
-     * @param data 
-     * @returns 
-     */
-    async delete(path: string, data: any) {
-        const options: HttpOptions = {
-            headers,
-            data,
-            url: url + path,
-        };
-
-        const response = await CapacitorHttp.delete(options);
-        return response;
+    catch (e) {
+        const customResponse: CustomResponse = {
+            payload: null,
+            message: "Hiba lépett fel a művelet végrehajtása közben.",
+        }
+        return customResponse;
     }
 }
 
-//eslint-disable-next-line
-export default new Http();
+export default HttpRequest;

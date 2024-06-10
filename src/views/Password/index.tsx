@@ -10,6 +10,7 @@ import { Page } from 'react-onsenui';
 
 //Components
 import Toolbar from '../../components/Toolbar';
+import Container from '../../components/Container';
 import PasswordForm from '../../components/forms/Password';
 
 //Shared
@@ -24,7 +25,6 @@ import DialogState from '../../interfaces/DialogState';
 
 //Styles
 import styles from './Password.module.css';
-import Container from '../../components/Container';
 
 
 /**
@@ -60,12 +60,12 @@ function Password({ navigator }: Props) {
 
 
     /**
-     * onFailure
+     * onFormFailure
      * 
      * @param {String} err 
      * @returns 
      */
-    const onFailure = (err: any) => {
+    const onFormFailure = (err: any) => {
         const dialogState: DialogState = {
             type: dialogTypes.ALERT,
             text: err,
@@ -78,7 +78,7 @@ function Password({ navigator }: Props) {
 
 
     /**
-     * onSuccess
+     * onFormSuccess
      * 
      * Form sikeres kitöltése esetén lefutó funkció.
      * Űrlapban szereplő adatok küldés a szervernek és válaszüzenet megjelenítése
@@ -86,7 +86,7 @@ function Password({ navigator }: Props) {
      * @param {string} values 
      * @returns 
      */
-    const onSuccess = async (values: any) => {
+    const onFormSuccess = async (values: any) => {
         let dialogState: DialogState = {
             type: dialogTypes.ALERT,
             text: "",
@@ -94,13 +94,8 @@ function Password({ navigator }: Props) {
             onClose: () => null
         }
 
-        try {
-            const response = await UserService.changePassword(userState.userdata._id, values);
-            dialogState.text = response.data.message;
-        }
-        catch (error) {
-            dialogState.text = "Hiba történt a jelszó módosítása közben."
-        }
+        const response = await UserService.changePassword(userState.userdata._id, values);
+        dialogState.text = response.message;
 
         setDialogState(dialogState);
     }
@@ -108,9 +103,7 @@ function Password({ navigator }: Props) {
 
     return (
         <Page>
-            <Container
-                fill
-                responsive>
+            <Container fill responsive>
                 {/* Toolbar */}
                 <Toolbar
                     fixed
@@ -121,8 +114,8 @@ function Password({ navigator }: Props) {
                 <div className={styles.row}>
                     <div className={styles.col}>
                         <PasswordForm
-                            onReject={onFailure}
-                            onResolve={onSuccess} />
+                            onReject={onFormFailure}
+                            onResolve={onFormSuccess} />
                     </div>
                 </div>
             </Container>

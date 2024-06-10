@@ -73,7 +73,7 @@ function Editor({ navigator, post }: Props) {
      * onFailure
      * 
      */
-    const onFailure = (error: any) => {
+    const onFormFailure = (error: any) => {
         const dialogState: DialogState = {
             type: dialogTypes.ALERT,
             text: `${error}`,
@@ -90,7 +90,7 @@ function Editor({ navigator, post }: Props) {
      * onSuccess
      * 
      */
-    const onSuccess = async (values: any) => {
+    const onFormSuccess = async (values: any) => {
         let dialogState: DialogState = {
             type: dialogTypes.ALERT,
             text: "",
@@ -98,22 +98,17 @@ function Editor({ navigator, post }: Props) {
             onClose: () => null
         }
 
-        try {
-            setAppState(actionTypes.app.SET_BUSY, true);
+        setAppState(actionTypes.app.SET_BUSY, true);
 
-            const response = await PlanService.update(post._id, values);
-            dialogState.text = response.data.message;
+        const response = await PlanService.update(post._id, values);
+        dialogState.text = response.message;
 
-            if (response.status === 200) {
-                updateCache();
-            }
+        if (response.payload) {
+            updateCache();
+
+            setDialogState(dialogState);
+            setAppState(actionTypes.app.SET_BUSY, false);
         }
-        catch (error) {
-            dialogState.text = "Hiba történt a módosítások feltöltése közben.";
-        }
-
-        setDialogState(dialogState);
-        setAppState(actionTypes.app.SET_BUSY, false);
     }
 
 
@@ -123,10 +118,11 @@ function Editor({ navigator, post }: Props) {
      * Cache tartalmának frissítése
      */
     const updateCache = async () => {
-        const response = await PlanService.findApproved();
+        const query = { approved: true }
+        const response = await PlanService.findByQuery(query);
 
-        if (response.status === 200) {
-            setAppState(actionTypes.app.SET_CACHE, response.data);
+        if (response.payload) {
+            setAppState(actionTypes.app.SET_CACHE, response.payload);
         }
     }
 
@@ -144,8 +140,8 @@ function Editor({ navigator, post }: Props) {
                 <div className={styles.row}>
                     <div className={styles.col}>
                         <EditorForm
-                            onReject={onFailure}
-                            onResolve={onSuccess}
+                            onReject={onFormFailure}
+                            onResolve={onFormSuccess}
                             initialValues={post} />
                     </div>
                 </div>

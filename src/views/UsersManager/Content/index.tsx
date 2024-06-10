@@ -5,9 +5,6 @@ import {
     useContext,
 } from 'react';
 
-//Capacitor
-import { HttpResponse } from '@capacitor/core';
-
 //Context
 import { AppContext } from '../../../context/App';
 import { DialogContext } from '../../../context/Dialog';
@@ -71,46 +68,24 @@ function Content() {
      * Felhasználók lekérése
      * 
      */
-    const getUsers = () => {
-        UserService.findAll()
-            .then(onSuccess)
-            .catch(onFailure)
-    }
-
-
-    /**
-     * onSuccess
-     * 
-     * Sikeres `UserService.findAll` request után lefutó funkció
-     * 
-     * @param response 
-     */
-    const onSuccess = (response: HttpResponse) => {
-        setAppState(actionTypes.app.SET_BUSY, false);
-
-        if (response.status === 200) {
-            setUsers(response.data);
-        }
-    }
-
-
-    /**
-     * onFailure
-     * 
-     * Sikertelen `UserService.findAll` request után lefutó funkció
-     * 
-     * @param error 
-     */
-    const onFailure = (error: any) => {
-        const dialogState: DialogState = {
+    const getUsers = async () => {
+        let dialogState: DialogState = {
             type: dialogTypes.ALERT,
-            text: `${error}`,
             closeable: true,
             onClose: () => null
         }
 
-        setDialogState(dialogState);
-        setAppState(actionTypes.app.SET_BUSY, false);
+        const query = {};
+        const response = await UserService.findByQuery(query);
+        dialogState.text = response.message;
+
+        if (response.payload) {
+            setAppState(actionTypes.app.SET_BUSY, false);
+            setUsers(response.payload);
+        } else {
+            setDialogState(dialogState);
+            setAppState(actionTypes.app.SET_BUSY, false);
+        }
     }
 
 
@@ -140,45 +115,14 @@ function Content() {
      * @param post 
      */
     const deleteUser = async (user: User) => {
-        UserService.delete(user._id)
-            .then(onDeleteUserSuccess)
-            .catch(onDeleteUserFailed)
-    }
-
-
-    /**
-     * onDeleteUserSuccess
-     * 
-     * Sikeres `UserService.delete` request után lefutó funkció
-     * 
-     * @param post 
-     */
-    const onDeleteUserSuccess = (response: HttpResponse) => {
-        const dialogState: DialogState = {
+        let dialogState: DialogState = {
             type: dialogTypes.ALERT,
-            text: response.data.message,
             closeable: true,
             onClose: () => null
         }
 
-        setDialogState(dialogState);
-    }
-
-
-    /**
-     * onDeleteUserFailed
-     * 
-     * Sikertelen `UserService.delete` request után lefutó funkció
-     * 
-     * @param post 
-     */
-    const onDeleteUserFailed = (error: any) => {
-        const dialogState: DialogState = {
-            type: dialogTypes.ALERT,
-            text: `${error}`,
-            closeable: true,
-            onClose: () => null
-        }
+        const response = await UserService.delete(user._id);
+        dialogState.text = response.message;
 
         setDialogState(dialogState);
     }

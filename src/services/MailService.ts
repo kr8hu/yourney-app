@@ -1,13 +1,27 @@
 //Capacitor
-import http from '../http-common';
+import HttpRequest from '../http-common';
+
+//Shared
+import { requestMethods } from '../shared/const';
 
 
+/**
+ * MailService
+ * 
+ */
 class MailService {
 
     entity = "mail";
 
+    /**
+     * Contact
+     * 
+     * @param data 
+     * @returns 
+     */
     contact(data: any) {
-        return http.post(`${this.entity}/contact`, data);
+        const path = `${this.entity}/contact`;
+        return HttpRequest(requestMethods.POST, path, data);
     }
 }
 

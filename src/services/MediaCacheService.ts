@@ -8,7 +8,6 @@ import ons from "onsenui";
 /**
  * schema
  * 
- * Tábla séma
  */
 const schema = [
     {
@@ -27,7 +26,6 @@ const schema = [
 /**
  * MediaCacheService
  * 
- * Médiatartalom gyorsítótár-adatbázisát kezelő service
  */
 class MediaCacheService {
     storage: string;
@@ -40,11 +38,9 @@ class MediaCacheService {
         this.storage = "MediaCache";
     }
 
-
     /**
-     * openDatabase
+     * Open
      * 
-     * Adatbázis megnyitása
      * @returns 
      */
     open() {
@@ -83,7 +79,11 @@ class MediaCacheService {
         return promise;
     }
 
-
+    /**
+     * Get
+     * 
+     * @returns 
+     */
     get() {
         let promise = new Promise((resolve: any, reject: any) => {
             this.open()
@@ -113,7 +113,11 @@ class MediaCacheService {
         return promise;
     }
 
-
+    /**
+     * Set
+     * 
+     * @param data 
+     */
     set(data: Array<MediaCache>) {
         this.open()
             .then((db: any) => {
@@ -129,7 +133,10 @@ class MediaCacheService {
             })
     }
 
-
+    /**
+     * Clear
+     * 
+     */
     clear() {
         this.open()
             .then((db: any) => {

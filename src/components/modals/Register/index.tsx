@@ -57,14 +57,14 @@ function Register() {
 
 
     /**
-     * onFailure
+     * onFormFailure
      * 
      * Űrlap kitöltésésben lévő hibaüzenet megjelenítése.
      * 
      * @param {String} err 
      * @returns 
      */
-    const onFailure = (err: any) => {
+    const onFormFailure = (err: any) => {
         const dialogState: DialogState = {
             type: dialogTypes.ALERT,
             text: err,
@@ -78,7 +78,7 @@ function Register() {
 
 
     /**
-     * onSuccess
+     * onFormSuccess
      * 
      * Form sikeres kitöltése esetén lefutó funkció.
      * Űrlapban szereplő adatok küldés a szervernek és válaszüzenet megjelenítése
@@ -86,26 +86,20 @@ function Register() {
      * @param {Object} data 
      * @returns 
      */
-    const onSuccess = async (payload: any) => {
+    const onFormSuccess = async (payload: any) => {
         let dialogState: DialogState = {
             type: dialogTypes.ALERT,
-            text: "",
             closeable: true,
             onClose: () => changeModal()
         }
 
-        try {
-            const response = await UserService.create(payload);
-            dialogState.text = response.data.message;
+        const response = await UserService.create(payload);
+        dialogState.text = response.message;
 
-            if (response.status !== 200) {
-                dialogState.onClose = () => null;
-            }
-        }
-        catch (error) {
-            dialogState.text = `${error}`
+        if (!response.payload) {
             dialogState.onClose = () => null;
         }
+
 
         setDialogState(dialogState);
         setAppState(actionTypes.app.SET_BUSY, false);
@@ -149,7 +143,6 @@ function Register() {
                         <Text
                             className={styles.text}
                             node="modal_signup_text" />
-
                         <Text
                             className={styles.link}
                             node="click_here"
@@ -158,8 +151,8 @@ function Register() {
                 </div>
                 <div className={styles.col}>
                     <SignUp
-                        onReject={onFailure}
-                        onResolve={onSuccess}
+                        onReject={onFormFailure}
+                        onResolve={onFormSuccess}
                         onFocus={handleFocus} />
                 </div>
             </div>

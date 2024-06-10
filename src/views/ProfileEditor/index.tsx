@@ -9,9 +9,6 @@ import { AppContext } from '../../context/App';
 import { UserContext } from '../../context/User';
 import { DialogContext } from '../../context/Dialog';
 
-//Capacitor
-import { HttpResponse } from '@capacitor/core';
-
 //Onsen UI
 import {
     Fab,
@@ -41,8 +38,10 @@ import {
 import { setUserStorage } from '../../shared/utils';
 
 //Interfaces
+import CustomResponse from '../../interfaces/CustomResponse';
 import ToolbarButton from '../../interfaces/ToolbarButton';
 import DialogState from '../../interfaces/DialogState';
+import User from '../../interfaces/User';
 
 //Styles
 import styles from './ProfileEditor.module.css';
@@ -111,16 +110,20 @@ function ProfileEditor(props: Props) {
      * onSubmit
      * 
      */
-    const onSubmit = () => {
+    const onSubmit = async () => {
         const payload = {
             picture: photo[0]
         };
 
         setAppState(actionTypes.app.SET_BUSY, true);
 
-        UserService.update(userState.userdata._id, payload)
-            .then(onSuccess)
-            .catch(onFailure);
+        const response = await UserService.update(userState.userdata._id, payload);
+
+        if (!response.payload) {
+            onFailure(response);
+        }
+
+        onSuccess(response);
     }
 
 
@@ -145,17 +148,19 @@ function ProfileEditor(props: Props) {
      * onSuccess
      * 
      */
-    const onSuccess = (response: HttpResponse) => {
+    const onSuccess = (response: CustomResponse) => {
         const dialogState: DialogState = {
             type: dialogTypes.ALERT,
-            text: response.data.message,
+            text: response.message,
             closeable: true,
             onClose: () => null
         }
 
-        if (response.status === 200) {
-            setUserState(actionTypes.user.SET_USERDATA, response.data.userdata);
-            setUserStorage(response.data.userdata);
+        if (response.payload) {
+            const user: User = response.payload;
+
+            setUserState(actionTypes.user.SET_USERDATA, user);
+            setUserStorage(user);
         }
 
         setDialogState(dialogState);

@@ -152,27 +152,25 @@ function Initialize({ navigator }: Props) {
     const getContent = async () => {
         let dialogState: DialogState = {
             type: dialogTypes.ALERT,
-            text: "",
             closeable: false,
             onClose: () => openApplication()
         }
 
-        try {
-            const response = await PlanService.findApproved();
+        const query = { approved: true };
+        const response = await PlanService.findByQuery(query);
+        dialogState.text = response.message;
 
-            if (response?.data) {
-                localStorage.setItem("Yourney_cache", JSON.stringify(response.data));
-
-                createMediaCache();
-
-                setAppState(actionTypes.app.SET_CACHE, response.data);
-                setProgress((current: number) => current + 1);
-            }
-        }
-        catch (error) {
-            dialogState.text = `Hiba lépett fel a tartalmak lekérdezésekor.`;
+        if (!response.payload) {
             setDialogState(dialogState);
+            return;
         }
+
+        localStorage.setItem("Yourney_cache", JSON.stringify(response.payload));
+
+        createMediaCache();
+
+        setAppState(actionTypes.app.SET_CACHE, response.payload);
+        setProgress((current: number) => current + 1);
     }
 
 
@@ -252,24 +250,27 @@ function Initialize({ navigator }: Props) {
 
         let dialogState: DialogState = {
             type: dialogTypes.ALERT,
-            text: "",
             closeable: false,
             onClose: () => openApplication()
         }
 
-        try {
-            const response = await NotificationService.findByAddressee(userState.userdata.username);
+        //Query
+        const query = {
+            addressee: userState.userdata.username
+        };
 
-            if (response?.data) {
-                localStorage.setItem("Yourney_notifications", JSON.stringify(response.data));
-                setAppState(actionTypes.app.SET_NOTIFICATIONS, response.data);
-                setProgress((current: number) => current + 1);
-            }
-        }
-        catch (error) {
-            dialogState.text = `Hiba lépett fel az értesítések lekérdezésekor.`;
+        //HTTP lekérdezés
+        const response = await NotificationService.findByQuery(query);
+        dialogState.text = response.message;
+
+        if (!response.payload) {
             setDialogState(dialogState);
+            return;
         }
+
+        localStorage.setItem("Yourney_notifications", JSON.stringify(response.payload));
+        setAppState(actionTypes.app.SET_NOTIFICATIONS, response.payload);
+        setProgress((current: number) => current + 1);
     }
 
 

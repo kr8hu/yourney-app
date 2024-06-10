@@ -6,9 +6,6 @@ import { AppContext } from '../../context/App';
 import { UserContext } from '../../context/User';
 import { DialogContext } from '../../context/Dialog';
 
-//Capacitor
-import { HttpResponse } from '@capacitor/core';
-
 //Onsen UI
 import { Page } from 'react-onsenui';
 
@@ -95,49 +92,22 @@ function Privacy({ navigator }: Props) {
      * 
      */
     const onSubmit = async () => {
-        setAppState(actionTypes.app.SET_BUSY, true);
-
-
-        UserService.delete(userState.userdata._id)
-            .then(onSuccess)
-            .catch(onFailure)
-    }
-
-
-    /**
-     * onSuccess
-     * 
-     */
-    const onSuccess = (response: HttpResponse) => {
-        const dialogState: DialogState = {
+        let dialogState: DialogState = {
             type: dialogTypes.ALERT,
-            text: response.data.message,
             closeable: false,
             onClose: () => handleDelete()
         }
 
-        setDialogState(dialogState);
-        setAppState(actionTypes.app.SET_BUSY, false);
-    }
+        setAppState(actionTypes.app.SET_BUSY, true);
 
-
-    /**
-     * onFailure
-     * 
-     */
-    const onFailure = (error: any) => {
-        const dialogState: DialogState = {
-            type: dialogTypes.ALERT,
-            text: `${error}`,
-            closeable: false,
-            onClose: () => null
-        }
+        const response = await UserService.delete(userState.userdata._id);
+        dialogState.text = response.message;
 
         setDialogState(dialogState);
         setAppState(actionTypes.app.SET_BUSY, false);
     }
 
-
+    
     /**
      * handleDelete
      * 

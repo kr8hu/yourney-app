@@ -109,3 +109,10 @@ export const loadingStates = {
     device: 4,
     finished: 100
 }
+
+export const requestMethods = {
+    GET: "GET",
+    POST: "POST",
+    PUT: "PUT",
+    DELETE: "DELETE"
+}

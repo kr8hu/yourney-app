@@ -10,9 +10,6 @@ import { AppContext } from '../../context/App';
 import { UserContext } from '../../context/User';
 import { DialogContext } from '../../context/Dialog';
 
-//Capacitor
-import { HttpResponse } from '@capacitor/core';
-
 //Hooks
 import { useForm } from '../../hooks/useForm';
 
@@ -123,18 +120,34 @@ function Planner({ navigator, category }: Props) {
      * onSubmit
      * 
      */
-    const onSubmit = () => {
-        if (error.status) {
-            onFailure(error.message);
-            return;
+    const onSubmit = async () => {
+        let dialogState: DialogState = {
+            type: dialogTypes.ALERT,
+            closeable: true,
+            text: error.status ? error.message : locationError.message,
+            onClose: () => null
         }
 
-        if (locationError.status) {
-            onFailure(locationError.message);
+        if (error.status || locationError.status) {
+            setDialogState(dialogState);
             return;
         }
 
         setAppState(actionTypes.app.SET_BUSY, true);
+        createPlan();
+    }
+
+
+    /**
+     * createPlan
+     * 
+     */
+    const createPlan = async () => {
+        let dialogState: DialogState = {
+            type: dialogTypes.ALERT,
+            closeable: true,
+            onClose: () => null
+        }
 
         const payload = {
             ...values,
@@ -144,44 +157,13 @@ function Planner({ navigator, category }: Props) {
             author: userState.userdata.username
         };
 
-        PlanService.create(payload)
-            .then(onSuccess)
-            .catch(onFailure);
-    }
+        const response = await PlanService.create(payload);
+        dialogState.text = response.message;
 
-
-    /**
-     * onFailure
-     * 
-     */
-    const onFailure = (error: any) => {
-        const dialogState: DialogState = {
-            type: dialogTypes.ALERT,
-            text: error,
-            closeable: true,
-            onClose: () => null
-        }
-
-        setDialogState(dialogState);
         setAppState(actionTypes.app.SET_BUSY, false);
-    }
-
-
-    /**
-     * onSuccess
-     * 
-     */
-    const onSuccess = (response: HttpResponse) => {
-        const dialogState: DialogState = {
-            type: dialogTypes.ALERT,
-            text: response.data.message,
-            closeable: true,
-            onClose: () => null
-        }
-
         setDialogState(dialogState);
-        setAppState(actionTypes.app.SET_BUSY, false);
     }
+
 
 
     return (

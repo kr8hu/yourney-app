@@ -5,11 +5,6 @@ import {
     useContext,
 } from 'react';
 
-//Capacitor
-import {
-    HttpResponse
-} from '@capacitor/core';
-
 //Context
 import { AppContext } from '../../../context/App';
 import { UserContext } from '../../../context/User';
@@ -65,8 +60,6 @@ function Content() {
 
     //Effects
     useEffect(() => {
-        setAppState(actionTypes.app.SET_BUSY, true);
-
         getPosts();
         //eslint-disable-next-line
     }, []);
@@ -78,52 +71,27 @@ function Content() {
      * Bejegyzések lekérése
      * 
      */
-    const getPosts = () => {
-        if (userState.userdata.group === 1) {
-            PlanService.findAll()
-                .then(onSuccess)
-                .catch(onFailure);
-        } else {
-            PlanService.findByAuthor(userState.userdata.username)
-                .then(onSuccess)
-                .catch(onFailure);
-        }
-    }
-
-
-    /**
-     * onSuccess
-     * 
-     * Sikeres `PlanService.findAll` vagy `PlanService.findByAuthor` request után lefutó funkció
-     * 
-     * @param response 
-     */
-    const onSuccess = (response: HttpResponse) => {
-        setAppState(actionTypes.app.SET_BUSY, false);
-
-        if (response.status === 200) {
-            setPosts(response.data);
-        }
-    }
-
-
-    /**
-     * onFailure
-     * 
-     * Sikertelen `PlanService.findAll` vagy `PlanService.findByAuthor` request után lefutó funkció
-     * 
-     * @param error 
-     */
-    const onFailure = (error: any) => {
-        const dialogState: DialogState = {
+    const getPosts = async () => {
+        //DialogState
+        let dialogState: DialogState = {
             type: dialogTypes.ALERT,
-            text: `${error}`,
             closeable: true,
             onClose: () => null
         }
 
-        setDialogState(dialogState);
-        setAppState(actionTypes.app.SET_BUSY, false);
+        //Query
+        const query = userState.userdata.group === 1 ? {} : { author: userState.userdata.username };
+
+        //HTTP lekérdézés
+        const response = await PlanService.findByQuery(query);
+        dialogState.text = response.message;
+
+        if (!response.payload) {
+            setDialogState(dialogState);
+            return;
+        }
+
+        setPosts(response.payload);
     }
 
 
@@ -165,57 +133,28 @@ function Content() {
      * @param post 
      */
     const deletePost = async (post: Post) => {
-        PlanService.delete(post._id)
-            .then((response: HttpResponse) => onDeletePostSuccess(response, post._id))
-            .catch(onDeletePostFailed)
-    }
-
-
-    /**
-     * onDeletePostSuccess
-     * 
-     * Sikeres `PlanService.delete` request után lefutó funkció
-     * 
-     * @param post 
-     */
-    const onDeletePostSuccess = (response: HttpResponse, postId: string) => {
-        const dialogState: DialogState = {
+        let dialogState: DialogState = {
             type: dialogTypes.ALERT,
             text: `Bejegyzés törölve.`,
             closeable: true,
             onClose: () => null
         }
 
-        if (response.status === 200) {
-            const filteredLocalContent = appState.cache.filter((localPost: Post) => localPost._id !== postId);
-            setAppState(actionTypes.app.SET_CACHE, filteredLocalContent);
+        const response = await PlanService.delete(post._id);
+        dialogState.text = response.message;
 
-            //Bejegyzések ismételt lekérése a state frissítéshez
-            getPosts();
+        if (!response.payload) {
+            setDialogState(dialogState);
+            return;
         }
 
-        setDialogState(dialogState);
+        const filteredLocalContent = appState.cache.filter((localPost: Post) => localPost._id !==  (response.payload as Post)._id);
+        setAppState(actionTypes.app.SET_CACHE, filteredLocalContent);
+
+        //Bejegyzések ismételt lekérése a state frissítéshez
+        getPosts();
     }
-
-
-    /**
-     * onDeletePostFailed
-     * 
-     * Sikertelen `PlanService.delete` request után lefutó funkció
-     * 
-     * @param post 
-     */
-    const onDeletePostFailed = (error: any) => {
-        const dialogState: DialogState = {
-            type: dialogTypes.ALERT,
-            text: `${error}`,
-            closeable: true,
-            onClose: () => null
-        }
-
-        setDialogState(dialogState);
-    }
-
+    
 
     /**
      * approvePostHandler
@@ -244,56 +183,39 @@ function Content() {
      * @param post 
      */
     const approvePost = async (post: Post) => {
-        PlanService.approve(post._id)
-            .then((response: HttpResponse) => onApprovePostSuccess(response, post._id))
-            .catch(onApprovePostFailed)
-    }
-
-
-    /**
-     * onApprovePostSuccess
-     * 
-     * Sikeres `PlanService.approve` request után lefutó funkció
-     * 
-     * @param post 
-     */
-    const onApprovePostSuccess = (response: HttpResponse, postId: string) => {
-        const dialogState: DialogState = {
+        let dialogState: DialogState = {
             type: dialogTypes.ALERT,
             text: `Bejegyzés jóváhagyva.`,
             closeable: true,
             onClose: () => null
         }
 
-        if (response.status === 200) {
-            PlanService.findApproved()
-                .then((response: HttpResponse) =>
-                    setAppState(actionTypes.app.SET_CACHE, response.data));
+        const response = await PlanService.approve(post._id);
+        dialogState.text = response.message;
 
-            //Bejegyzések ismételt lekérése a state frissítéshez
-            getPosts();
+        if (!response.payload) {
+            setDialogState(dialogState);
+            return;
         }
 
-        setDialogState(dialogState);
+        updateCache();
     }
 
 
     /**
-     * onApprovePostFailed
+     * updateCache
      * 
-     * Sikertelen `PlanService.approve` request után lefutó funkció
-     * 
-     * @param post 
      */
-    const onApprovePostFailed = (error: any) => {
-        const dialogState: DialogState = {
-            type: dialogTypes.ALERT,
-            text: `${error}`,
-            closeable: true,
-            onClose: () => null
+    const updateCache = async () => {
+        const query = { approved: true };
+        const response = await PlanService.findByQuery(query);
+
+        if (response.payload) {
+            setAppState(actionTypes.app.SET_CACHE, response.payload);
         }
 
-        setDialogState(dialogState);
+        //Bejegyzések ismételt lekérése a state frissítéshez
+        getPosts();
     }
 
 

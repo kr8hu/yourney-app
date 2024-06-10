@@ -1,9 +1,6 @@
 //React
 import { useContext, useState } from 'react';
 
-//Capacitor
-import { HttpResponse } from '@capacitor/core';
-
 //Context
 import { AppContext } from '../../../context/App';
 import { UserContext } from '../../../context/User';
@@ -29,11 +26,12 @@ import { setUserStorage } from '../../../shared/utils';
 //Interfaces
 import User from '../../../interfaces/User';
 import DialogState from '../../../interfaces/DialogState';
-import CustomResponse from '../../../interfaces/CustomResponse';
+
+//Services
+import UserService from '../../../services/UserService';
 
 //Styles
 import styles from './Login.module.css';
-import UserService from '../../../services/UserService';
 
 
 /**
@@ -82,14 +80,14 @@ function Login() {
 
 
     /**
-     * onFailure
+     * onFormFailure
      * 
      * Űrlap kitöltésésben lévő hibaüzenet megjelenítése.
      * 
      * @param {String} err 
      * @returns 
      */
-    const onFailure = (err: any) => {
+    const onFormFailure = (err: any) => {
         const dialogState: DialogState = {
             type: dialogTypes.ALERT,
             text: err,
@@ -103,7 +101,7 @@ function Login() {
 
 
     /**
-     * onSuccess
+     * onFormSuccess
      * 
      * Form sikeres kitöltése esetén lefutó funkció.
      * Űrlapban szereplő adatok küldés a szervernek és válaszüzenet megjelenítése
@@ -111,7 +109,7 @@ function Login() {
      * @param {Object} res 
      * @returns 
      */
-    const onSuccess = async (payload: any) => {
+    const onFormSuccess = async (payload: any) => {
         //Dialog tulajdonságai
         let dialogState: DialogState = {
             type: dialogTypes.ALERT,
@@ -123,16 +121,19 @@ function Login() {
         //HTTP művelet végrehajtása és eredményének tárolása
         const response = await AuthService.login(payload);
 
-        //Kapott válaszüzenet átadása a dialog szövegébe
-        dialogState.text = response.data.message;
+        //Kapott válaszüzenet átadása a dialog tartalmaként
+        dialogState.text = response.message;
 
-        //Ha a válasz tartalmaz
-        if (response.data.payload) {
+        //Ha a válasz tartalmaz adatot
+        if (response.payload) {
             //Átvesszük a felhasználói adatokat
-            const user: User = response.data.payload;
+            const user: User = response.payload;
 
             //Ha még nincs aktiválva a fiók
-            if (!user.activated) return createActivationDialog(user);
+            if (!user.activated) {
+                createActivationDialog(user._id);
+                return;
+            }
 
             //Felhasználói adatok betöltése
             handleUserLogin(user);
@@ -152,7 +153,7 @@ function Login() {
      * 
      * @param user 
      */
-    const createActivationDialog = (user: User) => {
+    const createActivationDialog = (id: any) => {
         //Dialog tulajdonságai
         const dialogState: DialogState = {
             type: dialogTypes.PROMPT,
@@ -161,7 +162,7 @@ function Login() {
             value: "",
             maxLength: 6,
             closeable: false,
-            onSubmit: (value: any) => activateAccount(user, value),
+            onSubmit: (code: any) => sendActivationCode(id, code),
             onClose: () => null
         }
 
@@ -172,71 +173,65 @@ function Login() {
 
 
     /**
-     * activateAccount
+     * sendActivationCode
      * 
-     * Felhasználói fiók aktiválása
+     * Felhasználói fiók aktiválásának küldése
      * 
      * @param id 
      * @param code 
      */
-    const activateAccount = (user: User, code: string) => {
-        const payload = {
-            id: user._id,
-            code
-        }
+    const sendActivationCode = async (id: any, code: string) => {
+        //Elküldésre kerülő adatok
+        const payload = { id, code }
 
-        AuthService.activate(payload)
-            .then((response: HttpResponse) => onActivationSuccess(response, user))
-            .catch(onActivationFailed);
-    }
-
-
-    /**
-     * onActivationSuccess
-     * 
-     * Sikeres `AuthService.activate` request után lefutó funkció
-     * 
-     * @param response 
-     */
-    const onActivationSuccess = async (response: HttpResponse, user: User) => {
+        //Dialog tulajdonságai
         const dialogState: DialogState = {
             type: dialogTypes.ALERT,
-            text: response.data.message,
             closeable: true,
             onClose: () => null
         }
 
-        if (response.status === 200) {
-            //Felhasználó aktiválási státuszának frissítése
-            const updateResponse = await UserService.update(user._id, { activated: true });
+        //HTTP művelet végrehajtása és eredményének tárolása
+        const response = await AuthService.activate(payload);
 
-            if (updateResponse) {
-                handleUserLogin(user);
-                setModalState(actionTypes.modal.SET_MODAL_STATUS, false);
-            }
-        }
-        else {
-            setDialogState(dialogState);
-        }
-    }
+        //Kapott válaszüzenet átadása a dialog tartalmaként.
+        dialogState.text = response.message;
 
-
-    /**
-     * onActivationFailed
-     * 
-     * Sikertelen `AuthService.activate` request után lefutó funkció
-     * 
-     * @param response 
-     */
-    const onActivationFailed = (error: any) => {
-        const dialogState: DialogState = {
-            type: dialogTypes.ALERT,
-            text: `${error}`,
-            closeable: true,
-            onClose: () => null
+        //Ha a válasz tartalmaz adatot
+        if (response.payload === true) {
+            updateUser(id);
         }
 
+        //Dialog tulajdonságainak módosítása
         setDialogState(dialogState);
+    }
+
+
+    /**
+     * updateUser
+     * 
+     * Felhasználói fiók aktiválási státuszának frissítése
+     * 
+     * @param response 
+     */
+    const updateUser = async (id: any) => {
+        //Query
+        const query = { activated: true };
+
+        //HTTP művelet végrehajtása és az eredmény tárolása
+        const response = await UserService.update(id, query);
+
+        //Ha a válasz tartalmaz adatot
+        if (response.payload) {
+            //Átvesszük az adatokat
+            const updatedUser: User = response.payload;
+
+            //Useradatok betöltése az alkalmazásba
+            handleUserLogin(updatedUser);
+
+            //Modal elrejtése
+            setModalState(actionTypes.modal.SET_MODAL_STATUS, false);
+        }
     }
 
 
@@ -248,25 +243,36 @@ function Login() {
      * @returns 
      */
     const getUserNotifications = async (username: string) => {
-        const response = await NotificationService.findByAddressee(username);
+        //Query
+        const query = {
+            addressee: username
+        };
 
-        if (response?.data) {
-            localStorage.setItem("Yourney_notifications", JSON.stringify(response.data));
-            setAppState(actionTypes.app.SET_NOTIFICATIONS, response.data);
+        //HTTP lekérdezés
+        const response = await NotificationService.findByQuery(query);
+
+        if (response.payload) {
+            localStorage.setItem("Yourney_notifications", JSON.stringify(response.payload));
+            setAppState(actionTypes.app.SET_NOTIFICATIONS, response.payload);
         }
     }
 
 
     /**
-     * handleUserActions
+     * handleUserLogin
      * 
      * Felhasználói adatok betöltésének kezelése.
      * 
      * @param user 
      */
     const handleUserLogin = (user: User) => {
+        //Felhasználói adatok betöltése a statebe
         setUserState(actionTypes.user.SET_USERDATA, user);
+
+        //Felhasználói adatok tárolása a localStorageban
         setUserStorage(user);
+
+        //Felhasználó értesítéseinek lekérése és tárolása
         getUserNotifications(user.username);
     }
 
@@ -302,8 +308,8 @@ function Login() {
                 </div>
                 <div className={styles.col}>
                     <SignIn
-                        onReject={onFailure}
-                        onResolve={onSuccess}
+                        onReject={onFormFailure}
+                        onResolve={onFormSuccess}
                         onFocus={handleFocus} />
                 </div>
             </div>
