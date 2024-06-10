@@ -1,5 +1,5 @@
 //Capacitor
-import HttpRequest from '../http-common';
+import httpRequest from '../http-common';
 
 //Shared
 import { requestMethods } from '../shared/const';
@@ -22,7 +22,7 @@ class UserService {
      */
     create(data: any) {
         const path = `${this.entity}/create`;
-        return HttpRequest(requestMethods.POST, path, data);
+        return httpRequest(requestMethods.POST, path, data);
     }
 
     /**
@@ -33,7 +33,7 @@ class UserService {
      */
     findById(id: string, data?: any) {
         const path = `${this.entity}/find/id/${id}`;
-        return HttpRequest(requestMethods.GET, path, data);
+        return httpRequest(requestMethods.GET, path, data);
     }
 
     /**
@@ -44,7 +44,7 @@ class UserService {
      */
     findByQuery(data: any) {
         const path = `${this.entity}/find/query`;
-        return HttpRequest(requestMethods.POST, path, data);
+        return httpRequest(requestMethods.POST, path, data);
     }
 
     /**
@@ -55,7 +55,7 @@ class UserService {
      */
     update(id: string, data: any) {
         const path = `${this.entity}/update/${id}`;
-        return HttpRequest(requestMethods.PUT, path, data);
+        return httpRequest(requestMethods.PUT, path, data);
     }
 
     /**
@@ -66,7 +66,7 @@ class UserService {
      */
     changePassword(id: string, data: any) {
         const path = `${this.entity}/changePassword/${id}`;
-        return HttpRequest(requestMethods.PUT, path, data);
+        return httpRequest(requestMethods.PUT, path, data);
     }
 
     /**
@@ -77,7 +77,7 @@ class UserService {
      */
     delete(id: string, data?: any) {
         const path = `${this.entity}/delete/${id}`;
-        return HttpRequest(requestMethods.DELETE, path, data);
+        return httpRequest(requestMethods.DELETE, path, data);
     }
 }
 

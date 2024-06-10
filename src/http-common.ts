@@ -25,14 +25,14 @@ const headers: HttpHeaders = {
 };
 
 /**
- * HttpRequest
+ * httpRequest
  * 
  * @param method 
  * @param path 
  * @param data 
  * @returns 
  */
-async function HttpRequest(method: string, path: string, data: any) {
+async function httpRequest(method: string, path: string, data: any) {
     const params = method !== requestMethods.GET ? "" : data;
 
     const options: HttpOptions = {
@@ -56,4 +56,4 @@ async function HttpRequest(method: string, path: string, data: any) {
     }
 }
 
-export default HttpRequest;
+export default httpRequest;

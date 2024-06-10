@@ -1,5 +1,5 @@
 //Capacitor
-import HttpRequest from '../http-common';
+import httpRequest from '../http-common';
 
 //Shared
 import { requestMethods } from '../shared/const';
@@ -22,7 +22,7 @@ class AuthService {
      */
     login(data: any) {
         const path = `${this.entity}/login`;
-        return HttpRequest(requestMethods.POST, path ,data);
+        return httpRequest(requestMethods.POST, path ,data);
     }
 
 
@@ -34,7 +34,7 @@ class AuthService {
      */
     activate(data: any) {
         const path = `${this.entity}/activate`;
-        return HttpRequest(requestMethods.POST, path ,data);
+        return httpRequest(requestMethods.POST, path ,data);
     }
 }
 

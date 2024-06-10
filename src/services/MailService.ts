@@ -1,5 +1,5 @@
 //Capacitor
-import HttpRequest from '../http-common';
+import httpRequest from '../http-common';
 
 //Shared
 import { requestMethods } from '../shared/const';
@@ -21,7 +21,7 @@ class MailService {
      */
     contact(data: any) {
         const path = `${this.entity}/contact`;
-        return HttpRequest(requestMethods.POST, path, data);
+        return httpRequest(requestMethods.POST, path, data);
     }
 }
 

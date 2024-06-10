@@ -1,5 +1,5 @@
 //Capacitor
-import HttpRequest from '../http-common';
+import httpRequest from '../http-common';
 
 //Shared
 import { requestMethods } from '../shared/const';
@@ -22,7 +22,7 @@ class PlanService {
      */
     create(data: any) {
         const path = `${this.entity}/create`;
-        return HttpRequest(requestMethods.POST, path, data);
+        return httpRequest(requestMethods.POST, path, data);
     }
 
     /**
@@ -34,7 +34,7 @@ class PlanService {
      */
     findById(id: string, data?: any) {
         const path = `${this.entity}/find/id/${id}`;
-        return HttpRequest(requestMethods.GET, path, data);
+        return httpRequest(requestMethods.GET, path, data);
     }
 
     /**
@@ -46,7 +46,7 @@ class PlanService {
      */
     findByQuery(data: any) {
         const path = `${this.entity}/find/query`;
-        return HttpRequest(requestMethods.POST, path, data);
+        return httpRequest(requestMethods.POST, path, data);
     }
 
     /**
@@ -58,7 +58,7 @@ class PlanService {
      */
     update(id: string, data: any) {
         const path = `${this.entity}/update/${id}`;
-        return HttpRequest(requestMethods.PUT, path, data);
+        return httpRequest(requestMethods.PUT, path, data);
     }
 
     /**
@@ -70,7 +70,7 @@ class PlanService {
      */
     like(id: string, data: any) {
         const path = `${this.entity}/like/${id}`;
-        return HttpRequest(requestMethods.PUT, path, data);
+        return httpRequest(requestMethods.PUT, path, data);
     }
 
     /**
@@ -82,7 +82,7 @@ class PlanService {
      */
     approve(id: string, data?: any) {
         const path = `${this.entity}/approve/${id}`;
-        return HttpRequest(requestMethods.PUT, path, data);
+        return httpRequest(requestMethods.PUT, path, data);
     }
 
     /**
@@ -94,7 +94,7 @@ class PlanService {
      */
     delete(id: string, data?: any) {
         const path = `${this.entity}/delete/${id}`;
-        return HttpRequest(requestMethods.DELETE, path, data);
+        return httpRequest(requestMethods.DELETE, path, data);
     }
 }
 
