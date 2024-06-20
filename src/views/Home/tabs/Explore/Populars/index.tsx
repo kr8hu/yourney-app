@@ -54,7 +54,7 @@ function Populars({ numberOfPosts }: Props) {
      * popularPosts
      * 
      */
-    const popularPosts = Array.from(appState.cache.sort(sortByProperty('likes', true)));
+    const popularPosts = Array.from(appState.content.sort(sortByProperty('likes', true)));
 
 
     /**

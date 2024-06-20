@@ -169,7 +169,7 @@ function Planner({ navigator, category }: Props) {
     return (
         <Page>
             <Container
-                responsive
+                stretch
                 className={styles.container}>
                 {/* Toolbar */}
                 <Toolbar

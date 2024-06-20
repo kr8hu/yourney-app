@@ -42,15 +42,15 @@ function Content() {
 
 
     useEffect(() => {
-        if (appState.cache.length === 0) return;
+        if (appState.content.length === 0) return;
 
-        const favouritePosts = appState.cache.filter((post: Post) => post.likes.includes(userState.userdata._id));
+        const favouritePosts = appState.content.filter((post: Post) => post.likes.includes(userState.userdata._id));
 
         if (favouritePosts) {
             setFavourites(favouritePosts);
         }
         //eslint-disable-next-line
-    }, [appState.cache]);
+    }, [appState.content]);
 
 
     /**

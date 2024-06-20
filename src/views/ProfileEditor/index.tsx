@@ -170,7 +170,7 @@ function ProfileEditor(props: Props) {
 
     return (
         <Page renderFixed={renderFixed}>
-            <Container responsive>
+            <Container>
                 {/* Toolbar */}
                 <Toolbar
                     fixed={true}

@@ -29,6 +29,7 @@ import ProfileEditor from '../ProfileEditor';
 import {
     actionTypes,
     appversion,
+    cacheType,
     dialogTypes
 } from '../../shared/const';
 import { clearUserStorage } from '../../shared/utils';
@@ -41,6 +42,7 @@ import DialogState from '../../interfaces/DialogState';
 //Styles
 import styles from './Settings.module.css';
 import Container from '../../components/Container';
+import CacheService from '../../services/CacheService';
 
 
 /**
@@ -153,7 +155,7 @@ function Settings({ navigator }: Props) {
      */
     const handleLogout = () => {
         clearUserStorage();
-        localStorage.removeItem("Yourney_notifications");
+        CacheService.clear(cacheType.NOTIFICATION);
 
         setAppState(actionTypes.app.SET_NOTIFICATIONS, null);
         setUserState(actionTypes.user.SET_USERDATA, null);
@@ -227,7 +229,7 @@ function Settings({ navigator }: Props) {
 
     return (
         <Page>
-            <Container responsive>
+            <Container>
                 {/* Toolbar */}
                 <Toolbar
                     fixed={true}

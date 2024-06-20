@@ -55,7 +55,7 @@ function Latests({ numberOfPosts }: Props) {
      * 
      * Tartalom rendezése feltöltési dátum szerint
      */
-    const latestPosts = Array.from(appState.cache.sort(sortByProperty('createdAt', true)));
+    const latestPosts = Array.from(appState.content.sort(sortByProperty('createdAt', true)));
 
 
     /**

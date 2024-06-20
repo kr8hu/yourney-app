@@ -60,7 +60,7 @@ function UsersManager({ navigator }: Props) {
 
     return (
         <Page>
-            <Container responsive>
+            <Container>
                 {/* Toolbar */}
                 <Toolbar
                     fixed

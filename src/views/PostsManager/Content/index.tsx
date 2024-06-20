@@ -148,8 +148,8 @@ function Content() {
             return;
         }
 
-        const filteredLocalContent = appState.cache.filter((localPost: Post) => localPost._id !==  (response.payload as Post)._id);
-        setAppState(actionTypes.app.SET_CACHE, filteredLocalContent);
+        const filteredLocalContent = appState.content.filter((localPost: Post) => localPost._id !==  (response.payload as Post)._id);
+        setAppState(actionTypes.app.SET_CONTENT, filteredLocalContent);
 
         //Bejegyzések ismételt lekérése a state frissítéshez
         getPosts();
@@ -211,7 +211,7 @@ function Content() {
         const response = await PlanService.findByQuery(query);
 
         if (response.payload) {
-            setAppState(actionTypes.app.SET_CACHE, response.payload);
+            setAppState(actionTypes.app.SET_CONTENT, response.payload);
         }
 
         //Bejegyzések ismételt lekérése a state frissítéshez

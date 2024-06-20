@@ -34,7 +34,7 @@ export const actionTypes = {
         SET_NAVIGATOR: 'APP_SET_NAVIGATOR',
         SET_BUSY: 'APP_SET_BUSY',
         SET_DEVICE: 'APP_SET_DEVICE',
-        SET_CACHE: 'APP_SET_LOCAL_CONTENT',
+        SET_CONTENT: 'APP_SET_LOCAL_CONTENT',
         SET_NOTIFICATIONS: 'APP_SET_NOTIFICATIONS',
     },
     dialog: {
@@ -115,4 +115,10 @@ export const requestMethods = {
     POST: "POST",
     PUT: "PUT",
     DELETE: "DELETE"
+}
+
+export const cacheType = {
+    MEDIA: "Media",
+    CONTENT: "Content",
+    NOTIFICATION: "Notifications"
 }

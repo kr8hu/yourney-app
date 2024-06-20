@@ -110,7 +110,7 @@ function Contact({ navigator }: Props) {
 
     return (
         <Page>
-            <Container responsive fill>
+            <Container stretch>
                 {/* Toolbar */}
                 <Toolbar
                     fixed

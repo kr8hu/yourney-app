@@ -79,7 +79,7 @@ function Content() {
     if (appState.device?.platform === "web") return <Placeholder />
 
     return (
-        <Container fill>
+        <Container stretch>
             <div className={styles.row}>
                 <div className={styles.col}>
                     <Text

@@ -44,7 +44,7 @@ function About({ navigator }: Props) {
 
     return (
         <Page>
-            <Container responsive>
+            <Container>
                 {/* Toolbar */}
                 <Toolbar
                     fixed

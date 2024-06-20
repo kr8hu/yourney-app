@@ -32,23 +32,20 @@ import PatternLayout from '../../components/layouts/PatternLayout';
 
 //Services
 import PlanService from '../../services/PlanService';
-import MediaCacheService from '../../services/MediaCacheService';
+import CacheService from '../../services/CacheService';
 import NotificationService from '../../services/NotificationService';
 
 //Interfaces
-import Post from '../../interfaces/Post';
-import MediaCache from '../../interfaces/MediaCache';
 import DialogState from '../../interfaces/DialogState';
 
 //Shared
 import xml from '../../shared/strings.xml';
 import {
     actionTypes,
+    cacheType,
     dialogTypes,
     loadingStates,
-    url,
 } from '../../shared/const';
-import { blobToBase64 } from '../../shared/utils';
 
 //Assets
 import pattern from '../../assets/images/backgrounds/splash.jpg';
@@ -125,6 +122,7 @@ function Initialize({ navigator }: Props) {
      * Szöveges tartalmak betöltése xml fájlból
      */
     const getStrings = async () => {
+        //HTTP lekérdezés tulajdonságai
         const config = {
             method: 'GET',
             url: xml,
@@ -133,6 +131,7 @@ function Initialize({ navigator }: Props) {
             },
         }
 
+        //HTTP lekérdezés
         const response = await axios.request(config);
 
         if (response) {
@@ -150,87 +149,38 @@ function Initialize({ navigator }: Props) {
      * @returns 
      */
     const getContent = async () => {
+        //Dialog tulajdonságai
         let dialogState: DialogState = {
             type: dialogTypes.ALERT,
             closeable: false,
             onClose: () => openApplication()
         }
 
+        //Query
         const query = { approved: true };
+
+        //HTTP lekérdezés
         const response = await PlanService.findByQuery(query);
         dialogState.text = response.message;
 
-        if (!response.payload) {
+        if (response.payload) {
+            //Tartalom betöltése az alkalmazás statejébe
+            setAppState(actionTypes.app.SET_CONTENT, response.payload);
+
+            //Adatok elhelyezése a cacheben
+            createCache(cacheType.CONTENT, response.payload);
+        } else {
+            //A korábban létrehozott cache tartalmának lekérése
+            const cachedContent = await CacheService.findAll(cacheType.CONTENT);
+
+            //A lekért cache betöltése az alkalmazásba
+            setAppState(actionTypes.app.SET_CONTENT, cachedContent);
+
+            //Hibaüzenet megjelenítése
             setDialogState(dialogState);
-            return;
         }
 
-        localStorage.setItem("Yourney_cache", JSON.stringify(response.payload));
-
-        createMediaCache();
-
-        setAppState(actionTypes.app.SET_CACHE, response.payload);
         setProgress((current: number) => current + 1);
-    }
-
-
-    /**
-     * createMediaCache
-     * 
-     * Médiatartalmak gyorsítótárazása
-     * @returns 
-     */
-    const createMediaCache = async () => {
-        //Cache array
-        let mediaCache: Array<MediaCache> = [];
-
-        //Bejegyzések cache
-        const storedCache = localStorage.getItem("Yourney_cache");
-
-        if (storedCache !== null) {
-            //Cache parseolása json formátumra
-            const posts: Array<Post> = JSON.parse(storedCache);
-
-            //Bejegyzés fotói
-            for (let post of posts) {
-                for (let i = 0; i < post.photos.length; i++) {
-                    //Kép url
-                    const photoUrl = `${url}/public/images/plans/${post.photos[i]}`;
-
-                    //Kép átalakítása base64 formátumra
-                    const base64image = await blobToBase64(photoUrl);
-
-                    //Tárolás a mediacache-ben
-                    mediaCache.push({
-                        key: post.photos[i],
-                        value: base64image
-                    });
-                }
-
-                //Helyszín fotói
-                for (let location of post.locations) {
-                    for (let j = 0; j < location.photos.length; j++) {
-                        //Kép url
-                        const photoUrl = `${url}/public/images/plans/${location.photos[j]}`;
-
-                        //Kép átalakítása base64 formátumra
-                        const base64image = await blobToBase64(photoUrl);
-
-                        //Tárolás a mediacache-ben
-                        mediaCache.push({
-                            key: location.photos[j],
-                            value: base64image
-                        });
-                    }
-                }
-            }
-
-            //Előzőleg mentett cache törlése
-            MediaCacheService.clear();
-
-            //Cache feltöltése az adatokkal
-            MediaCacheService.set(mediaCache);
-        }
     }
 
 
@@ -242,16 +192,10 @@ function Initialize({ navigator }: Props) {
      * @returns 
      */
     const getNotifications = async () => {
-        //Vendég felhasználó esetén átugorja ezt a folyamatot, ugrás a következőre
         if (!userState.userdata) {
+            //Vendég felhasználó esetén nem fut le ez a folyamat, ugrás a következő műveletre
             setProgress((current: number) => current + 1);
             return;
-        }
-
-        let dialogState: DialogState = {
-            type: dialogTypes.ALERT,
-            closeable: false,
-            onClose: () => openApplication()
         }
 
         //Query
@@ -261,15 +205,21 @@ function Initialize({ navigator }: Props) {
 
         //HTTP lekérdezés
         const response = await NotificationService.findByQuery(query);
-        dialogState.text = response.message;
 
-        if (!response.payload) {
-            setDialogState(dialogState);
-            return;
+        if (response.payload) {
+            //Betöltés az alkalmazásba
+            setAppState(actionTypes.app.SET_NOTIFICATIONS, response.payload);
+
+            //Adatok elhelyezése a cacheben
+            createCache(cacheType.NOTIFICATION, response.payload);
+        } else {
+            //Cache tartalmának lekérése
+            const cachedNotifications = await CacheService.findAll(cacheType.NOTIFICATION);
+
+            //Betöltés az alkalmazásba
+            setAppState(actionTypes.app.SET_NOTIFICATIONS, cachedNotifications);
         }
 
-        localStorage.setItem("Yourney_notifications", JSON.stringify(response.payload));
-        setAppState(actionTypes.app.SET_NOTIFICATIONS, response.payload);
         setProgress((current: number) => current + 1);
     }
 
@@ -290,6 +240,25 @@ function Initialize({ navigator }: Props) {
 
 
     /**
+     * createCache
+     * 
+     * @param contents 
+     */
+    const createCache = async (type: string, contents: any) => {
+        CacheService.clear(type);
+
+        for (let content of contents) {
+            await CacheService.create(type, content);
+        }
+
+        if (type === cacheType.CONTENT) {
+            CacheService.clear(cacheType.MEDIA);
+            CacheService.convert();
+        }
+    }
+
+
+    /**
      * openApplication
      * 
      * Route stack resetelése és alkalmazás megnyitása a landing page-vel.
@@ -301,7 +270,9 @@ function Initialize({ navigator }: Props) {
 
     return (
         <Page>
-            <Container fill className={styles.container}>
+            <Container
+                stretch
+                className={styles.container}>
                 <PatternLayout
                     fullscreen
                     backgroundImage={pattern}>

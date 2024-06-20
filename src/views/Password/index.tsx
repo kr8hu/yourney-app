@@ -103,7 +103,7 @@ function Password({ navigator }: Props) {
 
     return (
         <Page>
-            <Container fill responsive>
+            <Container stretch>
                 {/* Toolbar */}
                 <Toolbar
                     fixed

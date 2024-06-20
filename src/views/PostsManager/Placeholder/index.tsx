@@ -16,7 +16,9 @@ import styles from './Placeholder.module.css';
  */
 function Placeholder() {
     return (
-        <Container fill className={styles.container}>
+        <Container 
+            stretch 
+            className={styles.container}>
             <Icon
                 className={styles.icon}
                 icon="fa-cube"

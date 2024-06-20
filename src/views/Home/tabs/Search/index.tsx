@@ -83,10 +83,10 @@ function Search(props: Props) {
      */
     const onSuccess = (value: string) => {
         //Megadott szöveg alapján keresés a bejegyzések címében
-        const filteredPostsByName = appState.cache.filter((post: Post) => post.name.toLowerCase().includes(value.toLowerCase()));
+        const filteredPostsByName = appState.content.filter((post: Post) => post.name.toLowerCase().includes(value.toLowerCase()));
 
         //Megadott szöveg alapján keresés a bejegyzések leírásában
-        const filteredPostsByDesc = appState.cache.filter((post: Post) => post.description.toLowerCase().includes(value.toLowerCase()));
+        const filteredPostsByDesc = appState.content.filter((post: Post) => post.description.toLowerCase().includes(value.toLowerCase()));
 
         //Keresési találhatok összefűzése
         const set = new Set([

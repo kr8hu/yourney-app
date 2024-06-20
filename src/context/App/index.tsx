@@ -31,7 +31,7 @@ interface IAppState {
     navigator: any;
     busy: boolean;
     device: DeviceInfo | undefined;
-    cache: Array<any>;
+    content: Array<any>;
     notifications: Array<any>;
 }
 

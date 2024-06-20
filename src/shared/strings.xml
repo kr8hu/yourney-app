@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="appname">Yourney</string>
-    <string name="initialize">Betöltés</string>
+    <string name="initialize">Előkészítés</string>
+    <string name="loading">Betöltés</string>
     <string name="click_here">kattints ide.</string>
     <string name="shuffle_suggestions">Javaslatok keverése</string>
     <string name="upload">Feltöltés</string>

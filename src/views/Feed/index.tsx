@@ -103,7 +103,7 @@ function Feed({ navigator, plans }: Props) {
 
     return (
         <Page>
-            <Container responsive>
+            <Container>
                 {/* Toolbar */}
                 <Toolbar
                     fixed

@@ -52,7 +52,7 @@ function Locations({ numberOfPosts }: Props) {
      * 
      * Helyszíneket tartalmazó array generálása a cacheből
      */
-    const locations: Array<ILocation> = appState.cache.flatMap(obj => obj.locations);
+    const locations: Array<ILocation> = appState.content.flatMap(obj => obj.locations);
 
 
     //States

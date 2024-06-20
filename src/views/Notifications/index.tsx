@@ -62,7 +62,7 @@ function Notifications({ navigator }: Props) {
 
     return (
         <Page>
-            <Container responsive>
+            <Container>
                 <Toolbar
                     fixed={true}
                     text="title_page_notifications"

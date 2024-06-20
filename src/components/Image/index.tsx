@@ -1,18 +1,21 @@
 //React
 import {
     useState,
-    CSSProperties,
     useEffect,
+    CSSProperties,
 } from 'react';
 
 //Components
 import Text from '../Text';
 
+//Shared
+import { cacheType } from '../../shared/const';
+
+//Services
+import CacheService from '../../services/CacheService';
+
 //Interfaces
 import MediaCache from '../../interfaces/MediaCache';
-
-//Servives
-import MediaCacheService from '../../services/MediaCacheService';
 
 //Styles
 import styles from './Image.module.css';
@@ -41,15 +44,16 @@ interface Props {
 function Image({
     className,
     transparent,
-    placeholder,
     src,
     onStatusChange
 }: Props) {
     //States
     const [loaded, setLoaded] = useState<boolean>(false);
     const [source, setSource] = useState<string>(src);
+    const [placeholder, setPlaceholder] = useState<string>("loading");
 
     useEffect(() => {
+        setLoaded(false);
         setSource(src);
     }, [src]);
 
@@ -74,7 +78,7 @@ function Image({
      */
     const imageStyle: CSSProperties = {
         position: loaded ? "relative" : "absolute",
-        opacity: loaded ? 1 : 0
+        display: loaded ? "block" : "none"
     };
 
 
@@ -105,15 +109,17 @@ function Image({
         const fileName = src.split("/");
 
         //Tárolt cache
-        const storedCache = await MediaCacheService.get() as MediaCache[];
+        const mediaCache = await CacheService.findAll(cacheType.MEDIA) as MediaCache[];
 
-        if (storedCache) {
+        if (mediaCache) {
             //Gyorsítótárazott kép keresése
-            const cached = storedCache.find((media: MediaCache) => media.key === fileName[fileName.length - 1]);
+            const cached = mediaCache.find((media: MediaCache) => media.key === fileName[fileName.length - 1]);
 
             //Ha van találat a cacheből
             if (cached) {
                 setSource(cached.value);
+            } else {
+                setPlaceholder("image_not_available");
             }
         }
     }
@@ -125,18 +131,10 @@ function Image({
      * @returns 
      */
     const renderPlaceholder = () => {
-        if (!placeholder) {
-            return (
-                <Text
-                    className={styles.placeholder}
-                    node="image_not_available" />
-            )
-        }
-
         return (
-            <Text className={styles.placeholder}>
-                {placeholder}
-            </Text>
+            <Text
+                className={styles.placeholder}
+                node={placeholder} />
         )
     }
 

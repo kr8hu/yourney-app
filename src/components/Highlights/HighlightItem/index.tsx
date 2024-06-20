@@ -69,8 +69,7 @@ function HighlightItem(props: Props) {
             {/* Borítókép */}
             <Image
                 className={styles.image}
-                src={imageUrl}
-                placeholder="Betöltés..." />
+                src={imageUrl} />
 
             {/* Tartalom */}
             <div className={styles.content}>

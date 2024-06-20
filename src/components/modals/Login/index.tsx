@@ -19,6 +19,7 @@ import NotificationService from '../../../services/NotificationService';
 //Shared
 import {
     actionTypes,
+    cacheType,
     dialogTypes
 } from '../../../shared/const';
 import { setUserStorage } from '../../../shared/utils';
@@ -32,6 +33,7 @@ import UserService from '../../../services/UserService';
 
 //Styles
 import styles from './Login.module.css';
+import CacheService from '../../../services/CacheService';
 
 
 /**
@@ -252,7 +254,9 @@ function Login() {
         const response = await NotificationService.findByQuery(query);
 
         if (response.payload) {
-            localStorage.setItem("Yourney_notifications", JSON.stringify(response.payload));
+            for (let notification of response.payload) {
+                await CacheService.create(cacheType.NOTIFICATION, notification);
+            }
             setAppState(actionTypes.app.SET_NOTIFICATIONS, response.payload);
         }
     }

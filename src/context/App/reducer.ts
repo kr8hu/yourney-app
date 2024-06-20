@@ -22,10 +22,10 @@ export const reducer = (state: any, action: Action) => {
                 ...state,
                 device: action.payload
             }
-        case actionTypes.app.SET_CACHE:
+        case actionTypes.app.SET_CONTENT:
             return {
                 ...state,
-                cache: action.payload
+                content: action.payload
             }
         case actionTypes.app.SET_NOTIFICATIONS:
             return {
@@ -41,6 +41,6 @@ export const initialState = {
     navigator: undefined,
     busy: false,
     device: undefined,
-    cache: localStorage.getItem("Yourney_cache") ? JSON.parse(`${localStorage.getItem("Yourney_cache")}`) : [],
-    notifications: localStorage.getItem("Yourney_notifications") ? JSON.parse(`${localStorage.getItem("Yourney_notifications")}`) : []
+    content: [],
+    notifications: []
 }

@@ -48,9 +48,9 @@ function Categories() {
 
     //Effects
     useEffect(() => {
-        if (appState.cache.length === 0) return;
+        if (appState.content.length === 0) return;
         //eslint-disable-next-line
-    }, [appState.cache]);
+    }, [appState.content]);
 
 
     /**
@@ -87,7 +87,7 @@ function Categories() {
     const filterByCategory = (filter: any) => {
         setHighlights([]);
         let selected: Array<HighlightItem> = [];
-        const filteredPosts: Array<Post> = appState.cache.filter((post: Post) => post.category === filter);
+        const filteredPosts: Array<Post> = appState.content.filter((post: Post) => post.category === filter);
 
         for (let post of filteredPosts) {
             for (let location of post.locations) {
@@ -117,7 +117,7 @@ function Categories() {
      * 
      */
     const onClick = (item: HighlightItem) => {
-        const post = appState.cache.find((p: Post) => p._id === item.post._id);
+        const post = appState.content.find((p: Post) => p._id === item.post._id);
         //const location = post.locations.find((l: ILocation) => l.name === item.title);
 
         appState.navigator.pushPage({

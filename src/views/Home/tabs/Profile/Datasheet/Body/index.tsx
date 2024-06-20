@@ -35,7 +35,7 @@ function Body() {
      * 
      * Felhasználó által közzétett bejegyzések
      */
-    const userPosts: Array<Post> = appState.cache.filter((p: Post) => p.author === userState.userdata.username);
+    const userPosts: Array<Post> = appState.content.filter((p: Post) => p.author === userState.userdata.username);
 
 
     /**

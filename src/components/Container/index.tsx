@@ -11,8 +11,7 @@ import styles from './Container.module.css';
  */
 interface Props {
     className?: any;
-    fill?: boolean;
-    responsive?: boolean;
+    stretch?: boolean;
     children: React.ReactNode | React.ReactNode[];
     onClick?: () => void;
 }
@@ -23,7 +22,7 @@ interface Props {
  * 
  * @returns 
  */
-function Container({ className, fill, children, responsive, onClick }: Props) {
+function Container({ className, stretch, children, onClick }: Props) {
     /**
      * classNames
      * 
@@ -47,8 +46,7 @@ function Container({ className, fill, children, responsive, onClick }: Props) {
     return (
         <div
             className={classNames}
-            data-fill={fill || false}
-            data-responsive={responsive || false}
+            data-stretch={stretch || false}
             onClick={onClickHandler}>
             {children}
         </div>

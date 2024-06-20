@@ -45,7 +45,7 @@ function Profile(props: Props) {
      */
     const classNames = `${styles.container} ${props.className}`;
 
-    
+
     /**
      * renderedComponent
      * 
@@ -54,7 +54,9 @@ function Profile(props: Props) {
 
 
     return (
-        <Container fill className={classNames}>
+        <Container
+            stretch
+            className={classNames}>
             <BackgroundLayout backgroundImage={backgroundImage}>
                 <Toolbar
                     text="title_page_home_profile"

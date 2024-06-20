@@ -122,14 +122,14 @@ function Editor({ navigator, post }: Props) {
         const response = await PlanService.findByQuery(query);
 
         if (response.payload) {
-            setAppState(actionTypes.app.SET_CACHE, response.payload);
+            setAppState(actionTypes.app.SET_CONTENT, response.payload);
         }
     }
 
 
     return (
         <Page>
-            <Container responsive>
+            <Container>
                 {/* Toolbar */}
                 <Toolbar
                     fixed={true}
