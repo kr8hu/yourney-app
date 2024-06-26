@@ -34,11 +34,11 @@ interface Props {
 function Landing({ navigator }: Props) {
 
     /**
-     * enter
+     * openHome
      * 
      * Belépés az alkalmazásba
      */
-    const enter = () => {
+    const openHome = () => {
         navigator.replacePage({ component: Home });
     }
 
@@ -63,7 +63,7 @@ function Landing({ navigator }: Props) {
 
                     <Button
                         className={styles.button}
-                        onClick={enter}>
+                        onClick={openHome}>
                         <Text node="landing_button" />
                     </Button>
                 </div>

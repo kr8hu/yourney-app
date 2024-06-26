@@ -36,6 +36,7 @@ export const actionTypes = {
         SET_DEVICE: 'APP_SET_DEVICE',
         SET_CONTENT: 'APP_SET_LOCAL_CONTENT',
         SET_NOTIFICATIONS: 'APP_SET_NOTIFICATIONS',
+        SET_NETWORK_STATUS: 'APP_SET_NETWORK_STATUS'
     },
     dialog: {
         SET_STATUS: 'DIALOG_SET_STATUS',

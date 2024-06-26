@@ -33,6 +33,7 @@ interface IAppState {
     device: DeviceInfo | undefined;
     content: Array<any>;
     notifications: Array<any>;
+    network: boolean;
 }
 
 

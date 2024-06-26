@@ -153,7 +153,7 @@ function Initialize({ navigator }: Props) {
         let dialogState: DialogState = {
             type: dialogTypes.ALERT,
             closeable: false,
-            onClose: () => openApplication()
+            onClose: () => null
         }
 
         //Query

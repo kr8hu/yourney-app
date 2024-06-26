@@ -28,8 +28,9 @@ class PlanService {
     /**
      * Find (id)
      * 
-     * @param id 
-     * @param data 
+     * @param id bejegyzés azonosítója
+     * @param data további adatok küldése a lekérdezéshez
+     * @param networkStatus szerverkapcsolat állapota
      * @returns 
      */
     findById(id: string, data?: any) {

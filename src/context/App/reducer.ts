@@ -32,6 +32,11 @@ export const reducer = (state: any, action: Action) => {
                 ...state,
                 notifications: action.payload
             }
+        case actionTypes.app.SET_NETWORK_STATUS:
+            return {
+                ...state,
+                network: action.payload
+            }
         default:
             return state
     }
@@ -42,5 +47,6 @@ export const initialState = {
     busy: false,
     device: undefined,
     content: [],
-    notifications: []
+    notifications: [],
+    network: false
 }
