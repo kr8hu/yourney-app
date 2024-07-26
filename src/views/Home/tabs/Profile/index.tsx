@@ -14,7 +14,7 @@ import Unauthorized from '../../../../components/Unauthorized';
 import BackgroundLayout from '../../../../components/layouts/BackgroundLayout';
 
 //Assets
-import backgroundImage from '../../../../assets/images/backgrounds/profile.jpg';
+import backgroundImage from '../../../../assets/images/backgrounds/ai/profile.jpeg';
 
 //Styles
 import styles from './Profile.module.css';
@@ -58,9 +58,12 @@ function Profile(props: Props) {
             stretch
             className={classNames}>
             <BackgroundLayout backgroundImage={backgroundImage}>
+                {/* Fejléc */}
                 <Toolbar
                     text="title_page_home_profile"
                     fixed={true} />
+
+                {/* Megjelenítésre kerülő komponens */}
                 {renderedComponent}
             </BackgroundLayout>
         </Container>

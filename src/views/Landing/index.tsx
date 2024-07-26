@@ -9,9 +9,6 @@ import Text from '../../components/Text';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
 
-//Assets
-import image from '../../assets/images/landing/default.jpg';
-
 //Styles
 import styles from './Landing.module.css';
 
@@ -22,6 +19,7 @@ import styles from './Landing.module.css';
  */
 interface Props {
     navigator: any;
+    background: any;
 }
 
 
@@ -31,15 +29,14 @@ interface Props {
  * @param props 
  * @returns 
  */
-function Landing({ navigator }: Props) {
-
+function Landing({ navigator, background }: Props) {
     /**
      * openHome
      * 
      * Belépés az alkalmazásba
      */
     const openHome = () => {
-        navigator.replacePage({ component: Home });
+        navigator.pushPage({ component: Home });
     }
 
 
@@ -49,7 +46,7 @@ function Landing({ navigator }: Props) {
                 <div className={styles.layer} />
                 <img
                     className={styles.image}
-                    src={image}
+                    src={background}
                     alt="cover" />
 
                 <div className={styles.content}>

@@ -1,6 +1,6 @@
 {
   "name": "Yourney",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "dependencies": {
     "@capacitor/android": "^5.7.0",

@@ -24,7 +24,7 @@ import Post from '../../../../interfaces/Post';
 import DialogState from '../../../../interfaces/DialogState';
 
 //Assets
-import backgroundImage from '../../../../assets/images/backgrounds/search.jpg';
+import backgroundImage from '../../../../assets/images/backgrounds/ai/search.jpeg';
 
 //Styles
 import styles from './Search.module.css';
@@ -106,7 +106,7 @@ function Search(props: Props) {
     return (
         <div className={classNames}>
             <BackgroundLayout backgroundImage={backgroundImage}>
-                {/* Toolbar */}
+                {/* Fejléc */}
                 <Toolbar
                     text="title_page_home_search"
                     fixed={true} />

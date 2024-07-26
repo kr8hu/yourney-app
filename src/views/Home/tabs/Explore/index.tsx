@@ -10,7 +10,7 @@ import Container from '../../../../components/Container';
 import BackgroundLayout from '../../../../components/layouts/BackgroundLayout';
 
 //Assets
-import backgroundImage from '../../../../assets/images/backgrounds/explore.jpg';
+import backgroundImage from '../../../../assets/images/backgrounds/ai/explore.jpeg';
 
 //Styles
 import styles from './Explore.module.css';

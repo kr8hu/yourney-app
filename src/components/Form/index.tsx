@@ -18,14 +18,16 @@ interface Props {
  * 
  * @returns 
  */
-function Form(props: Props) {
+function Form({ className, fields, onFocus }: Props) {
     /**
      * renderInputFields
+     * 
+     * Beviteli mezők létrehozása
      * 
      * @returns 
      */
     const renderInputFields = () => {
-        return props.fields.map((field: any, idx: number) => {
+        return fields.map((field: any, idx: number) => {
             return (
                 <Input
                     key={idx}
@@ -36,17 +38,45 @@ function Form(props: Props) {
                     modifier={field.modifier}
                     placeholder={field.placeholder}
                     onChange={field.onChange}
-                    onClick={() => field.onClick ? field.onClick() : null} />
+                    onClick={() => field.onClick && field.onClick()} />
             )
         })
     }
 
+
+    /**
+     * onFocusHandler
+     * 
+     * @param e 
+     * @returns 
+     */
+    const onFocusHandler = (e: React.FocusEvent<HTMLFormElement, Element>) => onFocus && onFocus(true);
+
+
+    /**
+     * onBlurHandler
+     * 
+     * @param e 
+     * @returns 
+     */
+    const onBlurHandler = (e: React.FocusEvent<HTMLFormElement, Element>) => onFocus && onFocus(false);
+
+
+    /**
+     * onSubmitHandler
+     * 
+     * @param e 
+     * @returns 
+     */
+    const onSubmitHandler = (e: React.FormEvent) => e.preventDefault();
+
+
     return (
         <form
-            className={props.className}
-            onFocus={(e: React.FocusEvent<HTMLFormElement, Element>) => props.onFocus ? props.onFocus(true) : null}
-            onBlur={(e: React.FocusEvent<HTMLFormElement, Element>) => props.onFocus ? props.onFocus(false) : null}
-            onSubmit={e => e.preventDefault()}>
+            className={className}
+            onFocus={onFocusHandler}
+            onBlur={onBlurHandler}
+            onSubmit={onSubmitHandler}>
             {renderInputFields()}
         </form>
     )

@@ -27,13 +27,21 @@ import {
 /**
  * Navigator 
  * 
- * Ez a komponens kezeli az oldalakat és az oldalak közötti navigációt.
+ * Ez a komponens kezeli az oldalak közti navigációt
  * 
  * @returns
  */
 function Navigator() {
     //Context
     const { appState, setAppState } = useContext(AppContext);
+
+
+    /**
+     * initialRoute
+     * 
+     * Első megjelenített oldal meghatározása
+     */
+    const initialRoute = { component: Initialize };
 
 
     /**
@@ -48,9 +56,8 @@ function Navigator() {
         const props = route.props || {};
         props.navigator = navigator;
 
-
         if (appState.navigator === undefined) {
-            //navigator mentése az appState-be, hogy a nem Onsen UI által kezelt oldalakon is elérhető legyen a navigáció
+            //Navigator mentése az appState-be, ez lehetővé teszi a nem Onsen Navigatorban lévő komponensekből a navigációt.
             setAppState(actionTypes.app.SET_NAVIGATOR, navigator);
         }
 
@@ -58,23 +65,24 @@ function Navigator() {
     }
 
 
+    /**
+     * LoadingComponent
+     * 
+     * Betöltést jelző komponens feltételes megjelenítése
+     */
+    const LoadingComponent = () => appState.busy ? <Loading /> : null;
+    
+
     return (
         <React.Fragment>
             <Ons.Navigator
                 animation={animationTypes.FADE}
-                initialRoute={{
-                    component: Initialize
-                }}
+                initialRoute={initialRoute}
                 renderPage={renderPage} />
 
-            {/* Dialog komponens elhelyezése */}
             <Dialog />
-
-            {/* Modal komponens elhelyezése */}
             <Modal />
-
-            {/* Amíg az alkalmazás elfoglalt állapotban van, megjeleníti a réteg komponenst */}
-            {appState.busy && <Loading />}
+            <LoadingComponent />
         </React.Fragment>
     );
 }

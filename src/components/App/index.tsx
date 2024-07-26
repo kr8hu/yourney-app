@@ -27,17 +27,36 @@ import Navigator from './Navigator';
 function App() {
 
   useEffect(() => {
-    //Onsen UI Ready
+    setOnsenFunctions();
+
+    //Status Bar
+    setStatusBarColor();
+  }, []);
+
+
+  /**
+   * setOnsenFunctions
+   * 
+   * Onsen UI betöltődését követően lefutó funkciók
+   */
+  const setOnsenFunctions = () => {
     ons.ready(() => {
       //Android Back Button inaktiválása
       ons.disableDeviceBackButtonHandler();
     });
+  }
 
-    //Status Bar
+
+  /**
+   * changeStatusBar
+   * 
+   * Status Bar háttérszínének módosítása
+   */
+  const setStatusBarColor = () => {
     StatusBar.setBackgroundColor({
       color: "#4e651a"
     });
-  }, []);
+  }
 
 
   return (

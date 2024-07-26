@@ -9,14 +9,14 @@ import styles from './Button.module.css';
 interface Props {
     className?: any;
     children?: React.ReactNode;
-    onClick?: () => void
+    onClick?: () => void;
 }
 
 
 /**
  * Button
  * 
- * Gomb
+ * Gombként funkciónáló komponens
  * 
  * @returns 
  */
@@ -32,11 +32,7 @@ function Button({ className, children, onClick }: Props) {
      * onClickHandler
      * 
      */
-    const onClickHandler = () => {
-        if (!onClick) return;
-
-        onClick();
-    }
+    const onClickHandler = () => onClick && onClick();
 
 
     return (

@@ -1,7 +1,7 @@
 //Components
 import Text from '../../../components/Text';
 import Section from '../../../components/Section';
-
+import Container from '../../../components/Container';
 
 //Assets
 import logo_react from '../../../assets/images/credits/react.png';
@@ -13,13 +13,20 @@ import logo_bingmaps from '../../../assets/images/credits/bingmaps.png';
 
 //Styles
 import styles from './Credits.module.css';
-import Container from '../../../components/Container';
 
 
+/**
+ * Credits
+ * 
+ * Szerzői jogokat és forrásmegjelöléseket tartalmazó komponens
+ * 
+ * @returns 
+ */
 function Credits() {
     /**
      * logos
      * 
+     * Felhasznált technológiák képeit tartalmazó array
      */
     const logos = [
         logo_react,
@@ -33,37 +40,15 @@ function Credits() {
 
     /**
      * credits
+     * 
+     * Forrásmegjelöléseket tartalmazó array
      */
     const credits = [
         {
-            title: "Üdvözlő oldal háttérkép",
-            linkText: "Image by wirestock",
-            text: "on Freepik",
-            url: "https://www.freepik.com/free-photo/parliament-building-danube-budapest_17650118.htm#fromView=search&page=1&position=2&uuid=a16b099e-5f4a-4de4-a3f2-049853edeb03"
-        },
-        {
-            title: "Felfedezés oldal háttérkép",
-            linkText: "Image by rorozoa",
-            text: "on Freepik",
-            url: "https://www.freepik.com/free-photo/hot-air-balloon-soars-vineyards-dawns-early-light_135009319.htm#query=landscape%20balloons&position=6&from_view=search&track=ais&uuid=4e82c604-ed80-45f3-88c5-a179ba599a24"
-        },
-        {
-            title: "Keresés oldal háttérkép",
-            linkText: "Image by Freepik",
-            text: "",
-            url: "https://www.freepik.com/free-photo/view-world-travel-map-with-smartphone-magnifying-glass_28478755.htm#query=search%20explore%20map&position=0&from_view=search&track=ais&uuid=09ae58e6-fa32-4b4e-ab25-77ad2ab32b9e"
-        },
-        {
-            title: "Kedvencek oldal háttérkép",
-            linkText: "Image by gpointstudio",
-            text: "on Freepik",
-            url: "https://www.freepik.com/free-photo/crazy-drive-young-couple_13131628.htm#query=tour%20favourite%20joy&position=2&from_view=search&track=ais&uuid=fd4731a2-5ee5-4d53-a73b-9c6aa5179dc1#position=2&query=tour%20favourite%20joy"
-        },
-        {
-            title: "Profil oldal háttérkép",
-            linkText: "Image by rawpixel.com",
-            text: "on Freepik",
-            url: "https://www.freepik.com/free-photo/place-work-place-work-coffee-desk-simple-tools_2791692.htm#query=profile%20account%20paper%20office%20desk&position=10&from_view=search&track=ais&uuid=24bb58d4-ef1d-4098-bad6-fcf9995945ec"
+            title: "Háttérképek",
+            linkText: "Images created using an AI tool",
+            text: "on Canva",
+            url: "https://www.canva.com/ai-image-generator/"
         },
         {
             title: "Alapértelmezett profilkép",
@@ -76,6 +61,8 @@ function Credits() {
 
     /**
      * renderLogos
+     * 
+     * Logók megjelenítése
      * 
      * @returns 
      */
@@ -95,6 +82,8 @@ function Credits() {
 
     /**
      * renderCredits
+     * 
+     * Forrásmegjelölések megjelenítése
      * 
      * @returns 
      */

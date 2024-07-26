@@ -15,10 +15,15 @@ import styles from './Contact.module.css';
 import defaultStyles from '../../Form/styles/Default.module.css';
 
 
+/**
+ * Props
+ * 
+ */
 interface Props {
     onResolve: any;
     onReject: any;
 }
+
 
 /**
  * Contact

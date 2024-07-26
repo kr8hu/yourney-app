@@ -60,30 +60,34 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
 
     //Effects
     useEffect(() => {
+        //Komponens létrejöttekor jogosultságok ellenörzése
         checkPermissions();
         //eslint-disable-next-line
     }, []);
 
 
     useEffect(() => {
+        //Hiányzó jogosultság esetén helyadatok hozzáférésének kérelmezése
         if (!permission) {
             Geolocation.requestPermissions();
-
             setTextNode("placeholder_map_permission");
             return;
         }
 
+        //Helyadatok lekérdezése
         getCurrentPosition();
         //eslint-disable-next-line
     }, [permission]);
 
 
     useEffect(() => {
+        //Hibaüzenet megjelenítése ha nem megállapíthatók a helyadatok
         if (position === undefined) {
             setTextNode("placeholder_map_position");
             return;
         }
 
+        //Térkép betöltése
         createBingMap();
         //eslint-disable-next-line
     }, [position]);
@@ -92,7 +96,7 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * placeholder
      * 
-     * Helyadatok lekérésének ideje alatt ideiglenesen megjelenő komponens
+     * Helyadatok lekérdezésének ideje alatt ideiglenesen megjelenő komponens
      */
     const placeholder = (position === undefined && <Placeholder text={textNode} />)
 
@@ -152,11 +156,10 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * getCurrentPosition
      * 
-     * Lekéri a helyadatokat a felhasználó készülékétől
+     * Lekérdezi a helyadatokat a felhasználó készülékétől
      */
     const getCurrentPosition = async () => {
         const position = await Geolocation.getCurrentPosition();
-
         setPosition(position);
     }
 
@@ -164,14 +167,16 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * createBingMap
      * 
-     * Bing Maps inicializálása
+     * Bing Maps betöltése
      */
     const createBingMap = async () => {
+        //Térkép nézet pozicíójának meghatározása
         const center = new Microsoft.Maps.Location(
             position.coords.latitude,
             position.coords.longitude
         );
 
+        //Térkép betöltése a megadott elembe
         map = new Microsoft.Maps.Map(mapRef.current, {
             ...mapOptions,
             center: center,
@@ -189,7 +194,7 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
      * @param e 
      */
     const mapClickEvent = (e: any) => {
-        //Kattintás helyén lévő koordináták
+        //Kattintás helyén lévő koordináták lekérdezése
         const location = new Microsoft.Maps.Location(
             e.location.latitude,
             e.location.longitude
@@ -224,7 +229,7 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * geoRequestHandler
      * 
-     * Térképen kijelölt ponton lévő település/terület helyadatainak lekérése
+     * Térképen kijelölt ponton lévő település/terület helyadatainak lekérdezése
      * 
      * @param result 
      * @param location 
@@ -256,13 +261,13 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * geoErrorHandler
      * 
-     * Helyadatok lekérése közben fellépő hibát kezelő funkció
+     * Helyadatok lekérdezése közben fellépő hibát kezelő funkció
      * 
      * @param e 
      */
     const geoErrorHandler = (e: any) => {
         ons.notification.toast({
-            message: "Hiba lépett fel a kijelölt hely adatainak lekérése közben.",
+            message: "Hiba lépett fel a kijelölt hely adatainak lekérdezése közben.",
             buttonLabel: "OK",
             force: true,
             timeout: 3000
@@ -278,10 +283,7 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
      */
     const viewZoomIn = () => {
         const value = map.getZoom() + 1;
-
-        map.setView({
-            zoom: value
-        })
+        map.setView({ zoom: value });
     }
 
 
@@ -292,10 +294,7 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
      */
     const viewZoomOut = () => {
         const value = map.getZoom() - 1;
-
-        map.setView({
-            zoom: value
-        })
+        map.setView({ zoom: value });
     }
 
 

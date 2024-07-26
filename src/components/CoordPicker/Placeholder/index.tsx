@@ -27,10 +27,8 @@ function Placeholder({ text }: Props) {
      * onClick
      * 
      */
-    const onClick = () => {
-        Geolocation.checkPermissions();
-    }
-
+    const onClick = () => Geolocation.checkPermissions();
+    
 
     return (
         <div

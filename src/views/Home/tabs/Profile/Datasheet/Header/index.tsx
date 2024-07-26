@@ -6,7 +6,7 @@ import { UserContext } from '../../../../../../context/User';
 
 //Components
 import Text from '../../../../../../components/Text';
-import Avatar from '../../../../../../components/Avatar';
+import ProfilePicture from '../../../../../../components/ProfilePicture';
 import Container from '../../../../../../components/Container';
 
 //Shared
@@ -90,7 +90,7 @@ function Header() {
         <Container>
             <div className={styles.row}>
                 <div className={styles.col}>
-                    <Avatar
+                    <ProfilePicture
                         className={styles.picture}
                         src={imageUrl} />
                 </div>

@@ -10,9 +10,11 @@ import Chip from './Chip';
 //Interfaces
 import IChip from '../../interfaces/Chip';
 
+//Shared
+import { sortByProperty } from '../../shared/utils';
+
 //Styles
 import styles from './Chips.module.css';
-import { sortByProperty } from '../../shared/utils';
 
 
 /**
@@ -33,8 +35,16 @@ interface Props {
  * @returns
  */
 function Chips({ data, onChange }: Props) {
+    /**
+     * orderedData
+     * 
+     * Címke alapján sorbarendezett adatok
+     */
+    const orderedData: Array<IChip> = data.sort(sortByProperty("label", false));
+
+
     //States
-    const [selected, setSelected] = useState<any>(data.sort(sortByProperty("label", false))[0].value);
+    const [selected, setSelected] = useState<any>(orderedData[0].value);
 
 
     //Effects
@@ -50,19 +60,18 @@ function Chips({ data, onChange }: Props) {
     /**
      * renderChips
      * 
+     * Elemek létrehozása
+     * 
      * @returns 
      */
     const renderChips = () => {
         return data.map((chip: IChip, idx: number) => {
-            //Kijelölt elem állapota
-            const isSelected = chip.value === selected;
-
             return (
                 <Chip
                     key={idx}
                     label={chip.label}
                     value={chip.value}
-                    selected={isSelected}
+                    selected={chip.value === selected}
                     onClick={() => setSelected(chip.value)} />
             )
         })

@@ -70,7 +70,7 @@ function Home({ navigator }: Props) {
 
         //Android back button handler
         App.addListener('backButton', () => {
-            if (navigator.pages.length === 1) {
+            if (navigator.pages.length === 2) {
                 handleExit();
             } else {
                 navigator.popPage();

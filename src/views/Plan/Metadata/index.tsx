@@ -2,7 +2,7 @@
 import { Icon } from "react-onsenui";
 
 //Components
-import Avatar from "../../../components/Avatar";
+import ProfilePicture from "../../../components/ProfilePicture";
 import Text from "../../../components/Text";
 import Container from "../../../components/Container";
 
@@ -50,7 +50,7 @@ function Metadata({ dataset }: Props) {
                     className={styles.col}>
                     {idx === 0 ?
                         (
-                            <Avatar
+                            <ProfilePicture
                                 className={styles.picture}
                                 src={imageUrl + meta.icon as string} />
                         )

@@ -1,6 +1,9 @@
 :root {
     --color-main: #89995b;
     --color-modal-button: #4e651a;
+
+/*     --color-main: #5b996c;
+    --color-modal-button: #1a6530; */
     --color-white: rgb(255, 255, 255);
     --color-black: rgb(20, 20, 20);
 

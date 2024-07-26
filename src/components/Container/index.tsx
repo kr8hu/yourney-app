@@ -36,11 +36,7 @@ function Container({ className, stretch, children, onClick }: Props) {
      * 
      * @returns 
      */
-    const onClickHandler = () => {
-        if (!onClick) return;
-
-        onClick();
-    }
+    const onClickHandler = () => onClick && onClick();
 
 
     return (

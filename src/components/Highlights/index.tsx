@@ -26,7 +26,7 @@ interface Props {
 /**
  * Hightlights
  * 
- * Vertikálisan görgethető formában adatokat megjelenítő komponens
+ * Vertikálisan görgethető formában tartalmat megjelenítő komponens
  * 
  * @returns 
  */
@@ -96,7 +96,7 @@ function Highlights({ src, onClick }: Props) {
      * @returns 
      */
     const renderControllers = () => {
-        //Ha nincs tartalom, nem kerül renderelésre a vezérlő
+        //Ha nincs tartalom, nem kerül megjelenítésre a vezérlő
         if (src.length <= 3) return;
 
         return (

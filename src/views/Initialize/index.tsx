@@ -49,6 +49,12 @@ import {
 
 //Assets
 import pattern from '../../assets/images/backgrounds/splash.jpg';
+import bg_1 from '../../assets/images/landing/ai/1.jpeg';
+import bg_2 from '../../assets/images/landing/ai/2.jpeg';
+import bg_3 from '../../assets/images/landing/ai/3.jpeg';
+import bg_4 from '../../assets/images/landing/ai/4.jpeg';
+import bg_5 from '../../assets/images/landing/ai/5.jpeg';
+import bg_6 from '../../assets/images/landing/ai/6.jpeg';
 
 //Styles
 import styles from './Initialize.module.css';
@@ -259,12 +265,35 @@ function Initialize({ navigator }: Props) {
 
 
     /**
+     * getBackgroundByID
+     * 
+     */
+    const getBackgroundByID = (id: number) => {
+        switch (id) {
+            case 1: return bg_1;
+            case 2: return bg_2;
+            case 3: return bg_3;
+            case 4: return bg_4;
+            case 5: return bg_5;
+            case 6: return bg_6;
+            default: return bg_1;
+        }
+    }
+
+
+    /**
      * openApplication
      * 
      * Route stack resetelése és alkalmazás megnyitása a landing page-vel.
      */
     const openApplication = () => {
-        navigator.resetPage({ component: Landing });
+        const rand = Math.floor(Math.random() * 6);
+        const background = getBackgroundByID(rand);
+
+        navigator.resetPage({
+            component: Landing,
+            props: { background },
+        });
     }
 
 

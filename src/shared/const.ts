@@ -6,7 +6,7 @@ import PostCategory from "../interfaces/PostCategory";
  * App version
  * 
  */
-export const appversion = "1.0.3";
+export const appversion = "1.0.4";
 
 
 /**
@@ -23,7 +23,7 @@ export const server = {
  * Url
  * 
  */
-export const url = `${process.env.REACT_APP_SERVER_PROTOCOL}://${server.dev}/`;
+export const url = `${process.env.REACT_APP_SERVER_PROTOCOL}://${server.prod}/`;
 
 
 /**
@@ -34,7 +34,7 @@ export const actionTypes = {
         SET_NAVIGATOR: 'APP_SET_NAVIGATOR',
         SET_BUSY: 'APP_SET_BUSY',
         SET_DEVICE: 'APP_SET_DEVICE',
-        SET_CONTENT: 'APP_SET_LOCAL_CONTENT',
+        SET_CONTENT: 'APP_SET_CONTENT',
         SET_NOTIFICATIONS: 'APP_SET_NOTIFICATIONS',
         SET_NETWORK_STATUS: 'APP_SET_NETWORK_STATUS'
     },

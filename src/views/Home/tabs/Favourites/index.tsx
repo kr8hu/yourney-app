@@ -14,7 +14,7 @@ import Unauthorized from '../../../../components/Unauthorized';
 import BackgroundLayout from '../../../../components/layouts/BackgroundLayout';
 
 //Assets
-import backgroundImage from '../../../../assets/images/backgrounds/favourites.jpg';
+import backgroundImage from '../../../../assets/images/backgrounds/ai/favourites.jpeg';
 
 //Styles
 import styles from './Favourites.module.css';
@@ -44,7 +44,7 @@ function Favourites(props: Props) {
      */
     const classNames = `${styles.container} ${props.className}`;
 
-    
+
     /**
      * renderedComponent
      * 
@@ -55,9 +55,12 @@ function Favourites(props: Props) {
     return (
         <Container className={classNames}>
             <BackgroundLayout backgroundImage={backgroundImage}>
+                {/* Fejléc */}
                 <Toolbar
                     text="title_page_home_favourites"
                     fixed={true} />
+
+                {/* Megjelenített tartalom */}
                 {renderedComponent}
             </BackgroundLayout>
         </Container>

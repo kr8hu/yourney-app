@@ -25,16 +25,22 @@ interface Props {
 /**
  * Chalk
  * 
- * Egy helyszín vagy bejegyzés adatait megjelenítő komponens.
+ * Egy helyszín adatait megjelenítő komponens.
  * 
  * @returns 
  */
-function Chalk(props: Props) {
+function Chalk({
+    className,
+    title,
+    text,
+    image,
+    onClick
+}: Props) {
     /**
      * classNames
      * 
      */
-    const classNames = `${styles.container} ${props.className}`;
+    const classNames = `${styles.container} ${className}`;
 
 
     /**
@@ -42,25 +48,22 @@ function Chalk(props: Props) {
      * 
      * Kép elérési útvonala
      */
-    const imageUrl = `${url}/public/images/plans/${props.image}`;
+    const imageUrl = `${url}/public/images/plans/${image}`;
 
 
     /**
      * formattedText
      * 
+     * Hosszú szöveg megvágása a megadott karakterszámnál
      */
-    const formattedText = props.text?.length > 70 ? `${props.text?.substr(0, 70)}...` : props.text;
+    const formattedText = text?.length > 70 ? `${text?.substr(0, 70)}...` : text;
 
 
     /**
      * onClickHandler
      * 
      */
-    const onClickHandler = () => {
-        if (!props.onClick) return;
-
-        props.onClick();
-    }
+    const onClickHandler = () => onClick && onClick();
 
 
     return (
@@ -68,19 +71,18 @@ function Chalk(props: Props) {
             className={classNames}
             onClick={onClickHandler}>
             <div className={styles.row}>
-                {/* Kép */}
                 <div className={styles.col}>
+                    {/* Kép */}
                     <div className={styles.imageContainer}>
                         <Image
                             src={imageUrl} />
                     </div>
                 </div>
 
-                {/* Adatok */}
                 <div className={styles.col}>
                     {/* Cím */}
                     <Text className={styles.title}>
-                        {props.title}
+                        {title}
                     </Text>
 
                     {/* Tartalom */}

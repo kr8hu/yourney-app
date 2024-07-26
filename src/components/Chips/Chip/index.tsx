@@ -28,18 +28,14 @@ function Chip({ label, value, selected, onClick }: Props) {
      * 
      * @returns 
      */
-    const onClickHandler = () => {
-        if(!onClick) return;
-
-        onClick(value);
-    }
+    const onClickHandler = () => onClick && onClick(value);
 
 
     return (
         <div
             className={styles.container}
             data-selected={selected}
-            onClick={() => onClickHandler()}>
+            onClick={onClickHandler}>
             <Text className={styles.text}>
                 {label}
             </Text>

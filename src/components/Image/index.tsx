@@ -27,30 +27,23 @@ import styles from './Image.module.css';
  */
 interface Props {
     className?: any;
-    transparent?: boolean;
-    placeholder?: string;
     src: string;
-    onStatusChange?: (value: boolean) => void;
 }
 
 
 /**
  * Image
  * 
- * Képet megjelenítő és kezelő komponens
+ * Képet megjelenítő, kezelő komponens
  * 
  * @returns 
  */
-function Image({
-    className,
-    transparent,
-    src,
-    onStatusChange
-}: Props) {
+function Image({ className, src }: Props) {
     //States
     const [loaded, setLoaded] = useState<boolean>(false);
     const [source, setSource] = useState<string>(src);
     const [placeholder, setPlaceholder] = useState<string>("loading");
+
 
     useEffect(() => {
         setLoaded(false);
@@ -66,19 +59,12 @@ function Image({
 
 
     /**
-     * backgroundColor
-     * 
-     */
-    const backgroundColor = transparent ? 'transparent' : 'var(--color-main)';
-
-
-    /**
      * imageStyle
      * 
      */
     const imageStyle: CSSProperties = {
         position: loaded ? "relative" : "absolute",
-        display: loaded ? "block" : "none"
+        opacity: loaded ? 1 : 0
     };
 
 
@@ -88,10 +74,6 @@ function Image({
      */
     const onLoadHandler = () => {
         setLoaded(true);
-
-        if (onStatusChange) {
-            onStatusChange(true);
-        }
     }
 
 
@@ -101,23 +83,23 @@ function Image({
      * @param e 
      */
     const onErrorHandler = async () => {
-        if (onStatusChange) {
-            onStatusChange(false);
-        }
+        //Fájl elérési útvonalának felosztása
+        const filePath = src.split("/");
 
         //Fájlnév
-        const fileName = src.split("/");
+        const fileName = filePath[filePath.length - 1];
 
         //Tárolt cache
         const mediaCache = await CacheService.findAll(cacheType.MEDIA) as MediaCache[];
 
         if (mediaCache) {
             //Gyorsítótárazott kép keresése
-            const cached = mediaCache.find((media: MediaCache) => media.key === fileName[fileName.length - 1]);
+            const cacheSource = mediaCache.find((media: MediaCache) => media.key === fileName);
 
             //Ha van találat a cacheből
-            if (cached) {
-                setSource(cached.value);
+            if (cacheSource) {
+                setLoaded(true);
+                setSource(cacheSource.value);
             } else {
                 setPlaceholder("image_not_available");
             }
@@ -140,11 +122,7 @@ function Image({
 
 
     return (
-        <div
-            className={styles.container}
-            data-loaded={loaded}
-            style={{ backgroundColor }}>
-
+        <div className={styles.container}>
             {/* Placeholder */}
             {!loaded && renderPlaceholder()}
 
@@ -155,7 +133,6 @@ function Image({
                 alt="kép"
                 onError={onErrorHandler}
                 onLoad={onLoadHandler}
-                data-loaded={loaded}
                 style={imageStyle} />
         </div>
     )
