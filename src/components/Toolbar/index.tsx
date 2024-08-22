@@ -25,7 +25,7 @@ import styles from './Toolbar.module.css';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {

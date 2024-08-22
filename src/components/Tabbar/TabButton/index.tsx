@@ -6,7 +6,7 @@ import styles from './TabButton.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -19,8 +19,6 @@ interface Props {
 
 /**
  * TabButton
- * 
- * Tabbar gomb
  * 
  * @returns 
  */

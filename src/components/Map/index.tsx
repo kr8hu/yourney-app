@@ -27,7 +27,7 @@ let map: any;
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -114,7 +114,6 @@ function Map(props: Props) {
     /**
      * mapOptions
      * 
-     * Bing Maps tulajdonságai
      */
     const mapOptions: Microsoft.Maps.IMapLoadOptions = {
         credentials: process.env.REACT_APP_API_KEY_BINGMAPS,
@@ -137,7 +136,6 @@ function Map(props: Props) {
     /**
      * checkPermissions
      * 
-     * Helyadatok lekérésének engedélyének ellenörzése
      */
     const checkPermissions = async () => {
         const permission = await Geolocation.checkPermissions();
@@ -154,7 +152,6 @@ function Map(props: Props) {
     /**
      * getCurrentPosition
      * 
-     * Helyadatok lekérése
      */
     const getCurrentPosition = async () => {
         const result = await Geolocation.getCurrentPosition();
@@ -275,7 +272,6 @@ function Map(props: Props) {
     /**
      * onZoomIn
      * 
-     * Térképnézet nagyításának növelése
      */
     const onZoomIn = () => {
         const value = map.getZoom() + 1;
@@ -289,7 +285,6 @@ function Map(props: Props) {
     /**
      * onZoomOut
      * 
-     * Térképnézet nagyításának csökkentése
      */
     const onZoomOut = () => {
         const value = map.getZoom() - 1;
@@ -303,7 +298,6 @@ function Map(props: Props) {
     /**
      * onLocatePlan
      * 
-     * Térképnézet pozíció helyreállítása
     */
     const onLocatePlan = () => {
         const center = new Microsoft.Maps.Location(
@@ -318,7 +312,6 @@ function Map(props: Props) {
     /**
      * onLocateMe
      * 
-     * Térképnézet pozíció helyreállítása
     */
     const onLocateMe = () => {
         const center = new Microsoft.Maps.Location(

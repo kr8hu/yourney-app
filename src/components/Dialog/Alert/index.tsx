@@ -7,7 +7,7 @@ import styles from './Alert.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -17,8 +17,6 @@ interface Props {
 
 /**
  * Alert
- * 
- * Üzenetet megjelenítő dialógus.
  * 
  * @param props 
  * @returns 

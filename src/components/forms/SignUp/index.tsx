@@ -22,11 +22,16 @@ import styles from './SignUp.module.css';
 import defaultStyles from '../../Form/styles/Default.module.css';
 
 
+/**
+ * Interfaces 
+ * 
+ */
 interface Props {
     onResolve: any;
     onReject: any;
     onFocus?: (value: boolean) => void;
 }
+
 
 /**
  * SignUp

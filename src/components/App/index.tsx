@@ -28,8 +28,6 @@ function App() {
 
   useEffect(() => {
     setOnsenFunctions();
-
-    //Status Bar
     setStatusBarColor();
   }, []);
 
@@ -37,7 +35,6 @@ function App() {
   /**
    * setOnsenFunctions
    * 
-   * Onsen UI betöltődését követően lefutó funkciók
    */
   const setOnsenFunctions = () => {
     ons.ready(() => {
@@ -50,7 +47,6 @@ function App() {
   /**
    * changeStatusBar
    * 
-   * Status Bar háttérszínének módosítása
    */
   const setStatusBarColor = () => {
     StatusBar.setBackgroundColor({

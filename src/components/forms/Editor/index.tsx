@@ -22,7 +22,7 @@ import defaultStyles from '../../../components/Form/styles/Default.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -34,8 +34,6 @@ interface Props {
 
 /**
  * Editor Form
- * 
- * Bejegyzés szerkesztése űrlap
  * 
  * @param param0 
  * @returns 

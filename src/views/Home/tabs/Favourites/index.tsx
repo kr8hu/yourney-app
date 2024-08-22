@@ -21,7 +21,7 @@ import styles from './Favourites.module.css';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {

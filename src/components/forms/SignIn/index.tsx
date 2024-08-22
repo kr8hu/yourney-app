@@ -22,11 +22,16 @@ import styles from './SignIn.module.css';
 import defaultStyles from '../../Form/styles/Default.module.css';
 
 
+/**
+ * Interfaces 
+ * 
+ */
 interface Props {
     onResolve: any;
     onReject: any;
     onFocus?: (value: boolean) => void;
 }
+
 
 /**
  * SignIn

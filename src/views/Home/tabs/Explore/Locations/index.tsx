@@ -27,7 +27,7 @@ import Button from '../../../../../components/Button';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -60,9 +60,7 @@ function Locations({ numberOfPosts }: Props) {
 
 
     useEffect(() => {
-        //Helyszíneket tartalmazó array összekeverése
         shuffleLocations();
-
         //eslint-disable-next-line
     }, []);
 
@@ -70,10 +68,8 @@ function Locations({ numberOfPosts }: Props) {
     /**
      * shuffleLocations
      * 
-     * Összekeveri a helyszínekből álló array elemeit.
      */
     const shuffleLocations = () => {
-        //Helyszíneket tartalmazó array összekeverése
         const shuffled: Array<ILocation> = shuffleArray(locations);
         setShuffledLocations(shuffled);
     }
@@ -85,6 +81,7 @@ function Locations({ numberOfPosts }: Props) {
      * @returns 
      */
     const renderPopulars = () => {
+        //Array megvágása a megadott mennyiségnél
         const slicedLocations = shuffledLocations.slice(0, numberOfPosts);
 
         return slicedLocations.map((location: ILocation, idx: number) => {

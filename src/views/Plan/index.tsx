@@ -62,7 +62,7 @@ import styles from './Plan.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -117,7 +117,6 @@ function Plan({ navigator, post }: Props) {
     /**
      * isFavorited
      * 
-     * Tároljuk, hogy a bejegyzés a kedvencek között találhato-e a felhasználónál
      */
     const isFavorited = content?.likes?.includes(userState.userdata?._id);
 
@@ -155,13 +154,12 @@ function Plan({ navigator, post }: Props) {
     /**
      * getAuthor
      * 
-     * A programtervet készítő felhasználó adatainak lekérdezése és tárolás a stateben
      */
     const getAuthor = async () => {
         //Query
         const query = { username: post.author };
 
-        //HTTP lekérdezés
+        //HTTP kérés
         const response = await UserService.findByQuery(query);
 
         if (response.payload) {
@@ -173,7 +171,6 @@ function Plan({ navigator, post }: Props) {
     /**
      * getPlan
      * 
-     * Programterv adatainak lekérdezése és tárolás a stateben.
      * @returns 
      */
     const getPlan = async () => {
@@ -185,7 +182,7 @@ function Plan({ navigator, post }: Props) {
         //Betöltési állapot módosítása
         setAppState(actionTypes.app.SET_BUSY, true);
 
-        //HTTP lekérdezés
+        //HTTP kérés
         const response = await PlanService.findById(post._id);
 
         if (response) {
@@ -213,7 +210,7 @@ function Plan({ navigator, post }: Props) {
             userId: userState.userdata._id,
         };
 
-        //HTTP lekérdezés
+        //HTTP kérés
         const response = await PlanService.like(post._id, payload);
         dialogState.text = response.message;
 
@@ -226,7 +223,7 @@ function Plan({ navigator, post }: Props) {
         //A bejegyzés adatainak frissítése 
         setContent(response.payload);
 
-        //Ha még a korábbiakban nem likeolta a bejegyzést, értesítés küldése
+        //Ha még a korábbiakban nem 'lájkolta' a bejegyzést, értesítés küldése
         if (!isFavorited) {
             sendNotification();
         }
@@ -243,7 +240,7 @@ function Plan({ navigator, post }: Props) {
         //Query
         const query = { approved: true };
 
-        //HTTP lekérdezés
+        //HTTP kérés
         const response = await PlanService.findByQuery(query);
 
         if (response.payload) {
@@ -254,8 +251,7 @@ function Plan({ navigator, post }: Props) {
 
     /**
      * sendNotification
-     * 
-     * Értesítés küldése a bejegyzés készítőjének
+     * s
      */
     const sendNotification = () => {
         const payload = {

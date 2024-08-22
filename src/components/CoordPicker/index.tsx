@@ -30,7 +30,7 @@ let map: any;
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -60,34 +60,33 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
 
     //Effects
     useEffect(() => {
-        //Komponens létrejöttekor jogosultságok ellenörzése
         checkPermissions();
         //eslint-disable-next-line
     }, []);
 
 
     useEffect(() => {
-        //Hiányzó jogosultság esetén helyadatok hozzáférésének kérelmezése
+        //Ha nincs jogosultsága az appnak a helyadatokhoz
         if (!permission) {
             Geolocation.requestPermissions();
             setTextNode("placeholder_map_permission");
             return;
         }
 
-        //Helyadatok lekérdezése
+        //Helyadatok kérése
         getCurrentPosition();
         //eslint-disable-next-line
     }, [permission]);
 
 
     useEffect(() => {
-        //Hibaüzenet megjelenítése ha nem megállapíthatók a helyadatok
+        //Hibaüzenet megjelenítése ha nincs helyadat
         if (position === undefined) {
             setTextNode("placeholder_map_position");
             return;
         }
 
-        //Térkép betöltése
+        //Bing térkép betöltése
         createBingMap();
         //eslint-disable-next-line
     }, [position]);
@@ -96,7 +95,6 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * placeholder
      * 
-     * Helyadatok lekérdezésének ideje alatt ideiglenesen megjelenő komponens
      */
     const placeholder = (position === undefined && <Placeholder text={textNode} />)
 
@@ -104,7 +102,6 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * mapOptions
      * 
-     * Bing Maps tulajdonságai
      */
     const mapOptions: Microsoft.Maps.IMapLoadOptions = {
         credentials: process.env.REACT_APP_API_KEY_BINGMAPS,
@@ -127,7 +124,6 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * pushpinOptions
      * 
-     * Pushpin tulajdonságai
      */
     const pushpinOptions: Microsoft.Maps.IPushpinOptions = {
         title: 'Kijelölt helyszín',
@@ -139,7 +135,6 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * checkPermissions
      * 
-     * Ellenörzi a helyadatok használatának engedélyezését
      */
     const checkPermissions = async () => {
         const permission = await Geolocation.checkPermissions();
@@ -156,7 +151,6 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * getCurrentPosition
      * 
-     * Lekérdezi a helyadatokat a felhasználó készülékétől
      */
     const getCurrentPosition = async () => {
         const position = await Geolocation.getCurrentPosition();
@@ -167,7 +161,6 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * createBingMap
      * 
-     * Bing Maps betöltése
      */
     const createBingMap = async () => {
         //Térkép nézet pozicíójának meghatározása
@@ -189,12 +182,10 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * mapClickEvent
      * 
-     * Térképen való kattintáskor lefutó funkció
-     * 
      * @param e 
      */
     const mapClickEvent = (e: any) => {
-        //Kattintás helyén lévő koordináták lekérdezése
+        //Kattintás helyén lévő koordináták kérése
         const location = new Microsoft.Maps.Location(
             e.location.latitude,
             e.location.longitude
@@ -229,8 +220,6 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * geoRequestHandler
      * 
-     * Térképen kijelölt ponton lévő település/terület helyadatainak lekérdezése
-     * 
      * @param result 
      * @param location 
      */
@@ -261,13 +250,11 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * geoErrorHandler
      * 
-     * Helyadatok lekérdezése közben fellépő hibát kezelő funkció
-     * 
      * @param e 
      */
     const geoErrorHandler = (e: any) => {
         ons.notification.toast({
-            message: "Hiba lépett fel a kijelölt hely adatainak lekérdezése közben.",
+            message: "Hiba lépett fel a kijelölt hely adatainak betöltése közben.",
             buttonLabel: "OK",
             force: true,
             timeout: 3000
@@ -279,7 +266,6 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * viewZoomIn
      * 
-     * Térképnézet nagyításának növelése
      */
     const viewZoomIn = () => {
         const value = map.getZoom() + 1;
@@ -290,7 +276,6 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * viewZoomOut
      * 
-     * Térképnézet nagyításának csökkentése
      */
     const viewZoomOut = () => {
         const value = map.getZoom() - 1;
@@ -301,7 +286,6 @@ function CoordPicker({ zoom, minZoom, maxZoom, onClick }: Props) {
     /**
      * onLocateMe
      * 
-     * Térképnézet pozíció helyreállítása
     */
     const onLocateMe = () => {
         const center = new Microsoft.Maps.Location(

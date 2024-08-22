@@ -65,8 +65,6 @@ function Content() {
     /**
      * getUsers
      * 
-     * Felhasználók lekérése
-     * 
      */
     const getUsers = async () => {
         let dialogState: DialogState = {
@@ -109,8 +107,6 @@ function Content() {
 
     /**
      * deleteUser
-     * 
-     * Felhasználó törlése request
      * 
      * @param post 
      */

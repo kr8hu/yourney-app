@@ -12,7 +12,7 @@ import styles from './Section.module.css';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {
@@ -20,7 +20,6 @@ interface Props {
     title?: string | React.ReactNode;
     icon?: string | Modifiers_string | undefined;
     children?: React.ReactNode;
-    render?: any;
 }
 
 
@@ -37,14 +36,6 @@ function Section(props: Props) {
     const classNames = `${styles.body} ${props.className}`;
 
 
-    /**
-     * externalContent
-     * 
-     * Olyan tartalom, amit nem a children prop keresztül kap a komponens.
-     */
-    const externalContent = props.render && props.render();
-
-
     return (
         <div className={styles.container}>
             {props.title && (
@@ -53,7 +44,6 @@ function Section(props: Props) {
                     title={props.title.toString()} />
             )}
             <div className={classNames}>
-                {externalContent}
                 {props.children}
             </div>
         </div>

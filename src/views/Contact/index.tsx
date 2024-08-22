@@ -29,7 +29,7 @@ import Container from '../../components/Container';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -63,8 +63,6 @@ function Contact({ navigator }: Props) {
     /**
      * onFailure
      * 
-     * Form hibás kitöltése esetén lefutó funkció.
-     * 
      * @param {String} err 
      * @returns 
      */
@@ -82,8 +80,6 @@ function Contact({ navigator }: Props) {
 
     /**
      * onSuccess
-     * 
-     * Form sikeres kitöltése esetén lefutó funkció.
      * 
      * @param {string} message 
      * @returns 

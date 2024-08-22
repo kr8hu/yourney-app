@@ -6,7 +6,7 @@ import styles from './Expander.module.css';
 
 
 /**
- * Props
+ * Interfaces
  */
 interface Props {
     onClick: () => void;
@@ -15,8 +15,6 @@ interface Props {
 
 /**
  * Expander
- * 
- * A programtervezőt további LocationForm űrlappal kibővítő komponens
  * 
  * @returns 
  */

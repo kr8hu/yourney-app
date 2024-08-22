@@ -18,7 +18,7 @@ import styles from './ListItem.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

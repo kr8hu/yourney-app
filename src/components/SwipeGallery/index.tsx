@@ -23,7 +23,7 @@ import styles from './SwipeGallery.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -48,7 +48,6 @@ function SwipeGallery({ images }: Props) {
     /**
      * onPostChange
      * 
-     * Galéria lapozásakor lefutó funkció
      */
     const onPostChange = () => {
         const refElem = carousel.current ? carousel.current as HTMLElement : null;
@@ -64,7 +63,6 @@ function SwipeGallery({ images }: Props) {
     /**
      * prevCarousel
      * 
-     * Előző képre navigálás
      */
     const prevCarousel = () => {
         if (parseInt(active) === 0) return;
@@ -75,7 +73,6 @@ function SwipeGallery({ images }: Props) {
     /**
      * nextCarousel
      * 
-     * Következő képre navigálás
      */
     const nextCarousel = () => {
         if (parseInt(active) === images.length - 1) return;
@@ -106,7 +103,6 @@ function SwipeGallery({ images }: Props) {
     /**
      * renderControllers
      * 
-     * Görgetést vezérlő gombok renderelése
      * 
      * @returns 
      */

@@ -25,7 +25,7 @@ import styles from './PhotoPicker.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -83,7 +83,6 @@ function PhotoPicker(props: Props) {
     /**
      * galleryImageOptions
      * 
-     * Galériából kiválasztott képekre alkalmazott szabályok
      */
     const galleryImageOptions: GalleryImageOptions = {
         quality: 20,
@@ -94,7 +93,6 @@ function PhotoPicker(props: Props) {
     /**
      * checkPermissions
      * 
-     * Galéria használati engedély állapotának lekérése
      */
     const checkPermissions = async () => {
         const perm = await Camera.checkPermissions();
@@ -108,7 +106,6 @@ function PhotoPicker(props: Props) {
     /**
      * openPhotoPicker
      * 
-     * Galéria megnyitása a képek kiválasztásához
      */
     const openPhotoPicker = async () => {
         const permission = await Camera.checkPermissions();
@@ -125,8 +122,6 @@ function PhotoPicker(props: Props) {
 
     /**
      * convertSelectedPhotos
-     * 
-     * Kiválasztott képek konvertálása base64 formátumban
      * 
      * @param photos 
      */
@@ -168,6 +163,7 @@ function PhotoPicker(props: Props) {
 
     /**
      * renderThumbnails
+     * 
      * @returns 
      */
     const renderThumbnails = () => {

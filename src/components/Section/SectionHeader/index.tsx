@@ -12,7 +12,7 @@ import styles from './SectionHeader.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -30,7 +30,6 @@ function SectionHeader({ icon, title }: Props) {
     /**
      * isTextNode
      * 
-     * A title ha tartalmaz alulvonást akkor egy node-ként értelmezendő.
      */
     const isTextNode = title?.toString().includes("_");
 

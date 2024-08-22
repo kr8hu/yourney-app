@@ -34,7 +34,7 @@ import DialogState from '../../interfaces/DialogState';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -89,7 +89,6 @@ function Home({ navigator }: Props) {
     /**
      * handleExit
      * 
-     * A Navigator stack utolsó oldalán vissza gomb megnyomásakor lefutó funkció
      */
     const handleExit = () => {
         const dialogState: DialogState = {
@@ -108,7 +107,6 @@ function Home({ navigator }: Props) {
     /**
      * onSubmitExit
      * 
-     * Kilépés megerősítésekor lefutó funkció
      */
     const onSubmitExit = () => {
         return App.exitApp();

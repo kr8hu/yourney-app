@@ -10,7 +10,7 @@ import styles from './HighlightItem.module.css';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {
@@ -25,8 +25,6 @@ interface Props {
 /**
  * HighlightItem 
  * 
- * A `Highlights` komponens tartalmának egy eleme.
- * 
  * @returns 
  */
 function HighlightItem(props: Props) {
@@ -40,13 +38,13 @@ function HighlightItem(props: Props) {
     /**
      * imageUrl
      * 
-     * Kép elérési útvonala
      */
     const imageUrl = `${url}/public/images/plans/${props.image}`;
 
 
     /**
      * formattedTitle
+     * 
      */
     const formattedTitle = props.title.length > 20 ? `${props.title.substr(0, 20)}...` : props.title
 

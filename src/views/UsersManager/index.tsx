@@ -24,7 +24,7 @@ import ToolbarButton from '../../interfaces/ToolbarButton';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

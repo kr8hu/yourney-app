@@ -15,7 +15,7 @@ import User from '../../interfaces/User';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {

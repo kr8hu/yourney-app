@@ -59,8 +59,6 @@ function Register() {
     /**
      * onFormFailure
      * 
-     * Űrlap kitöltésésben lévő hibaüzenet megjelenítése.
-     * 
      * @param {String} err 
      * @returns 
      */
@@ -79,9 +77,6 @@ function Register() {
 
     /**
      * onFormSuccess
-     * 
-     * Form sikeres kitöltése esetén lefutó funkció.
-     * Űrlapban szereplő adatok küldés a szervernek és válaszüzenet megjelenítése
      * 
      * @param {Object} data 
      * @returns 
@@ -109,7 +104,6 @@ function Register() {
     /**
      * changeModal
      * 
-     * Átváltás a bejelentkező felületre
      */
     const changeModal = () => {
         const modalState = {

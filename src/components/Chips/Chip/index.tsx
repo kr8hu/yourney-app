@@ -6,7 +6,7 @@ import styles from './Chip.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

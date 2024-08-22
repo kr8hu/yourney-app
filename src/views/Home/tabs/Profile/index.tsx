@@ -21,7 +21,7 @@ import styles from './Profile.module.css';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {

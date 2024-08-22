@@ -37,7 +37,7 @@ import styles from './Editor.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -115,7 +115,6 @@ function Editor({ navigator, post }: Props) {
     /**
      * updateCache
      * 
-     * Cache tartalmának frissítése
      */
     const updateCache = async () => {
         const query = { approved: true }

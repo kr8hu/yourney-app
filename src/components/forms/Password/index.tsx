@@ -16,7 +16,7 @@ import defaultStyles from '../../Form/styles/Default.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

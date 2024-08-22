@@ -12,7 +12,7 @@ import styles from './Metadata.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -23,8 +23,6 @@ interface Props {
 
 /**
  * Metadata
- * 
- * Metaadatot megjelenítő komponens
  * 
  * @param icon 
  * @param text 

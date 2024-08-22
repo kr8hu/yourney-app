@@ -50,7 +50,7 @@ import defaultStyles from '../../components/Form/styles/Default.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

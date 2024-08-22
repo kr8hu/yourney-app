@@ -68,8 +68,6 @@ function Content() {
     /**
      * getPosts
      * 
-     * Bejegyzések lekérése
-     * 
      */
     const getPosts = async () => {
         //DialogState
@@ -128,8 +126,6 @@ function Content() {
     /**
      * deletePost
      * 
-     * Bejegyzés törlése request
-     * 
      * @param post 
      */
     const deletePost = async (post: Post) => {
@@ -151,7 +147,7 @@ function Content() {
         const filteredLocalContent = appState.content.filter((localPost: Post) => localPost._id !==  (response.payload as Post)._id);
         setAppState(actionTypes.app.SET_CONTENT, filteredLocalContent);
 
-        //Bejegyzések ismételt lekérése a state frissítéshez
+        //Bejegyzések kérése a state frissítéshez
         getPosts();
     }
     
@@ -159,7 +155,6 @@ function Content() {
     /**
      * approvePostHandler
      * 
-     * Bejegyzés jóvájagyásának megerősítése
      */
     const approvePostHandler = (post: Post) => {
         const dialogState: DialogState = {
@@ -177,8 +172,6 @@ function Content() {
 
     /**
      * approvePost
-     * 
-     * Bejegyzés jóváhagyása request
      * 
      * @param post 
      */

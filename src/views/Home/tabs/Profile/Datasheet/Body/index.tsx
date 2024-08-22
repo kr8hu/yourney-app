@@ -33,7 +33,6 @@ function Body() {
     /**
      * userPosts
      * 
-     * Felhasználó által közzétett bejegyzések
      */
     const userPosts: Array<Post> = appState.content.filter((p: Post) => p.author === userState.userdata.username);
 
@@ -41,7 +40,6 @@ function Body() {
     /**
      * countLikes
      * 
-     * A felhasználó összes bejegyzésére érkezett kedvelések számának számlálása
      * @returns 
      */
     const countLikes = () => {
@@ -57,8 +55,6 @@ function Body() {
 
     /**
      * renderProfileData
-     * 
-     * Profil adatainak renderelése
      * 
      * @returns 
      */

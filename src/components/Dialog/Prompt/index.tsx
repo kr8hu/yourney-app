@@ -16,7 +16,7 @@ import styles from './Prompt.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -28,8 +28,6 @@ interface Props {
 
 /**
  * Prompt
- * 
- * Adatbekérő beviteli mezőt megjelenítő dialógus.
  * 
  * @param props 
  * @returns 

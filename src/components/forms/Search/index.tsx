@@ -12,10 +12,15 @@ import styles from './Search.module.css';
 import defaultStyles from '../../Form/styles/Default.module.css';
 
 
+/**
+ * Interfaces 
+ * 
+ */
 interface Props {
     onResolve: any;
     onReject: any;
 }
+
 
 /**
  * Search

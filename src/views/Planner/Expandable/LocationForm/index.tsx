@@ -27,7 +27,7 @@ import styles from './LocationForm.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -40,8 +40,6 @@ interface Props {
 /**
  * LocationForm
  * 
- * Helyszín adatait bekérő űrlap
- * 
  * @param props 
  * @returns 
  */
@@ -53,7 +51,6 @@ function LocationForm({ id, onChange, onDelete }: Props) {
     /**
      * formTitle
      * 
-     * Címsorban szereplő szöveg
      */
     const formTitle = `${id + 1}. helyszín`;
 
@@ -61,7 +58,6 @@ function LocationForm({ id, onChange, onDelete }: Props) {
     /**
      * inputFields
      * 
-     * Beviteli mezők
      */
     const inputFields = [
         {
@@ -84,7 +80,6 @@ function LocationForm({ id, onChange, onDelete }: Props) {
     /**
      * removeFormHandler
      * 
-     * Űrlap törlését kezelő funkció
      */
     const removeFormHandler = () => {
         const dialogState: DialogState = {
@@ -103,8 +98,6 @@ function LocationForm({ id, onChange, onDelete }: Props) {
     /**
      * onHTMLInputChange
      * 
-     * HTML Input elemek értékének/tartalmának módosításakor lefutó funkció
-     * 
      * @param name 
      * @param e 
      */
@@ -115,8 +108,6 @@ function LocationForm({ id, onChange, onDelete }: Props) {
 
     /**
      * onCoordPickerChange
-     * 
-     * Térképen pont kijelölésekor lefutó funkció
      * 
      * @param data 
      */
@@ -129,8 +120,6 @@ function LocationForm({ id, onChange, onDelete }: Props) {
     /**
      * renderTitle
      * 
-     * Címsor
-     * 
      * @returns 
      */
     const renderFormTitle = () => <Text className={styles.title}>{formTitle}</Text>
@@ -138,8 +127,6 @@ function LocationForm({ id, onChange, onDelete }: Props) {
 
     /**
      * renderDeleteButton
-     * 
-     * Törlés gomb
      * 
      * @returns 
      */
@@ -161,7 +148,6 @@ function LocationForm({ id, onChange, onDelete }: Props) {
     /**
      * renderInputFields
      * 
-     * Általános beviteli mezők renderelése
      * @returns 
      */
     const renderInputFields = () => {

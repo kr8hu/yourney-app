@@ -21,7 +21,7 @@ import styles from './Setting.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

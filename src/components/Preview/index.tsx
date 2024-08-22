@@ -16,7 +16,7 @@ import styles from './Preview.module.css';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {
@@ -32,8 +32,6 @@ interface Props {
 /**
  * Preview 
  * 
- * Egy programterv előnézeti tartalmát megjelenítő komponens.
- * 
  * @returns 
  */
 function Preview(props: Props) {
@@ -47,7 +45,6 @@ function Preview(props: Props) {
     /**
      * imageUrl
      * 
-     * Kép elérési útvonala
      */
     const imageUrl = `${url}/public/images/plans/${props.image}`;
 
@@ -55,14 +52,12 @@ function Preview(props: Props) {
     /**
      * formattedText
      * 
-     * Formázott szöveges tartalom
      */
     const formattedText = props.text?.length > 200 ? `${props.text?.substr(0, 200)}...` : props.text;
 
     /**
      * cardImage
      * 
-     * CardImage komponens feltételes renderelése
      */
     const cardImage = props.image && <CardImage src={imageUrl} />;
 
@@ -70,7 +65,6 @@ function Preview(props: Props) {
     /**
      * cardTitle
      * 
-     * cardTitle komponens feltételes renderelése
      */
     const cardTitle = props.title && <CardTitle text={props.title} />;
 
@@ -78,7 +72,6 @@ function Preview(props: Props) {
     /**
      * Metadata
      * 
-     * Programterv adatai
      */
     const metadata: Array<IMetadata> = [
         {
@@ -109,8 +102,6 @@ function Preview(props: Props) {
 
     /**
      * renderMetadata
-     * 
-     * Metaadatok renderelése
      * 
      * @returns 
      */

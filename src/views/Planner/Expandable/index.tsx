@@ -18,7 +18,7 @@ import Location from '../../../interfaces/Location';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -29,8 +29,6 @@ interface Props {
 
 /**
  * Expandable
- * 
- * Helyszínadatokat bekérő űrlapokat kezelő, ellenörző komponens.
  * 
  * @returns 
  */
@@ -91,7 +89,6 @@ function Expandable({ onChange, onError }: Props) {
     /**
      * addLocationForm
      * 
-     * Helyszín adatait bekérő űrlap hozzáadása
      */
     const addLocationForm = () => {
         setLocations((prev: Array<any>) => [
@@ -111,8 +108,6 @@ function Expandable({ onChange, onError }: Props) {
     /**
      * removeLocationForm
      * 
-     * Eltávolít egy már hozzáadott helyszínadatokat bekérő űrlapot.
-     * 
      * @param id 
      */
     const removeLocationForm = (id: number) => {
@@ -123,8 +118,6 @@ function Expandable({ onChange, onError }: Props) {
 
     /**
      * handleInputChange
-     * 
-     * Külső komponensekből érkező input mező adatokat frissíti a stateben.
      * 
      * @param index 
      * @param field 
@@ -139,8 +132,6 @@ function Expandable({ onChange, onError }: Props) {
 
     /**
      * renderLocationForms
-     * 
-     * Helyszín adatokat bekérő űrlapok renderelése
      * 
      * @returns 
      */

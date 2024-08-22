@@ -10,7 +10,7 @@ import styles from './SettingComponent.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

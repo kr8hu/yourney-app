@@ -9,7 +9,7 @@ import styles from './Placeholder.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

@@ -18,7 +18,7 @@ import styles from './Chips.module.css';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {
@@ -30,15 +30,11 @@ interface Props {
 /**
  * Chips 
  * 
- * Kis méretű, kompakt elemeket megjelenítő komponens
- * 
  * @returns
  */
 function Chips({ data, onChange }: Props) {
     /**
      * orderedData
-     * 
-     * Címke alapján sorbarendezett adatok
      */
     const orderedData: Array<IChip> = data.sort(sortByProperty("label", false));
 
@@ -59,8 +55,6 @@ function Chips({ data, onChange }: Props) {
 
     /**
      * renderChips
-     * 
-     * Elemek létrehozása
      * 
      * @returns 
      */

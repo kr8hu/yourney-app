@@ -13,7 +13,7 @@ import styles from './Tabs.module.css';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {

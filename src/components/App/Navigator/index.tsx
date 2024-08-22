@@ -27,8 +27,6 @@ import {
 /**
  * Navigator 
  * 
- * Ez a komponens kezeli az oldalak közti navigációt
- * 
  * @returns
  */
 function Navigator() {
@@ -39,7 +37,6 @@ function Navigator() {
     /**
      * initialRoute
      * 
-     * Első megjelenített oldal meghatározása
      */
     const initialRoute = { component: Initialize };
 
@@ -57,7 +54,11 @@ function Navigator() {
         props.navigator = navigator;
 
         if (appState.navigator === undefined) {
-            //Navigator mentése az appState-be, ez lehetővé teszi a nem Onsen Navigatorban lévő komponensekből a navigációt.
+            /**
+             * Navigator mentése az appState-be, ez lehetővé teszi a navigációt
+             * az olyan komponensekből is, amiket nem az Onsen UI navigator kezel 
+             * (pl.: olyan komponensek, ahol nincs használatban a <Page> elem)
+             */
             setAppState(actionTypes.app.SET_NAVIGATOR, navigator);
         }
 
@@ -68,10 +69,9 @@ function Navigator() {
     /**
      * LoadingComponent
      * 
-     * Betöltést jelző komponens feltételes megjelenítése
      */
     const LoadingComponent = () => appState.busy ? <Loading /> : null;
-    
+
 
     return (
         <React.Fragment>

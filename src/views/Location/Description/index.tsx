@@ -8,7 +8,7 @@ import styles from "./Description.module.css";
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

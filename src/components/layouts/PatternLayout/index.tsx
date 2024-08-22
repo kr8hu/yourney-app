@@ -12,7 +12,7 @@ import styles from './PatternLayout.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

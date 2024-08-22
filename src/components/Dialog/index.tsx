@@ -27,8 +27,6 @@ import styles from './Dialog.module.css';
 /**
  * Dialog
  * 
- * Interaktív párbeszédet, értesítést vagy felhasználói visszajelzést lehetővé tévő komponens.
- * 
  * @returns 
  */
 function Dialog() {
@@ -44,7 +42,6 @@ function Dialog() {
     /**
      * onSubmit
      * 
-     * Elfogadó, megerősítő válasz vagy küldés esetén lefutó funkció
      * @param value 
      */
     const onSubmit = (value: any) => {
@@ -59,7 +56,6 @@ function Dialog() {
     /**
      * onClose
      * 
-     * Elutasító válasz vagy bezárás esetén lefutó funkció
      */
     const onClose = () => {
         if (dialogState.onClose) {
@@ -73,19 +69,17 @@ function Dialog() {
     /**
      * closeDialog
      * 
-     * Dialog inaktiválása
      */
     const closeDialog = () => {
         if (dialogState.closeable) {
             setDialogState(actionTypes.dialog.SET_STATUS, false);
         }
     }
-    
+
 
     /**
      * renderDialog
      * 
-     * Dialógus megjelenítése típus alapján
      */
     const renderDialog = () => {
         switch (dialogState.type) {

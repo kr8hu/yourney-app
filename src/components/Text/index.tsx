@@ -9,7 +9,7 @@ import styles from './Text.module.css';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {

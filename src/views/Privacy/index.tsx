@@ -37,7 +37,7 @@ import styles from './Privacy.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

@@ -7,7 +7,7 @@ import styles from "./Title.module.css";
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

@@ -6,7 +6,7 @@ import styles from './Scroller.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

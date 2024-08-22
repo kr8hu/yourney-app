@@ -8,8 +8,6 @@ import styles from './Loading.module.css';
 /**
  * Loading
  * 
- * Töltési képet megjelenítő komponens
- * 
  * @returns 
  */
 function Loading() {

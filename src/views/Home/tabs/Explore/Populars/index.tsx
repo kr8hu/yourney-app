@@ -30,7 +30,7 @@ import styles from './Populars.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -40,8 +40,6 @@ interface Props {
 
 /**
  * Populars
- * 
- * Legnépszerűbb bejegyzéseket megjelenítő komponens
  * 
  * @returns 
  */
@@ -77,7 +75,7 @@ function Populars({ numberOfPosts }: Props) {
      * @returns 
      */
     const renderPopulars = () => {
-        //Meghatározott mennyiségű megjeleníthető tartalom
+        //Array megvágása a megadott mennyiségnél
         const slicedPosts = popularPosts.slice(0, numberOfPosts);
 
         //Bejegyzések renderelése

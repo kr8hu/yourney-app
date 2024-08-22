@@ -3,7 +3,7 @@ import Text from "../../Text";
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

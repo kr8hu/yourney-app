@@ -21,7 +21,7 @@ import styles from './Locations.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

@@ -30,7 +30,7 @@ import styles from './Latests.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -40,8 +40,6 @@ interface Props {
 
 /**
  * Latests
- * 
- * Legutóbb feltöltött bejegyzéseket megjelenítő komponens
  * 
  * @returns 
  */
@@ -53,7 +51,6 @@ function Latests({ numberOfPosts }: Props) {
     /**
      * latestPosts
      * 
-     * Tartalom rendezése feltöltési dátum szerint
      */
     const latestPosts = Array.from(appState.content.sort(sortByProperty('createdAt', true)));
 
@@ -78,7 +75,7 @@ function Latests({ numberOfPosts }: Props) {
      * @returns 
      */
     const renderLatests = () => {
-        //Meghatározott mennyiségű megjeleníthető tartalom
+        //Array megvágása a megadott mennyiségnél
         const slicedPosts = latestPosts.slice(0, numberOfPosts);
 
         //Bejegyzések renderelése

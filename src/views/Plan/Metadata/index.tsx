@@ -17,7 +17,7 @@ import styles from "./Metadata.module.css";
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

@@ -15,7 +15,7 @@ import { DeviceInfo } from '@capacitor/device';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {

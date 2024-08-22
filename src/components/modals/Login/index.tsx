@@ -68,7 +68,6 @@ function Login() {
     /**
      * changeModal
      * 
-     * Átváltás a regisztrációs felületre
      */
     const changeModal = () => {
         const modalState = {
@@ -83,8 +82,6 @@ function Login() {
 
     /**
      * onFormFailure
-     * 
-     * Űrlap kitöltésésben lévő hibaüzenet megjelenítése.
      * 
      * @param {String} err 
      * @returns 
@@ -105,9 +102,6 @@ function Login() {
     /**
      * onFormSuccess
      * 
-     * Form sikeres kitöltése esetén lefutó funkció.
-     * Űrlapban szereplő adatok küldés a szervernek és válaszüzenet megjelenítése
-     * 
      * @param {Object} res 
      * @returns 
      */
@@ -120,7 +114,7 @@ function Login() {
             onClose: () => null
         }
 
-        //HTTP művelet végrehajtása és eredményének tárolása
+        //HTTP kérés végrehajtása és eredményének tárolása
         const response = await AuthService.login(payload);
 
         //Kapott válaszüzenet átadása a dialog tartalmaként
@@ -151,8 +145,6 @@ function Login() {
     /**
      * createActivationDialog
      * 
-     * Dialógus megjelenítése az aktiváló kód megadásához.
-     * 
      * @param user 
      */
     const createActivationDialog = (id: any) => {
@@ -177,8 +169,6 @@ function Login() {
     /**
      * sendActivationCode
      * 
-     * Felhasználói fiók aktiválásának küldése
-     * 
      * @param id 
      * @param code 
      */
@@ -193,7 +183,7 @@ function Login() {
             onClose: () => null
         }
 
-        //HTTP művelet végrehajtása és eredményének tárolása
+        //HTTP kérés végrehajtása és eredményének tárolása
         const response = await AuthService.activate(payload);
 
         //Kapott válaszüzenet átadása a dialog tartalmaként.
@@ -212,15 +202,13 @@ function Login() {
     /**
      * updateUser
      * 
-     * Felhasználói fiók aktiválási státuszának frissítése
-     * 
      * @param response 
      */
     const updateUser = async (id: any) => {
         //Query
         const query = { activated: true };
 
-        //HTTP művelet végrehajtása és az eredmény tárolása
+        //HTTP kérés végrehajtása és az eredmény tárolása
         const response = await UserService.update(id, query);
 
         //Ha a válasz tartalmaz adatot
@@ -240,8 +228,6 @@ function Login() {
     /**
      * getUserNotifications
      * 
-     * Felhasználó értesítéseinek lekérése és betöltése a statebe
-     * 
      * @returns 
      */
     const getUserNotifications = async (username: string) => {
@@ -250,7 +236,7 @@ function Login() {
             addressee: username
         };
 
-        //HTTP lekérdezés
+        //HTTP kérés
         const response = await NotificationService.findByQuery(query);
 
         if (response.payload) {
@@ -264,8 +250,6 @@ function Login() {
 
     /**
      * handleUserLogin
-     * 
-     * Felhasználói adatok betöltésének kezelése.
      * 
      * @param user 
      */

@@ -9,7 +9,7 @@ import styles from "./ProfilePicture.module.css";
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

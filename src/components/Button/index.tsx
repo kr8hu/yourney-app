@@ -3,7 +3,7 @@ import styles from './Button.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -15,8 +15,6 @@ interface Props {
 
 /**
  * Button
- * 
- * Gombként funkciónáló komponens
  * 
  * @returns 
  */

@@ -6,7 +6,7 @@ import PostCategory from "../interfaces/PostCategory";
  * App version
  * 
  */
-export const appversion = "1.0.4";
+export const appVersion = "1.0.4";
 
 
 /**
@@ -23,11 +23,12 @@ export const server = {
  * Url
  * 
  */
-export const url = `${process.env.REACT_APP_SERVER_PROTOCOL}://${server.prod}/`;
+export const url = `${process.env.REACT_APP_SERVER_PROTOCOL}://${server.dev}/`;
 
 
 /**
  * Action Types
+ * 
  */
 export const actionTypes = {
     app: {
@@ -58,6 +59,7 @@ export const actionTypes = {
 
 /**
  * Animation Types
+ * 
  */
 export const animationTypes = {
     LIFT: "lift",
@@ -68,6 +70,7 @@ export const animationTypes = {
 
 /**
  * Dialog Types
+ * 
  */
 export const dialogTypes = {
     ALERT: 'DIALOG_ALERT',
@@ -78,6 +81,7 @@ export const dialogTypes = {
 
 /**
  * Post Categories
+ * 
  */
 export const postCategories: { [key: string]: PostCategory } = {
     SIGHTSEEING: {
@@ -102,6 +106,10 @@ export const postCategories: { [key: string]: PostCategory } = {
     }
 }
 
+/**
+ * loadingStates
+ * 
+ */
 export const loadingStates = {
     init: 0,
     strings: 1,
@@ -111,6 +119,10 @@ export const loadingStates = {
     finished: 100
 }
 
+/**
+ * requestMethods
+ * 
+ */
 export const requestMethods = {
     GET: "GET",
     POST: "POST",
@@ -118,6 +130,10 @@ export const requestMethods = {
     DELETE: "DELETE"
 }
 
+/**
+ * cacheType
+ * 
+ */
 export const cacheType = {
     MEDIA: "Media",
     CONTENT: "Content",

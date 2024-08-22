@@ -33,8 +33,6 @@ import styles from './Categories.module.css';
 /**
  * Categories
  * 
- * Kategória alapján tartalmat megjelenítő komponens
- * 
  * @returns 
  */
 function Categories() {
@@ -56,7 +54,6 @@ function Categories() {
     /**
      * categoryFilters
      * 
-     * Kategória szűrők
      */
     const categoryFilters: Array<Chip> = [
         {
@@ -80,8 +77,6 @@ function Categories() {
 
     /**
      * filterByCategory
-     * 
-     * Kategória alapján szűrést végző funkció
      * 
      */
     const filterByCategory = (filter: any) => {

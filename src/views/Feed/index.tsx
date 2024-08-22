@@ -22,7 +22,7 @@ import styles from './Feed.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

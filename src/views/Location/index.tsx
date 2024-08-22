@@ -25,7 +25,7 @@ import Address from './Address';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

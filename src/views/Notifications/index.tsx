@@ -22,7 +22,7 @@ import ToolbarButton from '../../interfaces/ToolbarButton';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -43,7 +43,6 @@ function Notifications({ navigator }: Props) {
     /**
      * toolbarButtons
      * 
-     * Toolbar gombok
      */
     const toolbarButtons: Array<ToolbarButton> = [
         {

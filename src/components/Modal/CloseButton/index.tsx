@@ -8,7 +8,7 @@ import styles from './CloseButton.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -18,8 +18,6 @@ interface Props {
 
 /**
  * CloseButton
- * 
- * Modalt bezáró gomb
  * 
  * @param param0 
  * @returns 

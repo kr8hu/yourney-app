@@ -13,7 +13,7 @@ import styles from './Confirm.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -24,8 +24,6 @@ interface Props {
 
 /**
  * Confirm
- * 
- * Megerősítés, jóváhagyási lehetőségeket megjelenítő dialógus.
  * 
  * @param props 
  * @returns 

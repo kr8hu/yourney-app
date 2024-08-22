@@ -6,7 +6,7 @@ import styles from "./Controller.module.css";
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -18,8 +18,6 @@ interface Props {
 
 /**
  * Controller
- * 
- * Térképnézet kezelésére szolgáló komponens.
  * 
  * @returns 
  */

@@ -62,8 +62,6 @@ function Header() {
     /**
      * renderProfileData
      * 
-     * Profil adatainak renderelése
-     * 
      * @returns 
      */
     const renderProfileData = () => {

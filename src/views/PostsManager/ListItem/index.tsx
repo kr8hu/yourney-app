@@ -21,7 +21,7 @@ import styles from './ListItem.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -47,7 +47,6 @@ function ListItem({ post, onVisit, onEdit, onApprove, onDelete }: Props) {
     /**
      * imageUrl
      * 
-     * Kép elérési útvonala
      */
     const imageUrl = `${url}/public/images/plans/${post.photos[0]}`;
 

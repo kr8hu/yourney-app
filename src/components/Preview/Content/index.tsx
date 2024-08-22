@@ -6,7 +6,7 @@ import styles from './Content.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

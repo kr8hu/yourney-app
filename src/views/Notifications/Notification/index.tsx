@@ -18,7 +18,7 @@ import styles from "./Notification.module.css";
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

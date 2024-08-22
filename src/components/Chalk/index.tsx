@@ -10,7 +10,7 @@ import styles from './Chalk.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -29,41 +29,33 @@ interface Props {
  * 
  * @returns 
  */
-function Chalk({
-    className,
-    title,
-    text,
-    image,
-    onClick
-}: Props) {
+function Chalk(props: Props) {
     /**
      * classNames
      * 
      */
-    const classNames = `${styles.container} ${className}`;
+    const classNames = `${styles.container} ${props.className}`;
 
 
     /**
      * imageUrl
      * 
-     * Kép elérési útvonala
      */
-    const imageUrl = `${url}/public/images/plans/${image}`;
+    const imageUrl = `${url}/public/images/plans/${props.image}`;
 
 
     /**
      * formattedText
      * 
-     * Hosszú szöveg megvágása a megadott karakterszámnál
      */
-    const formattedText = text?.length > 70 ? `${text?.substr(0, 70)}...` : text;
+    const formattedText = props.text?.length > 70 ? `${props.text?.substr(0, 70)}...` : props.text;
 
 
     /**
      * onClickHandler
      * 
      */
-    const onClickHandler = () => onClick && onClick();
+    const onClickHandler = () => props.onClick && props.onClick();
 
 
     return (
@@ -82,7 +74,7 @@ function Chalk({
                 <div className={styles.col}>
                     {/* Cím */}
                     <Text className={styles.title}>
-                        {title}
+                        {props.title}
                     </Text>
 
                     {/* Tartalom */}

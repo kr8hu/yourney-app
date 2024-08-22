@@ -3,7 +3,7 @@ import styles from './Pagination.module.css';
 
 
 /**
- * Props
+ * Interfaces
  */
 interface Props {
     selected: number;

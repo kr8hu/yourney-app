@@ -28,7 +28,7 @@ import ProfileEditor from '../ProfileEditor';
 //Shared
 import {
     actionTypes,
-    appversion,
+    appVersion,
     cacheType,
     dialogTypes
 } from '../../shared/const';
@@ -46,7 +46,7 @@ import CacheService from '../../services/CacheService';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -87,7 +87,7 @@ function Settings({ navigator }: Props) {
             {
                 textNode: "settings_app_version",
                 type: "expandable",
-                value: appversion
+                value: appVersion
             },
             {
                 textNode: "settings_app_about",

@@ -11,7 +11,7 @@ import styles from "./Address.module.css";
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

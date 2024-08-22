@@ -16,10 +16,7 @@ import './onsenui.css';
 import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
 
-
-//Capacitor pluginek működésre bírása webes környezetben
 defineCustomElements(window);
-
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

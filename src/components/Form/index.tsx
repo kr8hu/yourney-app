@@ -3,7 +3,7 @@ import Input from "./Input";
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -21,8 +21,6 @@ interface Props {
 function Form({ className, fields, onFocus }: Props) {
     /**
      * renderInputFields
-     * 
-     * Beviteli mezők létrehozása
      * 
      * @returns 
      */

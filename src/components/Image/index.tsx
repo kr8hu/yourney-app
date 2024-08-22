@@ -22,7 +22,7 @@ import styles from './Image.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -33,8 +33,6 @@ interface Props {
 
 /**
  * Image
- * 
- * Képet megjelenítő, kezelő komponens
  * 
  * @returns 
  */

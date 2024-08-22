@@ -5,8 +5,6 @@ import { postCategories } from "./const";
 /**
  * getUserStorage
  * 
- * Visszatér a localStorageban tárolt felhasználói adatokkal.
- * 
  * @return {Object}
  */
 export function getUserStorage() {
@@ -18,7 +16,6 @@ export function getUserStorage() {
 /**
  * setUserStorage
  * 
- * Módosítja a localStorageban tárolt felhasználói adatokat.
  */
 export function setUserStorage(data: any) {
     let userdata = JSON.stringify(data);
@@ -29,8 +26,7 @@ export function setUserStorage(data: any) {
 /**
  * clearUserStorage
  * 
- * Eltávolítja a felhasználói adatokat a localStorageból.
- */
+*/
 export function clearUserStorage() {
     localStorage.removeItem('Yourney_userdata');
 }
@@ -38,9 +34,6 @@ export function clearUserStorage() {
 /**
  * sortByProperty
  * 
- * Egy objektum elemeit a megadott property alapján növekvő/csökkenő sorrendbe rendezi
- * 
- * @param {Object} property
  */
 export function sortByProperty(property: string, desc: boolean) {
     let sortOrder = desc ? -1 : 1;
@@ -61,7 +54,6 @@ export function sortByProperty(property: string, desc: boolean) {
 /**
  * blobToBase64
  * 
- * Blob konvertálása base64 formátumra
  */
 export function blobToBase64(url: string) {
     return fetch(url)
@@ -78,13 +70,8 @@ export function blobToBase64(url: string) {
 /**
  * base64ToBlob
  * 
- * Convert a base64 string in a Blob according to the data and contentType.
- * 
- * @param b64Data {String} Pure base64 string without contentType
- * @param contentType {String} the content type of the file i.e (application/pdf - text/plain)
- * @param sliceSize {Int} SliceSize to process the byteCharacters
  * @see http://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript
- * @return Blob
+ * @return 
  */
 export function base64ToBlob(b64Data: string, contentType: string, sliceSize: number) {
     contentType = contentType || '';
@@ -102,12 +89,10 @@ export function base64ToBlob(b64Data: string, contentType: string, sliceSize: nu
         }
 
         let byteArray = new Uint8Array(byteNumbers);
-
         byteArrays.push(byteArray);
     }
 
     const blob = new Blob(byteArrays, { type: contentType });
-
     return blob;
 }
 
@@ -160,8 +145,6 @@ export function getCategoryNameByID(category: string) {
 
 /**
  * shuffleArray
- * 
- * Véletlenszerűen öszekeveri egy tömb elemeit
  * 
  * @param array 
  * @returns 

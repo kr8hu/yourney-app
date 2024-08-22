@@ -19,7 +19,7 @@ import styles from './Select.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -30,8 +30,6 @@ interface Props {
 
 /**
  * Select
- * 
- * Legördülő listában választási lehetőségeket megjelenítő dialógus.
  * 
  * @param props 
  * @returns 
@@ -49,7 +47,6 @@ function Select({ onSubmit, onClose }: Props) {
     /**
      * onSelect
      * 
-     * Egy opci kiválasztása esetén
      */
     const onSelect = (event: any) => {
         setValue(event.target.value);
@@ -59,7 +56,6 @@ function Select({ onSubmit, onClose }: Props) {
     /**
      * renderOptions
      * 
-     * Választási lehetőségek renderelése
      * @returns 
      */
     const renderOptions = () => {

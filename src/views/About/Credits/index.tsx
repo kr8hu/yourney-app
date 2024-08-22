@@ -18,15 +18,12 @@ import styles from './Credits.module.css';
 /**
  * Credits
  * 
- * Szerzői jogokat és forrásmegjelöléseket tartalmazó komponens
- * 
  * @returns 
  */
 function Credits() {
     /**
      * logos
      * 
-     * Felhasznált technológiák képeit tartalmazó array
      */
     const logos = [
         logo_react,
@@ -41,7 +38,6 @@ function Credits() {
     /**
      * credits
      * 
-     * Forrásmegjelöléseket tartalmazó array
      */
     const credits = [
         {
@@ -62,8 +58,6 @@ function Credits() {
     /**
      * renderLogos
      * 
-     * Logók megjelenítése
-     * 
      * @returns 
      */
     const renderLogos = () => {
@@ -82,8 +76,6 @@ function Credits() {
 
     /**
      * renderCredits
-     * 
-     * Forrásmegjelölések megjelenítése
      * 
      * @returns 
      */

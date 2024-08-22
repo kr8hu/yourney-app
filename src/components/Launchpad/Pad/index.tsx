@@ -6,7 +6,7 @@ import styles from './Pad.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

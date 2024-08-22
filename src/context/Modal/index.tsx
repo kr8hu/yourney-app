@@ -12,7 +12,7 @@ import {
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {

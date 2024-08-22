@@ -6,7 +6,7 @@ import styles from './Container.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {

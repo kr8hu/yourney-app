@@ -28,7 +28,7 @@ import styles from './Password.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -79,9 +79,6 @@ function Password({ navigator }: Props) {
 
     /**
      * onFormSuccess
-     * 
-     * Form sikeres kitöltése esetén lefutó funkció.
-     * Űrlapban szereplő adatok küldés a szervernek és válaszüzenet megjelenítése
      * 
      * @param {string} values 
      * @returns 

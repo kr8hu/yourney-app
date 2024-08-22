@@ -3,7 +3,7 @@ import styles from './BackgroundLayout.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -14,6 +14,7 @@ interface Props {
 
 /**
  * BackgroundLayout
+ * 
  * @returns 
  */
 function BackgroundLayout({ backgroundImage, children }: Props) {

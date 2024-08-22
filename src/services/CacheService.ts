@@ -12,7 +12,6 @@ import Post from "../interfaces/Post";
 /**
  * CacheService
  * 
- * IndexedDB alapú gyorsítótár service a szöveges és képi tartalmak megjelenítéséhez offline használati módban
  */
 class CacheService {
     private db: IDBDatabase | null = null;
@@ -28,8 +27,6 @@ class CacheService {
 
     /**
      * Open
-     * 
-     * Megnyitja a gyorsítótárat
      * 
      * @returns 
      */
@@ -61,8 +58,6 @@ class CacheService {
     /**
      * Create
      * 
-     * Felvesz egy rekordot a gyorsítótárba
-     * 
      * @param record 
      * @returns 
      */
@@ -90,8 +85,6 @@ class CacheService {
     /**
      * Read
      * 
-     * Kiválaszt egy rekordot a gyorsítótárból
-     * 
      * @param id 
      * @returns 
      */
@@ -118,8 +111,6 @@ class CacheService {
     /**
      * Find (all)
      * 
-     * Kiválasztja az összes rekordot a gyorsítótárból
-     * 
      * @returns 
      */
     async findAll(store: string): Promise<any> {
@@ -144,8 +135,6 @@ class CacheService {
 
     /**
      * Update
-     * 
-     * Frissíti egy gyorsítótárban szereplő rekord adatait
      * 
      * @param record 
      * @returns 
@@ -173,8 +162,6 @@ class CacheService {
     /**
      * Delete
      * 
-     * Eltávolít egy elemet a gyorsítótárból
-     * 
      * @param id 
      * @returns 
      */
@@ -201,8 +188,6 @@ class CacheService {
     /**
      * Clear
      * 
-     * Kiüríti a gyorsítótárat
-     * 
      * @returns 
      */
     async clear(store: string) {
@@ -228,7 +213,6 @@ class CacheService {
     /**
      * Convert
      * 
-     * A cachelt tartalomban lévő képek elérési urljéből base64 formátumú képeket generál
      */
     async convert() {
         //Cachelt tartalom lekérése
@@ -250,8 +234,7 @@ class CacheService {
 
     /**
      * convertImages
-     * 
-     * A bejegyzések vagy helyszínek képeinek elérési útvonalát tartalmazó tömbből base64 képeket hoz létre majd elhelyezi a gyorsítótárban.
+     *     
      * @param source 
      */
     async convertImages(source: Array<Post | Location>) {

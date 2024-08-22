@@ -14,7 +14,7 @@ import styles from './Highlights.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -26,8 +26,6 @@ interface Props {
 /**
  * Hightlights
  * 
- * Vertikálisan görgethető formában tartalmat megjelenítő komponens
- * 
  * @returns 
  */
 function Highlights({ src, onClick }: Props) {
@@ -38,7 +36,6 @@ function Highlights({ src, onClick }: Props) {
     /**
      * scrollValue
      * 
-     * Görgetés mértéke a tartalom mennyisége alapján
      */
     const scrollValue: number = (src.length - 1) * 50;
 
@@ -70,8 +67,6 @@ function Highlights({ src, onClick }: Props) {
     /**
      * renderHightlights
      * 
-     * Tartalom renderelése
-     * 
      * @returns 
      */
     const renderHighlights = () => {
@@ -92,7 +87,6 @@ function Highlights({ src, onClick }: Props) {
     /**
      * renderControllers
      * 
-     * Görgetést vezérlő gombok renderelése
      * @returns 
      */
     const renderControllers = () => {

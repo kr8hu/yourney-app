@@ -9,7 +9,7 @@ import styles from './Launchpad.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -20,8 +20,6 @@ interface Props {
 
 /**
  * Launchpad
- * 
- * Választási lehetőségeket megjelenítő komponens
  * 
  * @returns 
  */

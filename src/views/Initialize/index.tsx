@@ -61,7 +61,7 @@ import styles from './Initialize.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -125,10 +125,9 @@ function Initialize({ navigator }: Props) {
     /**
      * getStrings
      * 
-     * Szöveges tartalmak betöltése xml fájlból
      */
     const getStrings = async () => {
-        //HTTP lekérdezés tulajdonságai
+        //HTTP kérés tulajdonságai
         const config = {
             method: 'GET',
             url: xml,
@@ -137,7 +136,7 @@ function Initialize({ navigator }: Props) {
             },
         }
 
-        //HTTP lekérdezés
+        //HTTP kérés
         const response = await axios.request(config);
 
         if (response) {
@@ -165,7 +164,7 @@ function Initialize({ navigator }: Props) {
         //Query
         const query = { approved: true };
 
-        //HTTP lekérdezés
+        //HTTP kérés
         const response = await PlanService.findByQuery(query);
         dialogState.text = response.message;
 
@@ -193,8 +192,6 @@ function Initialize({ navigator }: Props) {
     /**
      * getNotifications
      * 
-     * A bejelentkezett felhasználó számára beérkezett értesítések lekérdezése és betöltése a statebe
-     * 
      * @returns 
      */
     const getNotifications = async () => {
@@ -209,7 +206,7 @@ function Initialize({ navigator }: Props) {
             addressee: userState.userdata.username
         };
 
-        //HTTP lekérdezés
+        //HTTP kérés
         const response = await NotificationService.findByQuery(query);
 
         if (response.payload) {
@@ -233,7 +230,6 @@ function Initialize({ navigator }: Props) {
     /**
      * getDeviceInfo
      * 
-     * Eszközadatok lekérése
      */
     const getDeviceInfo = async () => {
         const deviceInfo = await Device.getInfo();
@@ -284,7 +280,6 @@ function Initialize({ navigator }: Props) {
     /**
      * openApplication
      * 
-     * Route stack resetelése és alkalmazás megnyitása a landing page-vel.
      */
     const openApplication = () => {
         const rand = Math.floor(Math.random() * 6);

@@ -10,7 +10,7 @@ import styles from './InputField.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -30,16 +30,12 @@ interface Props {
 /**
  * InputField
  * 
- * LocationForm űrlap egy beviteli mezője
- * 
  * @param param0 
  * @returns 
  */
 function InputField(props: Props) {
     /**
      * renderInput
-     * 
-     * Input mező típus alapján
      * 
      * @returns 
      */

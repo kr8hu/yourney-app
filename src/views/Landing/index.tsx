@@ -14,7 +14,7 @@ import styles from './Landing.module.css';
 
 
 /**
- * Props
+ * Interfaces
  * 
  */
 interface Props {
@@ -33,7 +33,6 @@ function Landing({ navigator, background }: Props) {
     /**
      * openHome
      * 
-     * Belépés az alkalmazásba
      */
     const openHome = () => {
         navigator.pushPage({ component: Home });

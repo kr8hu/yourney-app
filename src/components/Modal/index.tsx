@@ -35,7 +35,6 @@ function Modal() {
     /**
      * modalTop
      * 
-     * Modal kijelző tetejétől való távolsága
      */
     const modalTop = !modalState.status ? `calc(100vh + 5rem)` : `calc(100vh - ${modalState.height}vh)`;
 
@@ -43,7 +42,6 @@ function Modal() {
     /**
      * modalHeight
      * 
-     * Modal magassága
      */
     const modalHeight = `calc(100% - (100vh - ${modalState.height}vh))`;
 
@@ -51,7 +49,6 @@ function Modal() {
     /**
      * modalStyle
      * 
-     * Modal css formázása
      */
     const modalStyle: CSSProperties = {
         height: modalHeight,
@@ -62,7 +59,6 @@ function Modal() {
     /**
      * closeModal
      * 
-     * Modal bezárása
      */
     const closeModal = () => {
         setModalState(actionTypes.modal.SET_MODAL_STATUS, false);

@@ -17,7 +17,7 @@ import styles from './Explore.module.css';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {

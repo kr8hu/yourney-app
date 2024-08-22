@@ -12,7 +12,7 @@ import styles from './Tabbar.module.css';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {
@@ -31,7 +31,6 @@ function Tabbar({ tabs, center, onChange }: Props) {
     /**
      * width
      * 
-     * Szélesség kiszámítása
      */
     const width = center ? "42.5%" : "50%";
 

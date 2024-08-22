@@ -31,7 +31,7 @@ import styles from './Search.module.css';
 
 
 /**
- * Props 
+ * Interfaces 
  * 
  */
 interface Props {
