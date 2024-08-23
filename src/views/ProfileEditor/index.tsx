@@ -38,7 +38,7 @@ import {
 import { setUserStorage } from '../../shared/utils';
 
 //Interfaces
-import CustomResponse from '../../interfaces/CustomResponse';
+import ServiceResponse from '../../interfaces/ServiceResponse';
 import ToolbarButton from '../../interfaces/ToolbarButton';
 import DialogState from '../../interfaces/DialogState';
 import User from '../../interfaces/User';
@@ -148,7 +148,7 @@ function ProfileEditor(props: Props) {
      * onSuccess
      * 
      */
-    const onSuccess = (response: CustomResponse) => {
+    const onSuccess = (response: ServiceResponse) => {
         const dialogState: DialogState = {
             type: dialogTypes.ALERT,
             text: response.message,

@@ -13,7 +13,7 @@ import {
 } from "./shared/const";
 
 //Interfaces
-import CustomResponse from "./interfaces/CustomResponse";
+import ServiceResponse from "./interfaces/ServiceResponse";
 
 
 /**
@@ -24,15 +24,16 @@ const headers: HttpHeaders = {
     "Content-Type": "application/json"
 };
 
+
 /**
- * httpRequest
+ * api
  * 
  * @param method 
  * @param path 
  * @param data 
  * @returns 
  */
-async function httpRequest(method: string, path: string, data: any) {
+const api = async (method: string, route: string, data: any) => {
     const params = method !== requestMethods.GET ? "" : data;
 
     const options: HttpOptions = {
@@ -40,20 +41,20 @@ async function httpRequest(method: string, path: string, data: any) {
         method,
         data,
         params,
-        url: url + path
+        url: url + route
     };
 
     try {
         let httpResponse: HttpResponse = await CapacitorHttp.request(options);
-        return httpResponse.data as CustomResponse;
+        return httpResponse.data as ServiceResponse;
     }
     catch (e) {
-        const customResponse: CustomResponse = {
+        const ServiceResponse: ServiceResponse = {
             payload: null,
             message: "Hiba lépett fel a művelet végrehajtása közben.",
         }
-        return customResponse;
+        return ServiceResponse;
     }
 }
 
-export default httpRequest;
+export default api;

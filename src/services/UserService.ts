@@ -1,5 +1,5 @@
 //Capacitor
-import httpRequest from '../http-common';
+import api from '../http-common';
 
 //Shared
 import { requestMethods } from '../shared/const';
@@ -11,7 +11,7 @@ import { requestMethods } from '../shared/const';
  */
 class UserService {
 
-    entity = "users";
+    controller = "users";
 
 
     /**
@@ -21,8 +21,8 @@ class UserService {
      * @returns 
      */
     create(data: any) {
-        const path = `${this.entity}/create`;
-        return httpRequest(requestMethods.POST, path, data);
+        const route = `${this.controller}/create`;
+        return api(requestMethods.POST, route, data);
     }
 
     /**
@@ -32,8 +32,8 @@ class UserService {
      * @returns 
      */
     findById(id: string, data?: any) {
-        const path = `${this.entity}/find/id/${id}`;
-        return httpRequest(requestMethods.GET, path, data);
+        const route = `${this.controller}/find/id/${id}`;
+        return api(requestMethods.GET, route, data);
     }
 
     /**
@@ -43,8 +43,8 @@ class UserService {
      * @returns 
      */
     findByQuery(data: any) {
-        const path = `${this.entity}/find/query`;
-        return httpRequest(requestMethods.POST, path, data);
+        const route = `${this.controller}/find/query`;
+        return api(requestMethods.POST, route, data);
     }
 
     /**
@@ -54,8 +54,8 @@ class UserService {
      * @returns 
      */
     update(id: string, data: any) {
-        const path = `${this.entity}/update/${id}`;
-        return httpRequest(requestMethods.PUT, path, data);
+        const route = `${this.controller}/update/${id}`;
+        return api(requestMethods.PUT, route, data);
     }
 
     /**
@@ -65,8 +65,8 @@ class UserService {
      * @returns 
      */
     changePassword(id: string, data: any) {
-        const path = `${this.entity}/changePassword/${id}`;
-        return httpRequest(requestMethods.PUT, path, data);
+        const route = `${this.controller}/changePassword/${id}`;
+        return api(requestMethods.PUT, route, data);
     }
 
     /**
@@ -76,8 +76,8 @@ class UserService {
      * @returns 
      */
     delete(id: string, data?: any) {
-        const path = `${this.entity}/delete/${id}`;
-        return httpRequest(requestMethods.DELETE, path, data);
+        const route = `${this.controller}/delete/${id}`;
+        return api(requestMethods.DELETE, route, data);
     }
 }
 

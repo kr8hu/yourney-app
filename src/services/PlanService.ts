@@ -1,5 +1,5 @@
 //Capacitor
-import httpRequest from '../http-common';
+import api from '../http-common';
 
 //Shared
 import { requestMethods } from '../shared/const';
@@ -11,7 +11,7 @@ import { requestMethods } from '../shared/const';
  */
 class PlanService {
 
-    entity = "plans";
+    controller = "plans";
 
 
     /**
@@ -21,21 +21,20 @@ class PlanService {
      * @returns 
      */
     create(data: any) {
-        const path = `${this.entity}/create`;
-        return httpRequest(requestMethods.POST, path, data);
+        const route = `${this.controller}/create`;
+        return api(requestMethods.POST, route, data);
     }
 
     /**
      * Find (id)
      * 
-     * @param id bejegyzés azonosítója
-     * @param data további adatok küldése a lekérdezéshez
-     * @param networkStatus szerverkapcsolat állapota
+     * @param id
+     * @param data
      * @returns 
      */
     findById(id: string, data?: any) {
-        const path = `${this.entity}/find/id/${id}`;
-        return httpRequest(requestMethods.GET, path, data);
+        const route = `${this.controller}/find/id/${id}`;
+        return api(requestMethods.GET, route, data);
     }
 
     /**
@@ -46,8 +45,8 @@ class PlanService {
      * @returns 
      */
     findByQuery(data: any) {
-        const path = `${this.entity}/find/query`;
-        return httpRequest(requestMethods.POST, path, data);
+        const route = `${this.controller}/find/query`;
+        return api(requestMethods.POST, route, data);
     }
 
     /**
@@ -58,8 +57,8 @@ class PlanService {
      * @returns 
      */
     update(id: string, data: any) {
-        const path = `${this.entity}/update/${id}`;
-        return httpRequest(requestMethods.PUT, path, data);
+        const route = `${this.controller}/update/${id}`;
+        return api(requestMethods.PUT, route, data);
     }
 
     /**
@@ -70,8 +69,8 @@ class PlanService {
      * @returns 
      */
     like(id: string, data: any) {
-        const path = `${this.entity}/like/${id}`;
-        return httpRequest(requestMethods.PUT, path, data);
+        const route = `${this.controller}/like/${id}`;
+        return api(requestMethods.PUT, route, data);
     }
 
     /**
@@ -82,8 +81,8 @@ class PlanService {
      * @returns 
      */
     approve(id: string, data?: any) {
-        const path = `${this.entity}/approve/${id}`;
-        return httpRequest(requestMethods.PUT, path, data);
+        const route = `${this.controller}/approve/${id}`;
+        return api(requestMethods.PUT, route, data);
     }
 
     /**
@@ -94,8 +93,8 @@ class PlanService {
      * @returns 
      */
     delete(id: string, data?: any) {
-        const path = `${this.entity}/delete/${id}`;
-        return httpRequest(requestMethods.DELETE, path, data);
+        const route = `${this.controller}/delete/${id}`;
+        return api(requestMethods.DELETE, route, data);
     }
 }
 

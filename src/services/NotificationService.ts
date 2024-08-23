@@ -1,5 +1,5 @@
 //Capacitor
-import httpRequest from '../http-common';
+import api from '../http-common';
 
 //Shared
 import { requestMethods } from '../shared/const';
@@ -11,7 +11,7 @@ import { requestMethods } from '../shared/const';
  */
 class NotificationService {
 
-    entity = "notifications";
+    controller = "notifications";
 
 
     /**
@@ -21,8 +21,8 @@ class NotificationService {
      * @returns 
      */
     create(data: any) {
-        const path = `${this.entity}/create`;
-        return httpRequest(requestMethods.POST, path, data);
+        const route = `${this.controller}/create`;
+        return api(requestMethods.POST, route, data);
     }
 
     /**
@@ -32,8 +32,8 @@ class NotificationService {
      * @returns 
      */
     findByQuery(data: any) {
-        const path = `${this.entity}/find/query`;
-        return httpRequest(requestMethods.POST, path, data);
+        const route = `${this.controller}/find/query`;
+        return api(requestMethods.POST, route, data);
     }
 
     /**
@@ -43,8 +43,8 @@ class NotificationService {
      * @returns 
      */
     delete(id: string, data?: any) {
-        const path = `${this.entity}/delete/${id}`;
-        return httpRequest(requestMethods.DELETE, path, data);
+        const route = `${this.controller}/delete/${id}`;
+        return api(requestMethods.DELETE, route, data);
     }
 }
 
